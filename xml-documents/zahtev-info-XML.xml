@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zahtev-za-pristup-informacijama>
+    <zaglavlje>
+        <naziv-organa>
+            
+        </naziv-organa>
+        <sediste-organa>
+            
+        </sediste-organa>
+    </zaglavlje>
+    <sadrzaj>
+        <obavestenje-o-posedu-informacije>
+            
+        </obavestenje-o-posedu-informacije>
+        <uvid-u-dokument>
+            
+        </uvid-u-dokument>
+        <kopija-dokumenta>
+            
+        </kopija-dokumenta>
+        <dostavljanje-kopije>
+            <postom></postom>
+            <elektronskom-postom></elektronskom-postom>
+            <faksom></faksom>
+            <drugi-nacin></drugi-nacin>
+            
+        </dostavljanje-kopije>
+        <opis-zahteva>
+            
+        </opis-zahteva>
+    </sadrzaj>
+    
+    <informacije-trazioca>
+        <ime></ime>
+        <prezime></prezime>
+        <adresa></adresa>
+        <kontakt-podaci></kontakt-podaci>
+        <potpis></potpis>
+    </informacije-trazioca>
+    <mesto-podnosenja-zahteva></mesto-podnosenja-zahteva>
+    <datum-podnosenja-zahteva></datum-podnosenja-zahteva>
+</zahtev-za-pristup-informacijama>
