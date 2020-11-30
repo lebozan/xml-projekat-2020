@@ -1,33 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zahtev-za-pristup-informacijama>
     <zaglavlje>
-        <naziv-organa>
-            
-        </naziv-organa>
-        <sediste-organa>
-            
-        </sediste-organa>
+        <organ>
+            <naziv-organa>
+                
+            </naziv-organa>
+            <sediste-organa>
+                
+            </sediste-organa>
+        </organ>
     </zaglavlje>
+    
+    <naslov>
+        З А Х Т Е В
+        за приступ информацији од јавног значаја
+    </naslov>
+    
     <sadrzaj>
-        <obavestenje-o-posedu-informacije>
+
+        <tekst>
+            На основу члана 15. ст. 1. Закона о слободном приступу информацијама од јавног значаја („Службени гласник РС“, бр. 120/04,               54/07, 104/09 и 36/10), од горе наведеног органа захтевам:*
+        </tekst>
+        
+        
+        <tipovi_zahteva>
+            <tip_zahteva>обавештење да ли поседује тражену информацију</tip_zahteva>
+            <tip_zahteva>увид у документ који садржи тражену информацију</tip_zahteva>
+            <tip_zahteva>копију документа који садржи тражену информацију</tip_zahteva>
+            <tip_zahteva>
+                достављање копије документа који садржи тражену информацију:**
+                <vrste_dostave>
+                    <dostava>поштом</dostava>
+                    <dostava>електронском поштом</dostava>
+                    <dostava>факсом</dostava>
+                    <dostava>на други начин:***</dostava>
+                </vrste_dostave>
+            </tip_zahteva>
             
-        </obavestenje-o-posedu-informacije>
-        <uvid-u-dokument>
-            
-        </uvid-u-dokument>
-        <kopija-dokumenta>
-            
-        </kopija-dokumenta>
-        <dostavljanje-kopije>
-            <postom></postom>
-            <elektronskom-postom></elektronskom-postom>
-            <faksom></faksom>
-            <drugi-nacin></drugi-nacin>
-            
-        </dostavljanje-kopije>
-        <opis-zahteva>
-            
-        </opis-zahteva>
+        </tipovi_zahteva>
+        
+        <tekst>
+            Овај захтев се односи на следеће информације:
+            <opis_zahteva></opis_zahteva>
+        </tekst>        
+
     </sadrzaj>
     
     <informacije-trazioca>
@@ -37,6 +53,17 @@
         <kontakt-podaci></kontakt-podaci>
         <potpis></potpis>
     </informacije-trazioca>
-    <mesto-podnosenja-zahteva></mesto-podnosenja-zahteva>
-    <datum-podnosenja-zahteva></datum-podnosenja-zahteva>
+    
+    <mesto_i_datum>
+        У <mesto></mesto>,
+        <datum>
+            дана <datum> <dan></dan> <mesec></mesec> <godina></godina> </datum> године
+        </datum>
+    </mesto_i_datum>
+    
+    <fusnote>
+        <fusnota>* У кућици означити која законска права на приступ информацијама желите да остварите.</fusnota>
+        <fusnota>** У кућици означити начин достављања копије докумената.</fusnota>
+        <fusnota>*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.</fusnota>
+    </fusnote>
 </zahtev-za-pristup-informacijama>

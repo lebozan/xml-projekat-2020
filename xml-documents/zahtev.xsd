@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="zahtev_za_pristup_informacijama">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="zaglavlje">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="organ">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="naziv_organa" type="xs:string"/>
+                                        <xs:element name="sediste_organa" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="naslov" type="xs:string"/>
+                <xs:element name="sadrzaj">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="tekst" type="xs:string"/>
+                            <xs:element name="tipovi_zahteva">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="1" minOccurs="1" name="tip_zahteva">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="tipovi_dostave">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="dostava"/>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="tekst" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="informacije_trazioca">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ime">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="3"/>
+                                        <xs:maxLength value="30"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="prezime">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="3"/>
+                                        <xs:maxLength value="30"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="adresa">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="3"/>
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="kontakt_podaci" type="xs:string"/>
+                            <xs:element name="potpis" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="mesto_i_datum">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="mesto" type="xs:string"/>
+                            <xs:element name="datum">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="dan">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:int">
+                                                  <xs:minInclusive value="1"/>
+                                                  <xs:maxInclusive value="31"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="mesec">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:int">
+                                                  <xs:minInclusive value="1"/>
+                                                  <xs:maxInclusive value="12"/>
+                                                  <xs:totalDigits value="2"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="godina">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:int">
+                                                  <xs:minInclusive value="2020"/>
+                                                  <xs:maxInclusive value="2099"/>
+                                                  <xs:totalDigits value="4"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fusnote">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fusnota" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
