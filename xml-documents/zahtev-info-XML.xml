@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zahtev-za-pristup-informacijama>
+<zahtev_za_pristup_informacijama>
     <zaglavlje>
         <organ>
-            <naziv-organa>
+            <naziv_organa>
                 
-            </naziv-organa>
-            <sediste-organa>
+            </naziv_organa>
+            <sediste_organa>
                 
-            </sediste-organa>
+            </sediste_organa>
         </organ>
     </zaglavlje>
     
@@ -46,18 +46,19 @@
 
     </sadrzaj>
     
-    <informacije-trazioca>
+    <informacije_trazioca>
         <ime></ime>
         <prezime></prezime>
         <adresa></adresa>
-        <kontakt-podaci></kontakt-podaci>
+        <kontakt_podaci></kontakt_podaci>
         <potpis></potpis>
-    </informacije-trazioca>
+    </informacije_trazioca>
     
     <mesto_i_datum>
         У <mesto></mesto>,
         <datum>
-            дана <datum> <dan></dan> <mesec></mesec> <godina></godina> </datum> године
+            дана <dan></dan> <mesec></mesec> <godina></godina>
+                 године
         </datum>
     </mesto_i_datum>
     
@@ -66,4 +67,4 @@
         <fusnota>** У кућици означити начин достављања копије докумената.</fusnota>
         <fusnota>*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.</fusnota>
     </fusnote>
-</zahtev-za-pristup-informacijama>
+</zahtev_za_pristup_informacijama>

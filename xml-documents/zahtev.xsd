@@ -22,17 +22,19 @@
                 <xs:element name="sadrzaj">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="tekst" type="xs:string"/>
+                            <xs:element name="tekst"/>
                             <xs:element name="tipovi_zahteva">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element maxOccurs="1" minOccurs="1" name="tip_zahteva">
-                                            <xs:complexType>
-                                                <xs:sequence>
-                                                  <xs:element name="tipovi_dostave">
-                                                  <xs:complexType>
+                                        <xs:element maxOccurs="unbounded" minOccurs="1"
+                                            name="tip_zahteva">
+                                            <xs:complexType mixed="true">
+                                                <xs:sequence minOccurs="0">
+                                                  <xs:element name="vrste_dostave"
+                                                  maxOccurs="unbounded" minOccurs="0">
+                                                  <xs:complexType mixed="true">
                                                   <xs:sequence>
-                                                  <xs:element name="dostava"/>
+                                                  <xs:element name="dostava" maxOccurs="unbounded"/>
                                                   </xs:sequence>
                                                   </xs:complexType>
                                                   </xs:element>
@@ -42,7 +44,7 @@
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="tekst" type="xs:string"/>
+                            <xs:element name="tekst"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -52,7 +54,7 @@
                             <xs:element name="ime">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:string">
-                                        <xs:minLength value="3"/>
+                                        <xs:minLength value="0"/>
                                         <xs:maxLength value="30"/>
                                     </xs:restriction>
                                 </xs:simpleType>
@@ -60,7 +62,7 @@
                             <xs:element name="prezime">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:string">
-                                        <xs:minLength value="3"/>
+                                        <xs:minLength value="0"/>
                                         <xs:maxLength value="30"/>
                                     </xs:restriction>
                                 </xs:simpleType>
@@ -68,7 +70,7 @@
                             <xs:element name="adresa">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:string">
-                                        <xs:minLength value="3"/>
+                                        <xs:minLength value="0"/>
                                         <xs:maxLength value="50"/>
                                     </xs:restriction>
                                 </xs:simpleType>
@@ -79,35 +81,30 @@
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="mesto_i_datum">
-                    <xs:complexType>
+                    <xs:complexType mixed="true">
                         <xs:sequence>
                             <xs:element name="mesto" type="xs:string"/>
                             <xs:element name="datum">
-                                <xs:complexType>
+                                <xs:complexType mixed="true">
                                     <xs:sequence>
-                                        <xs:element name="dan">
+                                        <xs:element name="dan" minOccurs="1" nillable="false">
                                             <xs:simpleType>
-                                                <xs:restriction base="xs:int">
-                                                  <xs:minInclusive value="1"/>
-                                                  <xs:maxInclusive value="31"/>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="2"/>
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
-                                        <xs:element name="mesec">
+                                        <xs:element name="mesec" minOccurs="1" nillable="false">
                                             <xs:simpleType>
-                                                <xs:restriction base="xs:int">
-                                                  <xs:minInclusive value="1"/>
-                                                  <xs:maxInclusive value="12"/>
-                                                  <xs:totalDigits value="2"/>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="2"/>
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
-                                        <xs:element name="godina">
+                                        <xs:element name="godina" minOccurs="1" nillable="false">
                                             <xs:simpleType>
-                                                <xs:restriction base="xs:int">
-                                                  <xs:minInclusive value="2020"/>
-                                                  <xs:maxInclusive value="2099"/>
-                                                  <xs:totalDigits value="4"/>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="4"/>
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
@@ -120,7 +117,8 @@
                 <xs:element name="fusnote">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="fusnota" type="xs:string"/>
+                            <xs:element name="fusnota" type="xs:string" maxOccurs="unbounded"
+                                minOccurs="0"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
