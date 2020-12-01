@@ -22,9 +22,11 @@
         <podnosilac_zalbe>
             <ime></ime>
             <prezime></prezime>
-            <ulica></ulica>
-            <broj></broj>
-            <grad></grad>
+            <adresa_podnosioca>
+                <ulica></ulica>
+                <broj></broj>
+                <grad></grad>
+            </adresa_podnosioca>
         </podnosilac_zalbe>
         против решења-закључка 
         <naziv_organa_vlasti></naziv_organa_vlasti>
@@ -56,9 +58,11 @@
             У
             <mesto></mesto>
             ,
-            <ulica></ulica>
-            <broj></broj>
-            <grad></grad>
+            <adresa_mesta>
+                <ulica></ulica>
+                <broj></broj>
+                <grad></grad>
+            </adresa_mesta>
             дана
             <dan_mesec></dan_mesec>
             201

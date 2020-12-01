@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="zalba_na_odluku">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="zaglavlje">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="naslov" type="xs:string"/>
+                            <xs:element name="primalac" type="xs:string"/>
+                            <xs:element name="adresa_primaoca" type="TAdresaPrimaoca"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="zalba_sadrzaj">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="podnosilac_zalbe" type="TPodnosilacZalbe"/>
+                            <xs:element name="naziv_organa_vlasti" type="xs:string"/>
+                            <xs:element name="broj_zalbe" type="xs:int"/>
+                            <xs:element name="godina" type="xs:int"/>
+                            <xs:element name="paragraf">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="datum" type="xs:date"/>
+                                        <xs:element name="razlog" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="podaci">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="ime" type="xs:string"/>
+                                        <xs:element name="prezime" type="xs:string"/>
+                                        <xs:element name="mesto" type="xs:string"/>
+                                        <xs:element name="adresa_mesta" type="TAdresa"/>
+                                        <xs:element name="dan_mesec" type="xs:string"/>
+                                        <xs:element name="godina" type="xs:int"/>
+                                        <xs:element name="drugi_podaci_kontakt" type="xs:string"/>
+                                        <xs:element name="potpis" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="napomene">
+                    <xs:complexType>
+                        <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                            <xs:element name="napomena" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TAdresaPrimaoca">
+        <xs:sequence>
+            <xs:element name="grad" type="xs:string"/>
+            <xs:element name="ulica" type="xs:string"/>
+            <xs:element name="broj" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TPodnosilacZalbe">
+        <xs:sequence>
+            <xs:element name="ime" type="xs:string"/>
+            <xs:element name="prezime" type="xs:string"/>
+            <xs:element name="adresa_podnosioca" type="TAdresa"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TAdresa">
+        <xs:sequence>
+            <xs:element name="ulica" type="xs:string"/>
+            <xs:element name="broj" type="xs:string"/>
+            <xs:element name="grad" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
