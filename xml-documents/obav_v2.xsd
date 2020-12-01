@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/obavestenje"
+    xmlns:obav="http://www.ftn.uns.ac.rs/obavestenje">
+    <xs:element name="obavestenje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="informacije">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="organ" type="obav:TPravno_lice"/>
+                            <xs:element name="podnosilac" type="obav:TFizicko_lice"/>
+                            <xs:element name="datum_obavestenja" type="xs:date"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element fixed="О Б А В Е Ш Т Е Њ Е " name="naslov" type="xs:string"/>
+                <xs:element
+                    fixed="о стављању на увид документа који садржи тражену информацију и о изради копије "
+                    name="podnaslov" type="xs:string"/>
+                <xs:element name="trazena_informacija">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element
+                                fixed="На основу члана 16. ст. 1. Закона о слободном приступу информацијама од јавног значаја, поступајући по вашем захтеву за слободан приступ информацијама од"
+                                name="trazena_informacija_text_1" type="xs:string"/>
+                            <xs:element name="datum_trazenja" type="xs:date"/>
+                            <xs:element
+                                fixed="год., којим сте тражили увид у документ/е са информацијама о / у вези са:"
+                                name="trazena_informacija_text_2" type="xs:string"/>
+                            <xs:element name="opis_trazene_informacije" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="uvid">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element fixed="обавештавамо вас да дана" name="uvid_text_1"
+                                type="xs:string"/>
+                            <xs:element name="datum_uvida" type="xs:date"/>
+                            <xs:element fixed=", у" name="uvid_text_2"/>
+                            <xs:element name="vreme_uvida" type="xs:time"/>
+                            <xs:element fixed="часова, односно у времену од" name="uvid_text_3"
+                                type="xs:string"/>
+                            <xs:element name="vreme_od" type="xs:time"/>
+                            <xs:element fixed="до" minOccurs="1" name="uvid_text_4" type="xs:string"/>
+                            <xs:element name="vreme_do" type="xs:time"/>
+                            <xs:element fixed="часова, у просторијама органа у" name="uvid_text_5"
+                                type="xs:string"/>
+                            <xs:element name="adresa_uvida" type="obav:TAdresa"/>
+                            <xs:element fixed=", канцеларија бр." name="uvid_text_6"
+                                type="xs:string"/>
+                            <xs:element name="kancelarija" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="kopija">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="kopija_informacije">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element
+                                            fixed="Том приликом, на ваш захтев, може вам се издати и копија документа са траженом информацијом."
+                                            name="kopija_informacije_text_1" type="xs:string"/>
+                                        <xs:element
+                                            fixed="Трошкови су утврђени Уредбом Владе Републике Србије („Сл. гласник РС“, бр. 8/06), и то: копија стране А4 формата износи 3 динара, А3 формата 6 динара, CD 35 динара, дискете 20 динара, DVD 40 динара, аудио-касета – 150 динара, видео-касета 300 динара, претварање једне стране документа из физичког у електронски облик – 30 динара. "
+                                            name="kopija_informacije_text_2" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element
+                                fixed="Износ укупних трошкова израде копије документа по вашем захтеву износи"
+                                name="kopija_text_1" type="xs:string"/>
+                            <xs:element name="cena" type="xs:int"/>
+                            <xs:element
+                                fixed="динара и уплаћује се на жиро-рачун Буџета Републике Србије бр. 840-742328-843-30, с позивом на број 97 – ознака шифре општине/града где се налази орган власти (из Правилника о условима и начину вођења рачуна – „Сл. гласник РС“, 20/07... 40/10)."
+                                name="kopija_text_2" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="dostavljanje">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element fixed="Достављено: " name="dostavljeno_text_1"/>
+                            <xs:element name="dostavljeno">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Именованом"/>
+                                        <xs:enumeration value="Архиви"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TUplatnica">
+        <xs:sequence>
+            <xs:element name="podaci_o_duzniku" type="obav:TLice"/>
+            <xs:element name="podaci_o_poveriocu" type="obav:TLice"/>
+            <xs:element name="svrha_placanja"/>
+            <xs:element name="podaci_o_uplati">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sifra_placanja" type="xs:int"/>
+                        <xs:element name="iznos" type="xs:int"/>
+                        <xs:element name="podaci_o_zaduzenju" type="xs:string"/>
+                        <xs:element name="podaci_o_odobrenju" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TAdresa">
+        <xs:sequence>
+            <xs:element name="mesto" type="xs:string"/>
+            <xs:element minOccurs="1" name="postanski_broj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="11000"/>
+                        <xs:maxInclusive value="40000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ulica" type="xs:string"/>
+            <xs:element minOccurs="0" name="broj" type="xs:positiveInteger"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="TLice">
+        <xs:sequence>
+            <xs:element name="adresa" type="obav:TAdresa"/>
+            <xs:element default="000-0000000000000-00" name="broj_racuna" type="obav:TBroj_racuna"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TPravno_lice">
+        <xs:complexContent>
+            <xs:extension base="obav:TLice">
+                <xs:sequence>
+                    <xs:element name="naziv" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TFizicko_lice">
+        <xs:complexContent>
+            <xs:extension base="obav:TLice">
+                <xs:sequence>
+                    <xs:element name="ime" type="xs:string"/>
+                    <xs:element name="prezime" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:simpleType name="TBroj_racuna">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{3}-\d{1,13}-\d{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/obavestenje"
+    xmlns:obav="http://www.ftn.uns.ac.rs/obavestenje">
+    <xs:element name="obavestenje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="informacije">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="organ" type="obav:TPravno_lice"/>
+                            <xs:element name="podnosilac" type="obav:TFizicko_lice"/>
+                            <xs:element name="datum_obavestenja" type="xs:date"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="trazena_informacija">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="datum_trazenja" type="xs:date"/>
+                            <xs:element name="opis_trazene_informacije" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="posedovanje" minOccurs="1">
+                    <xs:complexType mixed="true">
+                        <xs:attribute name="poseduje" type="xs:boolean"/>
+                        <xs:attribute name="razlog_obavestenja" type="xs:string"
+                            fixed="o posedovanju trazenog dokumenta"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="uvid" minOccurs="0">
+                    <xs:complexType mixed="true">
+                        <xs:sequence>
+                            <xs:element name="datum_uvida" type="xs:date"/>
+                            <xs:element name="vreme_uvida" type="xs:time"/>
+                            <xs:element name="adresa_uvida" type="obav:TAdresa"/>
+                            <xs:element name="kancelarija" type="xs:string"/>
+                        </xs:sequence>
+                        <xs:attribute
+                            fixed="o stavljanju na uvid dokumenta koji sadrzi trazenu informaciju"
+                            name="razlog_obavestenja" type="xs:string"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="kopija" minOccurs="0">
+                    <xs:complexType mixed="true">
+                        <xs:sequence>
+                            <xs:element name="izrada_kopije" type="obav:TKopija"/>
+                            <xs:element name="uplatnica" type="obav:TUplatnica"/>
+                        </xs:sequence>
+                        <xs:attribute fixed="o izradi kopije" name="razlog_obavestenja"
+                            type="xs:string"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="dostavljanje" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="obav:TDostava">
+                                <xs:attribute name="dostavlja_se" type="xs:boolean"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id_obavestenje" type="xs:ID"/>
+            <xs:attribute name="id_zahtev" type="xs:int"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TUplatnica">
+        <xs:sequence>
+            <xs:element name="podaci_o_duzniku" type="obav:TFizicko_lice"/>
+            <xs:element name="podaci_o_poveriocu" type="obav:TPravno_lice"/>
+            <xs:element name="svrha_placanja"/>
+            <xs:element name="podaci_o_uplati">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sifra_placanja" type="xs:int"/>
+                        <xs:element name="iznos" type="xs:int"/>
+                        <xs:element name="podaci_o_zaduzenju" type="xs:string"/>
+                        <xs:element name="podaci_o_odobrenju" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TAdresa">
+        <xs:sequence>
+            <xs:element name="mesto" type="xs:string"/>
+            <xs:element minOccurs="1" name="postanski_broj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="11000"/>
+                        <xs:maxInclusive value="40000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ulica" type="xs:string"/>
+            <xs:element minOccurs="0" name="broj" type="xs:positiveInteger"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="TLice">
+        <xs:sequence>
+            <xs:element name="adresa" type="obav:TAdresa"/>
+            <xs:element name="broj_racuna" fixed="840-742328-843-30">
+                <xs:simpleType>
+                    <xs:restriction base="obav:TBroj_racuna"/>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TPravno_lice">
+        <xs:complexContent>
+            <xs:extension base="obav:TLice">
+                <xs:sequence>
+                    <xs:element name="naziv" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TFizicko_lice">
+        <xs:complexContent>
+            <xs:extension base="obav:TLice">
+                <xs:sequence>
+                    <xs:element name="ime" type="xs:string"/>
+                    <xs:element name="prezime" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TKopija">
+        <xs:sequence>
+            <xs:element fixed="" name="format" type="xs:string"/>
+            <xs:element name="cena" type="xs:positiveInteger"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="TBroj_racuna">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{3}-\d{1,13}-\d{2}"/>
+            <xs:pattern value="\d{3}-\d{6}-\d{3}-\d{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TDostava">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Именованом"/>
+            <xs:enumeration value="Архиви"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
