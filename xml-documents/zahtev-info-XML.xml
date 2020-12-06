@@ -3,10 +3,8 @@
     <zaglavlje>
         <organ>
             <naziv_organa>
-                
             </naziv_organa>
             <sediste_organa>
-                
             </sediste_organa>
         </organ>
     </zaglavlje>
@@ -27,22 +25,22 @@
             <tip_zahteva>обавештење да ли поседује тражену информацију</tip_zahteva>
             <tip_zahteva>увид у документ који садржи тражену информацију</tip_zahteva>
             <tip_zahteva>копију документа који садржи тражену информацију</tip_zahteva>
-            <tip_zahteva>
-                достављање копије документа који садржи тражену информацију:**
+            <tip_zahteva_dostava>
+                <tekst>достављање копије документа који садржи тражену информацију:**</tekst>
                 <vrste_dostave>
                     <dostava>поштом</dostava>
                     <dostava>електронском поштом</dostava>
                     <dostava>факсом</dostava>
                     <dostava>на други начин:***</dostava>
                 </vrste_dostave>
-            </tip_zahteva>
+            </tip_zahteva_dostava>
             
         </tipovi_zahteva>
         
-        <tekst>
-            Овај захтев се односи на следеће информације:
+        <informacije_o_zahtevu>
+            <tekst>Овај захтев се односи на следеће информације:</tekst>
             <opis_zahteva></opis_zahteva>
-        </tekst>        
+        </informacije_o_zahtevu>        
 
     </sadrzaj>
     

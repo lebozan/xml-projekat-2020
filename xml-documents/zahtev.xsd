@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
+    <xs:include schemaLocation="zahtev-slozeni-tipovi.xsd"/>
     <xs:element name="zahtev_za_pristup_informacijama">
         <xs:complexType>
             <xs:sequence>
@@ -26,25 +27,21 @@
                             <xs:element name="tipovi_zahteva">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element maxOccurs="unbounded" minOccurs="1"
-                                            name="tip_zahteva">
-                                            <xs:complexType mixed="true">
-                                                <xs:sequence minOccurs="0">
-                                                  <xs:element name="vrste_dostave"
-                                                  maxOccurs="unbounded" minOccurs="0">
-                                                  <xs:complexType mixed="true">
-                                                  <xs:sequence>
-                                                  <xs:element name="dostava" maxOccurs="unbounded"/>
-                                                  </xs:sequence>
-                                                  </xs:complexType>
-                                                  </xs:element>
+                                        <xs:element name="tip_zahteva"/>
+                                        <xs:element name="tip_zahteva"/>
+                                        <xs:element name="tip_zahteva"/>
+                                        <xs:element name="tip_zahteva_dostava">
+                                            <xs:complexType mixed="false">
+                                                <xs:sequence>
+                                                  <xs:element name="tekst"/>
+                                                  <xs:element name="vrste_dostave" type="TDostava"/>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="tekst"/>
+                            <xs:element name="informacije_o_zahtevu" type="TInformacijeOZahtevu"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -84,41 +81,17 @@
                     <xs:complexType mixed="true">
                         <xs:sequence>
                             <xs:element name="mesto" type="xs:string"/>
-                            <xs:element name="datum">
-                                <xs:complexType mixed="true">
-                                    <xs:sequence>
-                                        <xs:element name="dan" minOccurs="1" nillable="false">
-                                            <xs:simpleType>
-                                                <xs:restriction base="xs:string">
-                                                  <xs:maxLength value="2"/>
-                                                </xs:restriction>
-                                            </xs:simpleType>
-                                        </xs:element>
-                                        <xs:element name="mesec" minOccurs="1" nillable="false">
-                                            <xs:simpleType>
-                                                <xs:restriction base="xs:string">
-                                                  <xs:maxLength value="2"/>
-                                                </xs:restriction>
-                                            </xs:simpleType>
-                                        </xs:element>
-                                        <xs:element name="godina" minOccurs="1" nillable="false">
-                                            <xs:simpleType>
-                                                <xs:restriction base="xs:string">
-                                                  <xs:maxLength value="4"/>
-                                                </xs:restriction>
-                                            </xs:simpleType>
-                                        </xs:element>
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
+                            <xs:element name="datum" type="TDatum"> </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="fusnote">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="fusnota" type="xs:string" maxOccurs="unbounded"
-                                minOccurs="0"/>
+                            <xs:element name="fusnota" type="xs:string" maxOccurs="1" minOccurs="1"/>
+                            <xs:element name="fusnota" type="xs:string" maxOccurs="1" minOccurs="1"/>
+                            <xs:element name="fusnota" type="xs:string" maxOccurs="1" minOccurs="1"
+                            />
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
