@@ -1,22 +1,19 @@
 package ftn.xml.XmlProjekat.model.zahtev;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class MestoIDatum {
-
+public class TipZahtevaDostava {
 
     private String tekst;
-    private String mesto;
-    private TDatum datum;
-
+    private String[] vrsteDostave;
 
     public String getTekst() {
         return tekst;
@@ -27,21 +24,13 @@ public class MestoIDatum {
         this.tekst = tekst;
     }
 
-    public String getMesto() {
-        return mesto;
+    public String[] getVrsteDostave() {
+        return vrsteDostave;
     }
 
-    @XmlElement(name = "mesto")
-    public void setMesto(String mesto) {
-        this.mesto = mesto;
-    }
-
-    public TDatum getDatum() {
-        return datum;
-    }
-
-    @XmlElement(name = "datum")
-    public void setDatum(TDatum datum) {
-        this.datum = datum;
+    @XmlElementWrapper(name = "vrste_dostave")
+    @XmlElement(name = "dostava")
+    public void setVrsteDostave(String[] vrsteDostave) {
+        this.vrsteDostave = vrsteDostave;
     }
 }
