@@ -1,34 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <zahtev_za_pristup_informacijama>
-    <zaglavlje>
-        <organ>
-            <naziv_organa>naziv_organa0</naziv_organa>
-            <sediste_organa>sediste_organa0</sediste_organa>
-        </organ>
-    </zaglavlje>
-    <naslov>naslov0</naslov>
-    <sadrzaj>
-        <tekst>
-        </tekst>
-    </sadrzaj>
+    <fusnote>
+        <fusnota>1</fusnota>
+        <fusnota>1</fusnota>
+        <fusnota>1</fusnota>
+    </fusnote>
     <informacije_trazioca>
-        <ime>ime0</ime>
-        <prezime>prezime0</prezime>
-        <adresa>adresa0</adresa>
-        <kontakt_podaci>kontakt_podaci0</kontakt_podaci>
-        <potpis>potpis0</potpis>
+        <adresa>adresa</adresa>
+        <ime>ime</ime>
+        <kontakt_podaci>kontakt</kontakt_podaci>
+        <potpis>potpis</potpis>
+        <prezime>prezime</prezime>
     </informacije_trazioca>
     <mesto_i_datum>
-        <mesto>mesto0</mesto>
         <datum>
-            <dan>dan0</dan>
-            <mesec>mesec0</mesec>
-            <godina>godina0</godina>
+            <dan>01</dan>
+            <godina>2020</godina>
+            <mesec>05</mesec>
+            <tekst_dan>dana</tekst_dan>
+            <tekst_godina>godine</tekst_godina>
         </datum>
+        <mesto>mesto</mesto>
+        <tekst>tekst</tekst>
     </mesto_i_datum>
-    <fusnote>
-        <fusnota>fusnota0</fusnota>
-        <fusnota>fusnota1</fusnota>
-        <fusnota>fusnota2</fusnota>
-    </fusnote>
+    <naslov>naslov dokumenta</naslov>
+    <sadrzaj>
+        <informacije_o_zahtevu>
+            <opis_zahteva>opis zahteva</opis_zahteva>
+            <tekst>tekst</tekst>
+        </informacije_o_zahtevu>
+        <tekst>tekst</tekst>
+        <tipovi_zahteva>
+            <tip_zahteva>tip z1</tip_zahteva>
+            <tip_zahteva>tip z2</tip_zahteva>
+            <tip_zahteva>tip z3</tip_zahteva>
+            <tip_zahteva_dostava>
+                <tekst>tekst</tekst>
+                <vrste_dostave>
+                    <dostava>tip dostave 1</dostava>
+                    <dostava>tip dostave 2</dostava>
+                    <dostava>tip dostave 4</dostava>
+                </vrste_dostave>
+            </tip_zahteva_dostava>
+        </tipovi_zahteva>
+    </sadrzaj>
+    <zaglavlje>
+        <organ>
+            <naziv_organa>naziv</naziv_organa>
+            <sediste_organa>sediste</sediste_organa>
+        </organ>
+    </zaglavlje>
 </zahtev_za_pristup_informacijama>

@@ -1,9 +1,6 @@
 package ftn.xml.XmlProjekat.parser;
 
-import ftn.xml.XmlProjekat.model.zahtev.Organ;
-import ftn.xml.XmlProjekat.model.zahtev.TDatum;
-import ftn.xml.XmlProjekat.model.zahtev.Zaglavlje;
-import ftn.xml.XmlProjekat.model.zahtev.ZahtevZaPristupInformacijama;
+import ftn.xml.XmlProjekat.model.zahtev.*;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -97,13 +94,39 @@ public class DOMParser {
 
         ZahtevZaPristupInformacijama zahtevZaPristupInformacijama = new ZahtevZaPristupInformacijama();
 
-        zahtevZaPristupInformacijama.setZaglavlje(new Zaglavlje(new Organ()));
+
         String[] fusnote = new String[3];
         fusnote[0] = "1";
         fusnote[1] = "1";
         fusnote[2] = "1";
 
         zahtevZaPristupInformacijama.setFusnote(fusnote);
+
+
+        zahtevZaPristupInformacijama.setMestoIDatum(new MestoIDatum("tekst", "mesto",
+                new TDatum("dana", "01", "05", "2020", "godine")));
+
+        zahtevZaPristupInformacijama.setInformacijeTrazioca(
+                new InformacijeTrazioca("ime", "prezime", "adresa", "kontakt", "potpis"));
+
+        String[] tipoviZahteva = new String[3];
+        tipoviZahteva[0] = "tip z1";
+        tipoviZahteva[1] = "tip z2";
+        tipoviZahteva[2] = "tip z3";
+
+        String[] vrsteDostave = new String[4];
+        vrsteDostave[0] = "tip dostave 1";
+        vrsteDostave[1] = "tip dostave 2";
+        vrsteDostave[2] = "tip dostave 3";
+        vrsteDostave[2] = "tip dostave 4";
+
+        zahtevZaPristupInformacijama.setSadrzaj(new Sadrzaj("tekst",
+                new TipoviZahteva(tipoviZahteva, new TipZahtevaDostava("tekst", vrsteDostave)),
+                new InformacijeOZahtevu("tekst", "opis zahteva")));
+
+        zahtevZaPristupInformacijama.setNaslov("naslov dokumenta");
+
+        zahtevZaPristupInformacijama.setZaglavlje(new Zaglavlje(new Organ("naziv", "sediste")));
 
 
         // convert user object to XML file

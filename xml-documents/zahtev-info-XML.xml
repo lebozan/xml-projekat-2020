@@ -53,10 +53,12 @@
     </informacije_trazioca>
     
     <mesto_i_datum>
-        У <mesto></mesto>,
+        <tekst>У </tekst>
+        <mesto></mesto>
         <datum>
-            дана <dan></dan> <mesec></mesec> <godina></godina>
-                 године
+            <tekst_dan>дана</tekst_dan>
+            <dan></dan> <mesec></mesec> <godina></godina>
+            <tekst_godina>године</tekst_godina>
         </datum>
     </mesto_i_datum>
     

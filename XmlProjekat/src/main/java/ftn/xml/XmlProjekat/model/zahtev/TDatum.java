@@ -11,11 +11,21 @@ import javax.xml.bind.annotation.XmlElement;
 @Data
 public class TDatum {
 
-
+    private String tekstDan;
     private String dan;
     private String mesec;
     private String godina;
+    private String tekstGodina;
 
+
+    public String getTekstDan() {
+        return tekstDan;
+    }
+
+    @XmlElement(name = "tekst_dan")
+    public void setTekstDan(String tekstDan) {
+        this.tekstDan = tekstDan;
+    }
 
     public String getDan() {
         return dan;
@@ -42,5 +52,14 @@ public class TDatum {
     @XmlElement(name = "godina")
     public void setGodina(String godina) {
         this.godina = godina;
+    }
+
+    public String getTekstGodina() {
+        return tekstGodina;
+    }
+
+    @XmlElement(name = "tekst_godina")
+    public void setTekstGodina(String tekstGodina) {
+        this.tekstGodina = tekstGodina;
     }
 }
