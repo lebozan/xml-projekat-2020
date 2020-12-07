@@ -5,10 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@XmlType(propOrder = {"tekst", "tipoviZahteva", "informacijeOZahtevu"})
 public class Sadrzaj {
 
     private String tekst;
@@ -20,7 +22,7 @@ public class Sadrzaj {
         return tekst;
     }
 
-    @XmlElement(name = "tekst")
+    @XmlElement(name = "tekst", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setTekst(String tekst) {
         this.tekst = tekst;
     }
@@ -29,7 +31,7 @@ public class Sadrzaj {
         return tipoviZahteva;
     }
 
-    @XmlElement(name = "tipovi_zahteva")
+    @XmlElement(name = "tipovi_zahteva", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setTipoviZahteva(TipoviZahteva tipoviZahteva) {
         this.tipoviZahteva = tipoviZahteva;
     }
@@ -38,7 +40,7 @@ public class Sadrzaj {
         return informacijeOZahtevu;
     }
 
-    @XmlElement(name = "informacije_o_zahtevu")
+    @XmlElement(name = "informacije_o_zahtevu", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setInformacijeOZahtevu(InformacijeOZahtevu informacijeOZahtevu) {
         this.informacijeOZahtevu = informacijeOZahtevu;
     }

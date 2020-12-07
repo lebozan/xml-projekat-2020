@@ -18,7 +18,7 @@ public class Zaglavlje {
         return organ;
     }
 
-    @XmlElement(name = "organ")
+    @XmlElement(name = "organ", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setOrgan(Organ organ) {
         this.organ = organ;
     }

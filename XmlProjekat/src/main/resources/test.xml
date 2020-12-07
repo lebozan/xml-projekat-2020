@@ -1,34 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<zahtev_za_pristup_informacijama>
-    <fusnote>
-        <fusnota>1</fusnota>
-        <fusnota>1</fusnota>
-        <fusnota>1</fusnota>
-    </fusnote>
-    <informacije_trazioca>
-        <adresa>adresa</adresa>
-        <ime>ime</ime>
-        <kontakt_podaci>kontakt</kontakt_podaci>
-        <potpis>potpis</potpis>
-        <prezime>prezime</prezime>
-    </informacije_trazioca>
-    <mesto_i_datum>
-        <datum>
-            <dan>01</dan>
-            <godina>2020</godina>
-            <mesec>05</mesec>
-            <tekst_dan>dana</tekst_dan>
-            <tekst_godina>godine</tekst_godina>
-        </datum>
-        <mesto>mesto</mesto>
-        <tekst>tekst</tekst>
-    </mesto_i_datum>
+<zahtev_za_pristup_informacijama xmlns="http://www.ftn.uns.ac.rs/zahtev">
+    <zaglavlje>
+        <organ>
+            <naziv_organa>naziv</naziv_organa>
+            <sediste_organa>sediste</sediste_organa>
+        </organ>
+    </zaglavlje>
     <naslov>naslov dokumenta</naslov>
     <sadrzaj>
-        <informacije_o_zahtevu>
-            <opis_zahteva>opis zahteva</opis_zahteva>
-            <tekst>tekst</tekst>
-        </informacije_o_zahtevu>
         <tekst>tekst</tekst>
         <tipovi_zahteva>
             <tip_zahteva>tip z1</tip_zahteva>
@@ -39,15 +18,37 @@
                 <vrste_dostave>
                     <dostava>tip dostave 1</dostava>
                     <dostava>tip dostave 2</dostava>
+                    <dostava>tip dostave 3</dostava>
                     <dostava>tip dostave 4</dostava>
                 </vrste_dostave>
             </tip_zahteva_dostava>
         </tipovi_zahteva>
+        <informacije_o_zahtevu>
+            <tekst>tekst</tekst>
+            <opis_zahteva>opis zahteva</opis_zahteva>
+        </informacije_o_zahtevu>
     </sadrzaj>
-    <zaglavlje>
-        <organ>
-            <naziv_organa>naziv</naziv_organa>
-            <sediste_organa>sediste</sediste_organa>
-        </organ>
-    </zaglavlje>
+    <informacije_trazioca>
+        <ime>ime</ime>
+        <prezime>prezime</prezime>
+        <adresa>adresa</adresa>
+        <kontakt_podaci>kontakt</kontakt_podaci>
+        <potpis>potpis</potpis>
+    </informacije_trazioca>
+    <mesto_i_datum>
+        <tekst>tekst</tekst>
+        <mesto>mesto</mesto>
+        <datum>
+            <tekst_dan>дана</tekst_dan>
+            <dan>01</dan>
+            <mesec>05</mesec>
+            <godina>2020</godina>
+            <tekst_godina>године</tekst_godina>
+        </datum>
+    </mesto_i_datum>
+    <fusnote>
+        <fusnota>* У кућици означити која законска права на приступ информацијама желите да остварите.</fusnota>
+        <fusnota>** У кућици означити начин достављања копије докумената.</fusnota>
+        <fusnota>*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.</fusnota>
+    </fusnote>
 </zahtev_za_pristup_informacijama>
