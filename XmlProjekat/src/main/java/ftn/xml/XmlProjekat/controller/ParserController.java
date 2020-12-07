@@ -34,26 +34,26 @@ public class ParserController {
         }
     }
 
-    @RequestMapping(value = "/read", method = RequestMethod.GET)
-    public ResponseEntity<String> readXmlZalbaNaOdluku(@RequestBody PathDTO pathDTO) {
-        try {
-            DOMParser.ReadXmlZalbaNaOdluku(pathDTO.getFilePath());
+    // @RequestMapping(value = "/read", method = RequestMethod.GET)
+    // public ResponseEntity<String> readXmlZalbaNaOdluku(@RequestBody PathDTO pathDTO) {
+    //     try {
+    //         DOMParser.ReadXmlZalbaNaOdluku(pathDTO.getFilePath());
 
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+    //         return new ResponseEntity<>(HttpStatus.OK);
+    //     } catch (Exception e) {
+    //         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    //     }
+    // }
 
-    @RequestMapping(value = "/write", method = RequestMethod.GET)
-    public ResponseEntity<String> writeXmlZalbaNaOdluku() {
-        try {
-            DOMParser.WriteXmlZalbaNaOdluku();
+    // @RequestMapping(value = "/write", method = RequestMethod.GET)
+    // public ResponseEntity<String> writeXmlZalbaNaOdluku() {
+    //     try {
+    //         DOMParser.WriteXmlZalbaNaOdluku();
 
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+    //         return new ResponseEntity<>(HttpStatus.OK);
+    //     } catch (Exception e) {
+    //         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    //     }
+    // }
 
 }
