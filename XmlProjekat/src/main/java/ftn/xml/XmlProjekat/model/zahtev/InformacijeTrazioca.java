@@ -5,10 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@XmlType(propOrder = {"ime", "prezime", "adresa", "kontaktPodaci", "potpis"})
 public class InformacijeTrazioca {
 
 
@@ -23,7 +25,7 @@ public class InformacijeTrazioca {
         return ime;
     }
 
-    @XmlElement(name = "ime")
+    @XmlElement(name = "ime", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setIme(String ime) {
         this.ime = ime;
     }
@@ -32,7 +34,7 @@ public class InformacijeTrazioca {
         return prezime;
     }
 
-    @XmlElement(name = "prezime")
+    @XmlElement(name = "prezime", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setPrezime(String prezime) {
         this.prezime = prezime;
     }
@@ -41,7 +43,7 @@ public class InformacijeTrazioca {
         return adresa;
     }
 
-    @XmlElement(name = "adresa")
+    @XmlElement(name = "adresa", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setAdresa(String adresa) {
         this.adresa = adresa;
     }
@@ -50,7 +52,7 @@ public class InformacijeTrazioca {
         return kontaktPodaci;
     }
 
-    @XmlElement(name = "kontakt_podaci")
+    @XmlElement(name = "kontakt_podaci", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setKontaktPodaci(String kontaktPodaci) {
         this.kontaktPodaci = kontaktPodaci;
     }
@@ -59,7 +61,7 @@ public class InformacijeTrazioca {
         return potpis;
     }
 
-    @XmlElement(name = "potpis")
+    @XmlElement(name = "potpis", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setPotpis(String potpis) {
         this.potpis = potpis;
     }

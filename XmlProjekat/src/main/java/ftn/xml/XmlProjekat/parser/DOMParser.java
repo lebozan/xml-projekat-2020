@@ -10,6 +10,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
@@ -20,6 +21,8 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -74,6 +77,10 @@ public class DOMParser {
         // create an instance of `Unmarshaller`
         Unmarshaller unmarshaller = context.createUnmarshaller();
 
+        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Schema schema = sf.newSchema(new File("../xml-documents/zahtev.xsd"));
+        unmarshaller.setSchema(schema);
+
         // convert XML file to object
         ZahtevZaPristupInformacijama zahtevZaPristupInformacijama = (ZahtevZaPristupInformacijama) unmarshaller.unmarshal(xml);
 
@@ -98,19 +105,9 @@ public class DOMParser {
         ZahtevZaPristupInformacijama zahtevZaPristupInformacijama = new ZahtevZaPristupInformacijama();
 
 
-        String[] fusnote = new String[3];
-        fusnote[0] = "1";
-        fusnote[1] = "1";
-        fusnote[2] = "1";
+        zahtevZaPristupInformacijama.setZaglavlje(new Zaglavlje(new Organ("naziv", "sediste")));
 
-        zahtevZaPristupInformacijama.setFusnote(fusnote);
-
-
-        zahtevZaPristupInformacijama.setMestoIDatum(new MestoIDatum("tekst", "mesto",
-                new TDatum("dana", "01", "05", "2020", "godine")));
-
-        zahtevZaPristupInformacijama.setInformacijeTrazioca(
-                new InformacijeTrazioca("ime", "prezime", "adresa", "kontakt", "potpis"));
+        zahtevZaPristupInformacijama.setNaslov("naslov dokumenta");
 
         String[] tipoviZahteva = new String[3];
         tipoviZahteva[0] = "tip z1";
@@ -121,15 +118,32 @@ public class DOMParser {
         vrsteDostave[0] = "tip dostave 1";
         vrsteDostave[1] = "tip dostave 2";
         vrsteDostave[2] = "tip dostave 3";
-        vrsteDostave[2] = "tip dostave 4";
+        vrsteDostave[3] = "tip dostave 4";
 
         zahtevZaPristupInformacijama.setSadrzaj(new Sadrzaj("tekst",
                 new TipoviZahteva(tipoviZahteva, new TipZahtevaDostava("tekst", vrsteDostave)),
                 new InformacijeOZahtevu("tekst", "opis zahteva")));
 
-        zahtevZaPristupInformacijama.setNaslov("naslov dokumenta");
 
-        zahtevZaPristupInformacijama.setZaglavlje(new Zaglavlje(new Organ("naziv", "sediste")));
+        zahtevZaPristupInformacijama.setInformacijeTrazioca(
+                new InformacijeTrazioca("ime", "prezime", "adresa", "kontakt", "potpis"));
+
+
+        zahtevZaPristupInformacijama.setMestoIDatum(new MestoIDatum("tekst", "mesto",
+                new TDatum("дана", "01", "05", "2020", "године")));
+
+
+        String[] fusnote = new String[3];
+        fusnote[0] = "* У кућици означити која законска права на приступ информацијама желите да остварите.";
+        fusnote[1] = "** У кућици означити начин достављања копије докумената.";
+        fusnote[2] = "*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.";
+
+        zahtevZaPristupInformacijama.setFusnote(fusnote);
+
+
+        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Schema schema = sf.newSchema(new File("../xml-documents/zahtev.xsd"));
+        marshaller.setSchema(schema);
 
 
         // convert user object to XML file

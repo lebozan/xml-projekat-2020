@@ -5,10 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@XmlType(propOrder = {"nazivOrgana", "sedisteOrgana"})
 public class Organ {
 
     private String nazivOrgana;
@@ -19,7 +21,7 @@ public class Organ {
         return nazivOrgana;
     }
 
-    @XmlElement(name = "naziv_organa")
+    @XmlElement(name = "naziv_organa", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setNazivOrgana(String nazivOrgana) {
         this.nazivOrgana = nazivOrgana;
     }
@@ -28,7 +30,7 @@ public class Organ {
         return sedisteOrgana;
     }
 
-    @XmlElement(name = "sediste_organa")
+    @XmlElement(name = "sediste_organa", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setSedisteOrgana(String sedisteOrgana) {
         this.sedisteOrgana = sedisteOrgana;
     }

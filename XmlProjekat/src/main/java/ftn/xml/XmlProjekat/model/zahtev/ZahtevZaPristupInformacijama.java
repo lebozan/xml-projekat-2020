@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@XmlRootElement(name="zahtev_za_pristup_informacijama")
+@XmlRootElement(name="zahtev_za_pristup_informacijama", namespace = "http://www.ftn.uns.ac.rs/zahtev")
+@XmlType(propOrder = {"zaglavlje", "naslov", "sadrzaj", "informacijeTrazioca", "mestoIDatum", "fusnote"})
 public class ZahtevZaPristupInformacijama {
 
 
@@ -22,11 +21,12 @@ public class ZahtevZaPristupInformacijama {
     private MestoIDatum mestoIDatum;
     private String[] fusnote;
 
+
     public Zaglavlje getZaglavlje() {
         return zaglavlje;
     }
 
-    @XmlElement(name = "zaglavlje")
+    @XmlElement(name = "zaglavlje", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setZaglavlje(Zaglavlje zaglavlje) {
         this.zaglavlje = zaglavlje;
     }
@@ -35,7 +35,7 @@ public class ZahtevZaPristupInformacijama {
         return naslov;
     }
 
-    @XmlElement(name = "naslov")
+    @XmlElement(name = "naslov", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setNaslov(String naslov) {
         this.naslov = naslov;
     }
@@ -44,7 +44,7 @@ public class ZahtevZaPristupInformacijama {
         return sadrzaj;
     }
 
-    @XmlElement(name = "sadrzaj")
+    @XmlElement(name = "sadrzaj", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setSadrzaj(Sadrzaj sadrzaj) {
         this.sadrzaj = sadrzaj;
     }
@@ -53,7 +53,7 @@ public class ZahtevZaPristupInformacijama {
         return informacijeTrazioca;
     }
 
-    @XmlElement(name = "informacije_trazioca")
+    @XmlElement(name = "informacije_trazioca", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setInformacijeTrazioca(InformacijeTrazioca informacijeTrazioca) {
         this.informacijeTrazioca = informacijeTrazioca;
     }
@@ -62,7 +62,7 @@ public class ZahtevZaPristupInformacijama {
         return mestoIDatum;
     }
 
-    @XmlElement(name = "mesto_i_datum")
+    @XmlElement(name = "mesto_i_datum", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setMestoIDatum(MestoIDatum mestoIDatum) {
         this.mestoIDatum = mestoIDatum;
     }
@@ -71,8 +71,8 @@ public class ZahtevZaPristupInformacijama {
         return fusnote;
     }
 
-    @XmlElementWrapper(name = "fusnote")
-    @XmlElement(name = "fusnota")
+    @XmlElementWrapper(name = "fusnote", namespace = "http://www.ftn.uns.ac.rs/zahtev")
+    @XmlElement(name = "fusnota", namespace = "http://www.ftn.uns.ac.rs/zahtev")
     public void setFusnote(String[] fusnote) {
         this.fusnote = fusnote;
     }

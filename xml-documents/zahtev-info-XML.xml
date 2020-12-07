@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zahtev_za_pristup_informacijama>
+<zahtev_za_pristup_informacijama xmlns="http://www.ftn.uns.ac.rs/zahtev">
     <zaglavlje>
         <organ>
             <naziv_organa>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/zahtev" xmlns="http://www.ftn.uns.ac.rs/zahtev">
 
     <xs:include schemaLocation="zahtev-slozeni-tipovi.xsd"/>
     <xs:element name="zahtev_za_pristup_informacijama">
