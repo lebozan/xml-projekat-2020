@@ -161,6 +161,10 @@ public class DOMParser {
         // create an instance of `Unmarshaller`
         Unmarshaller unmarshaller = context.createUnmarshaller();
 
+        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Schema schema = sf.newSchema(new File("../xml-documents/zalbanaodluku-schema.xsd"));
+        unmarshaller.setSchema(schema);
+
         // convert XML file to object
         ZalbaNaOdluku ZalbaNaOdluku = (ZalbaNaOdluku) unmarshaller.unmarshal(xml);
 
@@ -211,6 +215,11 @@ public class DOMParser {
         napomene[0] = "У жалби се мора навести одлука која се побија (решење, закључак, обавештење), назив органа који је одлуку донео, као и број и датум одлуке. Довољно је да жалилац наведе у жалби у ком погледу је незадовољан одлуком, с тим да жалбу не мора посебно образложити. Ако жалбу изјављује на овом обрасцу, додатно образложење може  посебно приложити.";
         napomene[1] = "Уз жалбу обавезно приложити копију поднетог захтева и доказ о његовој предаји-упућивању органу као и копију одлуке органа која се оспорава жалбом.";
         ZalbaNaOdluku.setNapomene(napomene);
+
+
+        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Schema schema = sf.newSchema(new File("../xml-documents/zalbanaodluku-schema.xsd"));
+        marshaller.setSchema(schema);
 
         // convert user object to XML file
         marshaller.marshal(ZalbaNaOdluku, file);
