@@ -1,6 +1,9 @@
 package ftn.xml.XmlProjekat.parser;
 
 import ftn.xml.XmlProjekat.model.zahtev.*;
+import ftn.xml.XmlProjekat.model.zahtev.Zaglavlje;
+import ftn.xml.XmlProjekat.model.zalbanaodluku.*;
+
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -131,5 +134,71 @@ public class DOMParser {
 
         // convert user object to XML file
         marshaller.marshal(zahtevZaPristupInformacijama, file);
+    }
+
+    public static void ReadXmlZalbaNaOdluku(String filePath) throws Exception {
+
+        // XML file path
+        File xml = new File(filePath);
+
+        // create an instance of `JAXBContext`
+        JAXBContext context = JAXBContext.newInstance(ZalbaNaOdluku.class);
+
+        // create an instance of `Unmarshaller`
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        // convert XML file to object
+        ZalbaNaOdluku ZalbaNaOdluku = (ZalbaNaOdluku) unmarshaller.unmarshal(xml);
+
+        // print object
+        System.out.println(ZalbaNaOdluku);
+
+    }
+
+    public static void WriteXmlZalbaNaOdluku() throws Exception {
+        // create XML file
+        File file = new File("src/main/resources/TestZalbaNaOdluku.xml");
+
+        // create an instance of `JAXBContext`
+        JAXBContext context = JAXBContext.newInstance(ZalbaNaOdluku.class);
+
+        // create an instance of `Marshaller`
+        Marshaller marshaller = context.createMarshaller();
+
+        // enable pretty-print XML output
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        ZalbaNaOdluku ZalbaNaOdluku = new ZalbaNaOdluku();
+
+        // Popunjavanje zaglavlja
+        ZalbaZaglavlje z = new ZalbaZaglavlje();
+        z.setNaslov("naslov");
+        z.setPrimalac("primalac");
+        z.setAdresaPrimaoca("adresaPrimaoca");
+        ZalbaNaOdluku.setZaglavlje(z);
+
+        // Popunjavanje sadrzaja zalbe
+        TAdresa adr = new TAdresa("ulica1", "21","Novi Sad");
+        TPodnosilacZalbe pz = new TPodnosilacZalbe("Ivko","Ivic",adr);
+        Paragrafi pf = new Paragrafi();
+        String[] paragraf = new String[3];
+        paragraf[0] = "На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.";
+        paragraf[1] = "Жалбу подносим благовремено, у законском року утврђеном у члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.";
+        ParagrafPodaci pd = new ParagrafPodaci("1.1.2021","dugacak tekst");
+        pf.setParagraf(paragraf);
+        pf.setParagrafPodaci(pd);
+        Podaci po = new Podaci("ime","prezime","mesto",adr,"danMesec","godina","drugi podaci i kontakt","potpis");
+        ZalbaSadrzaj zs = new ZalbaSadrzaj(pz,"naziv organa vlasti", "1001","2021",pf,po);
+
+        ZalbaNaOdluku.setZalbaSadrzaj(zs);
+
+        // Popunjavanje napomena
+        String[] napomene = new String[2];
+        napomene[0] = "У жалби се мора навести одлука која се побија (решење, закључак, обавештење), назив органа који је одлуку донео, као и број и датум одлуке. Довољно је да жалилац наведе у жалби у ком погледу је незадовољан одлуком, с тим да жалбу не мора посебно образложити. Ако жалбу изјављује на овом обрасцу, додатно образложење може  посебно приложити.";
+        napomene[1] = "Уз жалбу обавезно приложити копију поднетог захтева и доказ о његовој предаји-упућивању органу као и копију одлуке органа која се оспорава жалбом.";
+        ZalbaNaOdluku.setNapomene(napomene);
+
+        // convert user object to XML file
+        marshaller.marshal(ZalbaNaOdluku, file);
     }
 }

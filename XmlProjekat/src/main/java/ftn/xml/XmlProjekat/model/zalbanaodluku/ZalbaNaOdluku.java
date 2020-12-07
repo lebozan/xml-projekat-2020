@@ -7,17 +7,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="zalba_na_odluku")
 public class ZalbaNaOdluku {
     
-    private Zaglavlje zaglavlje;
+    private ZalbaZaglavlje zaglavlje;
     private ZalbaSadrzaj zalbaSadrzaj;
     private String[] napomene;
 
 
-    public Zaglavlje getZaglavlje() {
+    public ZalbaZaglavlje getZaglavlje() {
         return zaglavlje;
     }
 
     @XmlElement(name = "zaglavlje")
-    public void setZaglavlje(Zaglavlje zaglavlje) {
+    public void setZaglavlje(ZalbaZaglavlje zaglavlje) {
         this.zaglavlje = zaglavlje;
     }
 

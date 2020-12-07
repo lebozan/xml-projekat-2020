@@ -1,7 +1,14 @@
 package ftn.xml.XmlProjekat.model.zalbanaodluku;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.xml.bind.annotation.XmlElement;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ParagrafPodaci {
     private String datum;
     private String razlog;

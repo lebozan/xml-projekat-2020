@@ -2,7 +2,7 @@ package ftn.xml.XmlProjekat.model.zalbanaodluku;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class Zaglavlje {
+public class ZalbaZaglavlje {
     
     private String naslov;
     private String primalac;

@@ -1,7 +1,14 @@
 package ftn.xml.XmlProjekat.model.zalbanaodluku;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.xml.bind.annotation.XmlElement;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TAdresa {
     private String ulica;
     private String broj;
