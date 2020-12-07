@@ -15,7 +15,18 @@ public class ParserController {
     @RequestMapping(value = "/read", method = RequestMethod.GET)
     public ResponseEntity<String> readXmlFile(@RequestBody PathDTO pathDTO) {
         try {
-            DOMParser.ReadXmlFile(pathDTO.getFilePath());
+            DOMParser.ReadXmlJaxb(pathDTO.getFilePath());
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/write", method = RequestMethod.GET)
+    public ResponseEntity<String> writeXmlFile() {
+        try {
+            DOMParser.WriteXmlJaxb();
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

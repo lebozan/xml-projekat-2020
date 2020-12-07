@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zahtev_za_pristup_informacijama>
+    <zaglavlje>
+        <organ>
+            <naziv_organa>naziv_organa0</naziv_organa>
+            <sediste_organa>sediste_organa0</sediste_organa>
+        </organ>
+    </zaglavlje>
+    <naslov>naslov0</naslov>
+    <sadrzaj>
+        <tekst>
+        </tekst>
+    </sadrzaj>
+    <informacije_trazioca>
+        <ime>ime0</ime>
+        <prezime>prezime0</prezime>
+        <adresa>adresa0</adresa>
+        <kontakt_podaci>kontakt_podaci0</kontakt_podaci>
+        <potpis>potpis0</potpis>
+    </informacije_trazioca>
+    <mesto_i_datum>
+        <mesto>mesto0</mesto>
+        <datum>
+            <dan>dan0</dan>
+            <mesec>mesec0</mesec>
+            <godina>godina0</godina>
+        </datum>
+    </mesto_i_datum>
+    <fusnote>
+        <fusnota>fusnota0</fusnota>
+        <fusnota>fusnota1</fusnota>
+        <fusnota>fusnota2</fusnota>
+    </fusnote>
+</zahtev_za_pristup_informacijama>
