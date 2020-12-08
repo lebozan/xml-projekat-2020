@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/zalbanacutanje"
+    xmlns="http://www.ftn.uns.ac.rs/zalbanacutanje">
+
+    <xs:include schemaLocation="zalbanacutanje-slozeni-tipovi.xsd"/>
+    <xs:element name="zalbaCutanje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="zaglavlje">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="naslov" type="xs:string"/>
+                            <xs:element name="primalac ">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="naziv_primaoca" type="xs:string"/>
+                                        <xs:element name="adresa_primaoca" type="TAdresa"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="tekst" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sadrzaj">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="predmet">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="naziv_predmeta" type="xs:string"/>
+                                        <xs:element name="tekst" type="xs:string"/>
+                                        <xs:element name="naziv_organa" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="razlozi_podnsenja">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="tekst" type="xs:string"/>
+                                        <xs:element name="tipovi_razloga" type="TRazlog"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="izjava">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="tekst" type="xs:string"/>
+                                        <xs:element name="datum_podnosenja" type="xs:date"/>
+                                        <xs:element name="tekst" type="xs:string"/>
+                                        <xs:element name="podaci_o_zahtevu" type="xs:string"/>
+                                        <xs:element name="predlog" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="podnosilac" type="TLice"/>
+                <xs:element name="mesto_podnosenja">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="tekst" type="xs:string"/>
+                            <xs:element name="mesto" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="datum_zalbe ">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="dan" type="xs:string"/>
+                            <xs:element name="mesec" type="xs:string"/>
+                            <xs:element name="godina" type="xs:string"/>
+                            <xs:element name="tekst" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
