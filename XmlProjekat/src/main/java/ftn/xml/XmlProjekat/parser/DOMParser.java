@@ -1,72 +1,34 @@
 package ftn.xml.XmlProjekat.parser;
 
 import ftn.xml.XmlProjekat.model.zahtev.*;
-import ftn.xml.XmlProjekat.model.zahtev.Zaglavlje;
+import ftn.xml.XmlProjekat.model.zalbanacutanje.ObjectFactory;
+import ftn.xml.XmlProjekat.model.zalbanacutanje.TFizickoLice;
+import ftn.xml.XmlProjekat.model.zalbanacutanje.TRazlog;
+import ftn.xml.XmlProjekat.model.zalbanacutanje.ZalbaCutanje;
 import ftn.xml.XmlProjekat.model.zalbanaodluku.*;
-
 import org.springframework.stereotype.Component;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.File;
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Component
 public class DOMParser {
 
-    public static void ReadXmlFile(String filePath) throws Exception {
-
-        File fXmlFile = new File(filePath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(fXmlFile);
-
-        doc.getDocumentElement().normalize();
-
-        System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
-        Node zaglavlje = doc.getElementsByTagName("zaglavlje").item(0);
-
-
-        NodeList nodeList = doc.getElementsByTagName("datum");
-//
-//
-//        TDatum datum = (TDatum) nodeList.item(0);
-//        datum.setDan("5");
-//        datum.setMesec("12");
-//        datum.setGodina("2020");
-
-
-//        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-//        Transformer transformer = transformerFactory.newTransformer();
-//        // for pretty print
-//        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-//
-//
-//        // write to console or file
-//        StreamResult console = new StreamResult(System.out);
-//        StreamResult file = new StreamResult(new File("resources/test.xml"));
-//
-//        // write data
-//        transformer.transform(new DOMSource(doc), file);
-    }
-
-    public static void ReadXmlJaxb(String filePath) throws Exception {
+    public static void ReadZahtevXml(String filePath) throws Exception {
 
         // XML file path
         File xml = new File(filePath);
@@ -89,7 +51,7 @@ public class DOMParser {
 
     }
 
-    public static void WriteXmlJaxb() throws Exception {
+    public static void WriteZahtevXml() throws Exception {
         // create XML file
         File file = new File("src/main/resources/test.xml");
 
@@ -223,5 +185,102 @@ public class DOMParser {
 
         // convert user object to XML file
         marshaller.marshal(ZalbaNaOdluku, file);
+    }
+
+
+    public static void ReadZalbaNaCutanjeXml(String filePath) throws Exception {
+        // XML file path
+        File xml = new File(filePath);
+
+        // create an instance of `JAXBContext`
+        JAXBContext context = JAXBContext.newInstance(ZalbaCutanje.class);
+
+        // create an instance of `Unmarshaller`
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Schema schema = sf.newSchema(new File("../xml-documents/zalbanacutanje.xsd"));
+        unmarshaller.setSchema(schema);
+
+        // convert XML file to object
+        ZalbaCutanje zalbaCutanje = (ZalbaCutanje) unmarshaller.unmarshal(xml);
+
+        // print object
+        System.out.println(zalbaCutanje);
+    }
+
+    public static void WriteZalbaNaCutanjeXml() throws Exception {
+        // create XML file
+        File file = new File("src/main/resources/testZalbaNaCutanje.xml");
+
+        // create an instance of `JAXBContext`
+        JAXBContext context = JAXBContext.newInstance(ZalbaCutanje.class);
+
+        // create an instance of `Marshaller`
+        Marshaller marshaller = context.createMarshaller();
+
+        // enable pretty-print XML output
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        ZalbaCutanje zalbaCutanje = new ZalbaCutanje();
+
+        ObjectFactory objectFactory = new ObjectFactory();
+
+        zalbaCutanje.setZaglavlje(new ZalbaCutanje.Zaglavlje("naslov",
+                new ZalbaCutanje.Zaglavlje.Primalac("naziv primaoca",
+                        new ftn.xml.XmlProjekat.model.zalbanacutanje.TAdresa("mesto", "ulica", BigInteger.valueOf(5), 12000)),
+                "tekst"));
+
+
+        zalbaCutanje.setDatumZalbe(new ZalbaCutanje.DatumZalbe("8", "12", "2020", "tekst"));
+
+        zalbaCutanje.setMestoPodnosenja(new ZalbaCutanje.MestoPodnosenja("tekst", "mesto"));
+
+        TFizickoLice fizickoLice = new TFizickoLice("Milan", "Milanovic");
+        fizickoLice.setAdresa(new ftn.xml.XmlProjekat.model.zalbanacutanje.TAdresa("lice mesto", "lice ulica", BigInteger.valueOf(10), 21000));
+        fizickoLice.setBrojRacuna("000-0123213-12");
+        zalbaCutanje.setPodnosilac(fizickoLice);
+
+        List<Serializable> tipoviRazloga = new ArrayList<>();
+        tipoviRazloga.add(objectFactory.createTRazlogTipRazloga("Tip razloga 1"));
+        tipoviRazloga.add(objectFactory.createTRazlogTipRazloga("Tip razloga 2"));
+        tipoviRazloga.add(objectFactory.createTRazlogTipRazloga("Tip razloga 3"));
+
+        TRazlog tRazlog = objectFactory.createTRazlog();
+        tRazlog.setContent(tipoviRazloga);
+
+        List<JAXBElement<?>> izjavaContent = new ArrayList<>();
+
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = format.parse("2020-12-10");
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.setTime(date);
+        XMLGregorianCalendar xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(gregorianCalendar.get(Calendar.YEAR),
+                gregorianCalendar.get(Calendar.MONTH)+1,
+                gregorianCalendar.get(Calendar.DAY_OF_MONTH),
+                DatatypeConstants.FIELD_UNDEFINED);
+
+        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaTekst("tekst"));
+        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaDatumPodnosenja(xmlDate));
+        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaTekst("tekst"));
+        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaPodaciOZahtevu("podaci o zahtevu"));
+        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaPredlog("predlog"));
+
+        ZalbaCutanje.Sadrzaj.Izjava izjava = objectFactory.createZalbaCutanjeSadrzajIzjava();
+        izjava.setContent(izjavaContent);
+
+        zalbaCutanje.setSadrzaj(new ZalbaCutanje.Sadrzaj(new ZalbaCutanje.Sadrzaj.Predmet("naziv predmeta", "tekst", "naziv organa"),
+                new ZalbaCutanje.Sadrzaj.RazloziPodnsenja("tekst", tRazlog),
+                izjava));
+
+
+        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Schema schema = sf.newSchema(new File("../xml-documents/zalbanacutanje.xsd"));
+        marshaller.setSchema(schema);
+
+        // convert user object to XML file
+        marshaller.marshal(zalbaCutanje, file);
+
     }
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<zalbaCutanje xmlns="http://www.ftn.uns.ac.rs/zalbanacutanje">
+    <zaglavlje>
+        <naslov>naslov</naslov>
+        <primalac>
+            <naziv_primaoca>naziv primaoca</naziv_primaoca>
+            <adresa_primaoca>
+                <mesto>mesto</mesto>
+                <ulica>ulica</ulica>
+                <broj>5</broj>
+                <postanski_broj>12000</postanski_broj>
+            </adresa_primaoca>
+        </primalac>
+        <tekst>tekst</tekst>
+    </zaglavlje>
+    <sadrzaj>
+        <predmet>
+            <naziv_predmeta>naziv predmeta</naziv_predmeta>
+            <tekst>tekst</tekst>
+            <naziv_organa>naziv organa</naziv_organa>
+        </predmet>
+        <razlozi_podnsenja>
+            <tekst>tekst</tekst>
+            <tipovi_razloga>
+                <tip_razloga>Tip razloga 1</tip_razloga>
+                <tip_razloga>Tip razloga 2</tip_razloga>
+                <tip_razloga>Tip razloga 3</tip_razloga>
+            </tipovi_razloga>
+        </razlozi_podnsenja>
+        <izjava>
+            <tekst>tekst</tekst>
+            <datum_podnosenja>2020-12-10</datum_podnosenja>
+            <tekst>tekst</tekst>
+            <podaci_o_zahtevu>podaci o zahtevu</podaci_o_zahtevu>
+            <predlog>predlog</predlog>
+        </izjava>
+    </sadrzaj>
+    <podnosilac xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="TFizicko_lice">
+        <broj_racuna>000-0123213-12</broj_racuna>
+        <adresa>
+            <mesto>lice mesto</mesto>
+            <ulica>lice ulica</ulica>
+            <broj>10</broj>
+            <postanski_broj>21000</postanski_broj>
+        </adresa>
+        <ime>Milan</ime>
+        <prezime>Milanovic</prezime>
+    </podnosilac>
+    <mesto_podnosenja>
+        <tekst>tekst</tekst>
+        <mesto>mesto</mesto>
+    </mesto_podnosenja>
+    <datum_zalbe>
+        <dan>8</dan>
+        <mesec>12</mesec>
+        <godina>2020</godina>
+        <tekst>tekst</tekst>
+    </datum_zalbe>
+</zalbaCutanje>
