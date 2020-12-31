@@ -209,9 +209,9 @@ public class DOMParser {
         System.out.println(zalbaCutanje);
     }
 
-    public static void WriteZalbaNaCutanjeXml() throws Exception {
+    public static ZalbaCutanje WriteZalbaNaCutanjeXml(String fileName) throws Exception {
         // create XML file
-        File file = new File("src/main/resources/testZalbaNaCutanje.xml");
+        File file = new File("src/main/resources/" + fileName + ".xml");
 
         // create an instance of `JAXBContext`
         JAXBContext context = JAXBContext.newInstance(ZalbaCutanje.class);
@@ -281,6 +281,8 @@ public class DOMParser {
 
         // convert user object to XML file
         marshaller.marshal(zalbaCutanje, file);
+
+        return zalbaCutanje;
 
     }
 }

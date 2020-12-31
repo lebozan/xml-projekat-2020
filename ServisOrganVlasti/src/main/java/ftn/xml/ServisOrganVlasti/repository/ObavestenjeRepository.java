@@ -1,20 +1,17 @@
 package ftn.xml.ServisOrganVlasti.repository;
 
+import ftn.xml.ServisOrganVlasti.model.obavestenje.Obavestenje;
 import ftn.xml.ServisOrganVlasti.model.zahtev.ZahtevZaPristupInformacijama;
 import ftn.xml.ServisOrganVlasti.util.JAXBReader;
 import ftn.xml.ServisOrganVlasti.util.XmlDbConnectionUtils;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
-import org.w3c.dom.Node;
-import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
-import org.xmldb.api.base.Database;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
@@ -25,17 +22,15 @@ import java.io.File;
 import java.io.OutputStream;
 
 @Repository
-public class ZahtevRepository {
+public class ObavestenjeRepository {
 
-
-    public boolean saveZahtev(String documentId) {
-        String collectionId = "/db/zahtev";
+    public boolean saveObavestenje(String documentId) {
+        String collectionId = "/db/obavestenje";
         Collection col = null;
         XMLResource res = null;
         OutputStream os = new ByteArrayOutputStream();
 
         try {
-
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
             col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
 
@@ -46,8 +41,7 @@ public class ZahtevRepository {
             System.out.println("[INFO] Inserting the document: " + documentId);
             res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
 
-            // create an instance of `JAXBContext`
-            JAXBContext context = JAXBContext.newInstance(ZahtevZaPristupInformacijama.class);
+            JAXBContext context = JAXBContext.newInstance(Obavestenje.class);
 
             // create an instance of `Marshaller`
             Marshaller marshaller = context.createMarshaller();
@@ -56,19 +50,18 @@ public class ZahtevRepository {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
             SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = sf.newSchema(new File("../xml-documents/zahtev.xsd"));
+            Schema schema = sf.newSchema(new File("../xml-documents/obav_v2.xsd"));
             marshaller.setSchema(schema);
 
-            ZahtevZaPristupInformacijama zahtev = JAXBReader.writeZahtevXml(documentId);
-            // marshal the contents to an output stream
-            marshaller.marshal(zahtev, os);
+//            Obavestenje obavestenje;
+//
+//            marshaller.marshal(obavestenje, os);
+//
+//            res.setContent(os);
+//
+//            col.storeResource(res);
 
-            // link the stream to the XML resource
-            res.setContent(os);
-            System.out.println("[INFO] Storing the document: " + res.getId());
 
-            col.storeResource(res);
-            System.out.println("[INFO] Done.");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,16 +86,16 @@ public class ZahtevRepository {
             }
         }
         return true;
+
+
     }
 
-
-    public Object findZahtev(String documentId) {
-        String collectionId = "/db/zahtev";
+    public Object findObavestenje(String documentId) {
+        String collectionId = "/db/obavestenje";
         Collection col = null;
         XMLResource res = null;
-
         Object test = null;
-        ZahtevZaPristupInformacijama zahtev = null;
+
         try {
             // get the collection
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
@@ -115,19 +108,17 @@ public class ZahtevRepository {
             if(res == null) {
                 System.out.println("[WARNING] Document '" + documentId + "' can not be found!");
             } else {
-                JAXBContext context = JAXBContext.newInstance(ZahtevZaPristupInformacijama.class);
+                JAXBContext context = JAXBContext.newInstance(Obavestenje.class);
 
                 // create an instance of `Unmarshaller`
                 Unmarshaller unmarshaller = context.createUnmarshaller();
 
                 SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-                Schema schema = sf.newSchema(new File("../xml-documents/zahtev.xsd"));
+                Schema schema = sf.newSchema(new File("../xml-documents/obav_v2.xsd"));
                 unmarshaller.setSchema(schema);
 
                 // convert XML file to object
-                zahtev = (ZahtevZaPristupInformacijama) unmarshaller.unmarshal(res.getContentAsDOM());
                 test = res.getContent();
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,5 +143,4 @@ public class ZahtevRepository {
         }
         return test;
     }
-
 }

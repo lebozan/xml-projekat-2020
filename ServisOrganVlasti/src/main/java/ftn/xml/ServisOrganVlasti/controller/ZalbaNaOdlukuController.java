@@ -1,29 +1,29 @@
 package ftn.xml.ServisOrganVlasti.controller;
 
-import ftn.xml.ServisOrganVlasti.dto.PathDTO;
-import ftn.xml.ServisOrganVlasti.model.zahtev.ZahtevZaPristupInformacijama;
-import ftn.xml.ServisOrganVlasti.service.ZahtevService;
-import ftn.xml.ServisOrganVlasti.util.JAXBReader;
-import org.checkerframework.checker.formatter.qual.ReturnsFormat;
+
+import ftn.xml.ServisOrganVlasti.service.ZalbaNaOdlukuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.Node;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
-@RequestMapping(value = "/api/zahtev")
-public class ZahtevController {
+@RequestMapping(value = "/api/zalbaNaOdluku")
+public class ZalbaNaOdlukuController {
 
     @Autowired
-    ZahtevService zahtevService;
+    ZalbaNaOdlukuService zalbaNaOdlukuService;
 
     @RequestMapping(value = "/read", method = RequestMethod.GET, produces = "application/xml")
     public ResponseEntity<Object> readXmlFile(@RequestParam String documentId) {
         try {
-            Object zahtev = zahtevService.readZahtev(documentId);
+            Object zalbaNaOdluku = zalbaNaOdlukuService.readZalbaNaOdluku(documentId);
 
-            return new ResponseEntity<>(zahtev, HttpStatus.OK);
+            return new ResponseEntity<>(zalbaNaOdluku, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -33,14 +33,11 @@ public class ZahtevController {
     @RequestMapping(value = "/write", method = RequestMethod.GET)
     public ResponseEntity<String> writeXmlFile(@RequestParam String fileName) {
         try {
-            zahtevService.writeZahtev(fileName);
+            zalbaNaOdlukuService.writeZalbaNaOdluku(fileName);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
-
-
 }

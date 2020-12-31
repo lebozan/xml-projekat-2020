@@ -1,20 +1,17 @@
 package ftn.xml.ServisOrganVlasti.repository;
 
 import ftn.xml.ServisOrganVlasti.model.zahtev.ZahtevZaPristupInformacijama;
+import ftn.xml.ServisOrganVlasti.model.zalbanacutanje.ZalbaCutanje;
 import ftn.xml.ServisOrganVlasti.util.JAXBReader;
 import ftn.xml.ServisOrganVlasti.util.XmlDbConnectionUtils;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
-import org.w3c.dom.Node;
-import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
-import org.xmldb.api.base.Database;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
@@ -25,11 +22,10 @@ import java.io.File;
 import java.io.OutputStream;
 
 @Repository
-public class ZahtevRepository {
+public class ZalbaNaCutanjeRepository {
 
-
-    public boolean saveZahtev(String documentId) {
-        String collectionId = "/db/zahtev";
+    public boolean saveZalbaNaCutanje(String documentId) {
+        String collectionId = "/db/zalbaNaCutanje";
         Collection col = null;
         XMLResource res = null;
         OutputStream os = new ByteArrayOutputStream();
@@ -47,7 +43,7 @@ public class ZahtevRepository {
             res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
 
             // create an instance of `JAXBContext`
-            JAXBContext context = JAXBContext.newInstance(ZahtevZaPristupInformacijama.class);
+            JAXBContext context = JAXBContext.newInstance(ZalbaCutanje.class);
 
             // create an instance of `Marshaller`
             Marshaller marshaller = context.createMarshaller();
@@ -56,12 +52,14 @@ public class ZahtevRepository {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
             SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = sf.newSchema(new File("../xml-documents/zahtev.xsd"));
+            Schema schema = sf.newSchema(new File("../xml-documents/zalbanacutanje.xsd"));
             marshaller.setSchema(schema);
 
-            ZahtevZaPristupInformacijama zahtev = JAXBReader.writeZahtevXml(documentId);
+            // samo privremeno
+            ZalbaCutanje zalbaCutanje = JAXBReader.writeZalbaNaCutanjeXml(documentId);
+
             // marshal the contents to an output stream
-            marshaller.marshal(zahtev, os);
+            marshaller.marshal(zalbaCutanje, os);
 
             // link the stream to the XML resource
             res.setContent(os);
@@ -95,14 +93,14 @@ public class ZahtevRepository {
         return true;
     }
 
+    public Object findZalbaNaCutanje(String documentId) {
 
-    public Object findZahtev(String documentId) {
-        String collectionId = "/db/zahtev";
+        String collectionId = "/db/zalbaNaCutanje";
         Collection col = null;
         XMLResource res = null;
-
         Object test = null;
-        ZahtevZaPristupInformacijama zahtev = null;
+        ZalbaCutanje zalbaCutanje = null;
+
         try {
             // get the collection
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
@@ -115,17 +113,17 @@ public class ZahtevRepository {
             if(res == null) {
                 System.out.println("[WARNING] Document '" + documentId + "' can not be found!");
             } else {
-                JAXBContext context = JAXBContext.newInstance(ZahtevZaPristupInformacijama.class);
+//                JAXBContext context = JAXBContext.newInstance(ZahtevZaPristupInformacijama.class);
 
                 // create an instance of `Unmarshaller`
-                Unmarshaller unmarshaller = context.createUnmarshaller();
-
-                SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-                Schema schema = sf.newSchema(new File("../xml-documents/zahtev.xsd"));
-                unmarshaller.setSchema(schema);
+//                Unmarshaller unmarshaller = context.createUnmarshaller();
+//
+//                SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+//                Schema schema = sf.newSchema(new File("../xml-documents/zahtev.xsd"));
+//                unmarshaller.setSchema(schema);
 
                 // convert XML file to object
-                zahtev = (ZahtevZaPristupInformacijama) unmarshaller.unmarshal(res.getContentAsDOM());
+//                zalbaCutanje = (ZalbaCutanje) unmarshaller.unmarshal(res.getContentAsDOM());
                 test = res.getContent();
 
             }
@@ -152,5 +150,4 @@ public class ZahtevRepository {
         }
         return test;
     }
-
 }
