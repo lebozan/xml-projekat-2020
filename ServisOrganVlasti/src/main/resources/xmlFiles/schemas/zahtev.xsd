@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/zahtev" xmlns="http://www.ftn.uns.ac.rs/zahtev">
+
+    <xs:include schemaLocation="zahtev-slozeni-tipovi.xsd"/>
+    <xs:element name="zahtev_za_pristup_informacijama">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="zaglavlje">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="organ">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="naziv_organa" type="xs:string"/>
+                                        <xs:element name="sediste_organa" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="naslov" type="xs:string"/>
+                <xs:element name="sadrzaj">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="tekst"/>
+                            <xs:element name="tipovi_zahteva">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="tip_zahteva" type="xs:string"/>
+                                        <xs:element name="tip_zahteva" type="xs:string"/>
+                                        <xs:element name="tip_zahteva" type="xs:string"/>
+                                        <xs:element name="tip_zahteva_dostava">
+                                            <xs:complexType mixed="false">
+                                                <xs:sequence>
+                                                  <xs:element name="tekst"/>
+                                                  <xs:element name="vrste_dostave" type="TDostava"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="informacije_o_zahtevu" type="TInformacijeOZahtevu"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="informacije_trazioca">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ime">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="0"/>
+                                        <xs:maxLength value="30"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="prezime">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="0"/>
+                                        <xs:maxLength value="30"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="adresa">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="0"/>
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="kontakt_podaci" type="xs:string"/>
+                            <xs:element name="potpis" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="mesto_i_datum">
+                    <xs:complexType mixed="false">
+                        <xs:sequence>
+                            <xs:element name="tekst" type="xs:string"/>
+                            <xs:element name="mesto" type="xs:string"/>
+                            <xs:element name="datum" type="TDatum"> </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fusnote">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fusnota" type="xs:string" maxOccurs="1" minOccurs="1"
+                                fixed="* У кућици означити која законска права на приступ информацијама желите да остварите."/>
+                            <xs:element name="fusnota" type="xs:string" maxOccurs="1" minOccurs="1"
+                                fixed="** У кућици означити начин достављања копије докумената."/>
+                            <xs:element name="fusnota" type="xs:string" maxOccurs="1" minOccurs="1"
+                                fixed="*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате."
+                            />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

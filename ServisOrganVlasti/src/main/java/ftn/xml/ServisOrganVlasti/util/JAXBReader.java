@@ -1,11 +1,11 @@
-package ftn.xml.XmlProjekat.parser;
+package ftn.xml.ServisOrganVlasti.util;
 
-import ftn.xml.XmlProjekat.model.zahtev.*;
-import ftn.xml.XmlProjekat.model.zalbanacutanje.ObjectFactory;
-import ftn.xml.XmlProjekat.model.zalbanacutanje.TFizickoLice;
-import ftn.xml.XmlProjekat.model.zalbanacutanje.TRazlog;
-import ftn.xml.XmlProjekat.model.zalbanacutanje.ZalbaCutanje;
-import ftn.xml.XmlProjekat.model.zalbanaodluku.*;
+import ftn.xml.ServisOrganVlasti.model.zahtev.*;
+import ftn.xml.ServisOrganVlasti.model.zalbanacutanje.ObjectFactory;
+import ftn.xml.ServisOrganVlasti.model.zalbanacutanje.TFizickoLice;
+import ftn.xml.ServisOrganVlasti.model.zalbanacutanje.TRazlog;
+import ftn.xml.ServisOrganVlasti.model.zalbanacutanje.ZalbaCutanje;
+import ftn.xml.ServisOrganVlasti.model.zalbanaodluku.*;
 import org.springframework.stereotype.Component;
 
 import javax.xml.XMLConstants;
@@ -26,9 +26,10 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Component
-public class DOMParser {
+public class JAXBReader {
 
-    public static void ReadZahtevXml(String filePath) throws Exception {
+
+    public static ZahtevZaPristupInformacijama readZahtevXml(String filePath) throws Exception {
 
         // XML file path
         File xml = new File(filePath);
@@ -46,14 +47,13 @@ public class DOMParser {
         // convert XML file to object
         ZahtevZaPristupInformacijama zahtevZaPristupInformacijama = (ZahtevZaPristupInformacijama) unmarshaller.unmarshal(xml);
 
-        // print object
-        System.out.println(zahtevZaPristupInformacijama);
+        return zahtevZaPristupInformacijama;
 
     }
 
-    public static void WriteZahtevXml() throws Exception {
+    public static ZahtevZaPristupInformacijama writeZahtevXml(String fileName) throws Exception {
         // create XML file
-        File file = new File("src/main/resources/test.xml");
+        File file = new File("src/main/resources/xmlFiles/" + fileName + ".xml");
 
         // create an instance of `JAXBContext`
         JAXBContext context = JAXBContext.newInstance(ZahtevZaPristupInformacijama.class);
@@ -68,6 +68,7 @@ public class DOMParser {
 
 
         zahtevZaPristupInformacijama.setZaglavlje(new Zaglavlje(new Organ("naziv", "sediste")));
+
 
         zahtevZaPristupInformacijama.setNaslov("naslov dokumenta");
 
@@ -110,9 +111,11 @@ public class DOMParser {
 
         // convert user object to XML file
         marshaller.marshal(zahtevZaPristupInformacijama, file);
+
+        return zahtevZaPristupInformacijama;
     }
 
-    public static void ReadXmlZalbaNaOdluku(String filePath) throws Exception {
+    public static void readZalbaNaOdluku(String filePath) throws Exception {
 
         // XML file path
         File xml = new File(filePath);
@@ -135,9 +138,9 @@ public class DOMParser {
 
     }
 
-    public static void WriteXmlZalbaNaOdluku() throws Exception {
+    public static ZalbaNaOdluku writeZalbaNaOdluku(String fileName) throws Exception {
         // create XML file
-        File file = new File("src/main/resources/TestZalbaNaOdluku.xml");
+        File file = new File("src/main/resources/xmlFiles/" + fileName + ".xml");
 
         // create an instance of `JAXBContext`
         JAXBContext context = JAXBContext.newInstance(ZalbaNaOdluku.class);
@@ -148,14 +151,14 @@ public class DOMParser {
         // enable pretty-print XML output
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-        ZalbaNaOdluku ZalbaNaOdluku = new ZalbaNaOdluku();
+        ZalbaNaOdluku zalbaNaOdluku = new ZalbaNaOdluku();
 
         // Popunjavanje zaglavlja
         ZalbaZaglavlje z = new ZalbaZaglavlje();
         z.setNaslov("naslov");
         z.setPrimalac("primalac");
         z.setAdresaPrimaoca("adresaPrimaoca");
-        ZalbaNaOdluku.setZaglavlje(z);
+        zalbaNaOdluku.setZaglavlje(z);
 
         // Popunjavanje sadrzaja zalbe
         TAdresa adr = new TAdresa("ulica1", "21","Novi Sad");
@@ -170,13 +173,13 @@ public class DOMParser {
         Podaci po = new Podaci("ime","prezime","mesto",adr,"danMesec","godina","drugi podaci i kontakt","potpis");
         ZalbaSadrzaj zs = new ZalbaSadrzaj(pz,"naziv organa vlasti", "1001","2021",pf,po);
 
-        ZalbaNaOdluku.setZalbaSadrzaj(zs);
+        zalbaNaOdluku.setZalbaSadrzaj(zs);
 
         // Popunjavanje napomena
         String[] napomene = new String[2];
         napomene[0] = "У жалби се мора навести одлука која се побија (решење, закључак, обавештење), назив органа који је одлуку донео, као и број и датум одлуке. Довољно је да жалилац наведе у жалби у ком погледу је незадовољан одлуком, с тим да жалбу не мора посебно образложити. Ако жалбу изјављује на овом обрасцу, додатно образложење може  посебно приложити.";
         napomene[1] = "Уз жалбу обавезно приложити копију поднетог захтева и доказ о његовој предаји-упућивању органу као и копију одлуке органа која се оспорава жалбом.";
-        ZalbaNaOdluku.setNapomene(napomene);
+        zalbaNaOdluku.setNapomene(napomene);
 
 
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -184,11 +187,13 @@ public class DOMParser {
         marshaller.setSchema(schema);
 
         // convert user object to XML file
-        marshaller.marshal(ZalbaNaOdluku, file);
+        marshaller.marshal(zalbaNaOdluku, file);
+
+        return zalbaNaOdluku;
     }
 
 
-    public static void ReadZalbaNaCutanjeXml(String filePath) throws Exception {
+    public static void readZalbaNaCutanjeXml(String filePath) throws Exception {
         // XML file path
         File xml = new File(filePath);
 
@@ -209,9 +214,9 @@ public class DOMParser {
         System.out.println(zalbaCutanje);
     }
 
-    public static ZalbaCutanje WriteZalbaNaCutanjeXml(String fileName) throws Exception {
+    public static ZalbaCutanje writeZalbaNaCutanjeXml(String fileName) throws Exception {
         // create XML file
-        File file = new File("src/main/resources/" + fileName + ".xml");
+        File file = new File("src/main/resources/xmlFiles/" + fileName + ".xml");
 
         // create an instance of `JAXBContext`
         JAXBContext context = JAXBContext.newInstance(ZalbaCutanje.class);
@@ -228,7 +233,7 @@ public class DOMParser {
 
         zalbaCutanje.setZaglavlje(new ZalbaCutanje.Zaglavlje("naslov",
                 new ZalbaCutanje.Zaglavlje.Primalac("naziv primaoca",
-                        new ftn.xml.XmlProjekat.model.zalbanacutanje.TAdresa("mesto", "ulica", BigInteger.valueOf(5), 12000)),
+                        new ftn.xml.ServisOrganVlasti.model.zalbanacutanje.TAdresa("mesto", "ulica", BigInteger.valueOf(5), 12000)),
                 "tekst"));
 
 
@@ -237,7 +242,7 @@ public class DOMParser {
         zalbaCutanje.setMestoPodnosenja(new ZalbaCutanje.MestoPodnosenja("tekst", "mesto"));
 
         TFizickoLice fizickoLice = new TFizickoLice("Milan", "Milanovic");
-        fizickoLice.setAdresa(new ftn.xml.XmlProjekat.model.zalbanacutanje.TAdresa("lice mesto", "lice ulica", BigInteger.valueOf(10), 21000));
+        fizickoLice.setAdresa(new ftn.xml.ServisOrganVlasti.model.zalbanacutanje.TAdresa("lice mesto", "lice ulica", BigInteger.valueOf(10), 21000));
         fizickoLice.setBrojRacuna("000-0123213-12");
         zalbaCutanje.setPodnosilac(fizickoLice);
 
@@ -283,6 +288,5 @@ public class DOMParser {
         marshaller.marshal(zalbaCutanje, file);
 
         return zalbaCutanje;
-
     }
 }
