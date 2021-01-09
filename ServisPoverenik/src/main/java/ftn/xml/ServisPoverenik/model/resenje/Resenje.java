@@ -6,7 +6,11 @@
 //
 
 
-package rs.ac.uns.ftn.resenje;
+package ftn.xml.ServisPoverenik.model.resenje;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -133,6 +137,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "content"
 })
 @XmlRootElement(name = "resenje")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Resenje {
 
     @XmlElementRefs({
@@ -255,6 +262,9 @@ public class Resenje {
     @XmlType(name = "", propOrder = {
         "content"
     })
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
     public static class Sadrzaj {
 
         @XmlElementRefs({
@@ -322,6 +332,9 @@ public class Resenje {
         @XmlType(name = "", propOrder = {
             "content"
         })
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @Data
         public static class DonetoResenje {
 
             @XmlElementRefs({
@@ -393,6 +406,9 @@ public class Resenje {
         @XmlType(name = "", propOrder = {
             "content"
         })
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @Data
         public static class Obrazlozenje {
 
             @XmlElementRefs({
@@ -485,6 +501,9 @@ public class Resenje {
         @XmlType(name = "", propOrder = {
             "content"
         })
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @Data
         public static class Uvod {
 
             @XmlElementRefs({
@@ -560,6 +579,9 @@ public class Resenje {
             @XmlType(name = "", propOrder = {
                 "content"
             })
+            @NoArgsConstructor
+            @AllArgsConstructor
+            @Data
             public static class Zakon {
 
                 @XmlElementRefs({
@@ -642,6 +664,9 @@ public class Resenje {
     @XmlType(name = "", propOrder = {
         "content"
     })
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
     public static class Zaglavlje {
 
         @XmlElementRefs({

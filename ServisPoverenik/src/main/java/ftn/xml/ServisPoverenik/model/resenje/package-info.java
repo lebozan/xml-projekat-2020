@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/resenje", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package rs.ac.uns.ftn.resenje;
+package ftn.xml.ServisPoverenik.model.resenje;

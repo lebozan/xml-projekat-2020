@@ -6,7 +6,7 @@
 //
 
 
-package rs.ac.uns.ftn.resenje;
+package ftn.xml.ServisPoverenik.model.resenje;
 
 import java.math.BigDecimal;
 import javax.xml.bind.JAXBElement;
