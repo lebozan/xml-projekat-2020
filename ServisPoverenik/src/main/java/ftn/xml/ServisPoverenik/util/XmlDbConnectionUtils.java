@@ -1,4 +1,4 @@
-package ftn.xml.ServisOrganVlasti.util;
+package ftn.xml.ServisPoverenik.util;
 
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
@@ -10,7 +10,6 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class XmlDbConnectionUtils {
-
     private static String connectionUri = "xmldb:exist://%1$s:%2$s/exist/xmlrpc";
 
     static public class ConnectionProperties {
@@ -119,5 +118,4 @@ public class XmlDbConnectionUtils {
             return col;
         }
     }
-
 }
