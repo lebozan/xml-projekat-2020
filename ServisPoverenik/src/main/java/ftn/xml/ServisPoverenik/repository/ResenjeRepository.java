@@ -2,10 +2,16 @@ package ftn.xml.ServisPoverenik.repository;
 
 import ftn.xml.ServisPoverenik.model.resenje.Resenje;
 import ftn.xml.ServisPoverenik.model.zalbanacutanje.ZalbaCutanje;
-import ftn.xml.ServisPoverenik.util.JAXBReader;
-import ftn.xml.ServisPoverenik.util.XmlDbConnectionUtils;
+import ftn.xml.ServisPoverenik.util.*;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.update.UpdateExecutionFactory;
+import org.apache.jena.update.UpdateFactory;
+import org.apache.jena.update.UpdateProcessor;
+import org.apache.jena.update.UpdateRequest;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
@@ -14,28 +20,49 @@ import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.TransformerException;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.OutputStream;
-import java.io.StringReader;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 @Repository
 public class ResenjeRepository {
+
+    private final String RESENJE_COLLECTION_NAME = "/db/resenje";
+    private final String RESENJE_NAMED_GRAPH_URI = "/resenja/metadata";
 
     public boolean saveResenje(String documentId) {
 
         return false;
     }
 
+    private void extractAndSaveMetadata(String xml) throws Exception {
+        MetadataExtractor extractor = new MetadataExtractor();
+        InputStream in = new ByteArrayInputStream(xml.getBytes());
+
+        OutputStream out = new FileOutputStream("src/main/resources/xmlFiles/rdf/metadataTest.rdf");
+
+        extractor.extractMetadata(in, out);
+
+        RdfDbConnectionUtils.writeMetadataToDatabase(RESENJE_NAMED_GRAPH_URI);
+    }
+
+    private void readResenjaMetadata() throws Exception {
+        RdfDbConnectionUtils.loadMetadataFromDatabase(RESENJE_NAMED_GRAPH_URI);
+    }
+
     public void saveResenjeXml(String documentId, String xml) throws Exception {
-        String collectionId = "/db/resenje";
+        String collectionId = RESENJE_COLLECTION_NAME;
         Collection col = null;
         XMLResource res = null;
         OutputStream os = new ByteArrayOutputStream();
 
         try {
+
+            extractAndSaveMetadata(xml);
+            readResenjaMetadata();
 
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
             col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
@@ -77,6 +104,8 @@ public class ResenjeRepository {
             col.storeResource(res);
             System.out.println("[INFO] Done.");
 
+
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -104,12 +133,14 @@ public class ResenjeRepository {
         Object resenje = null;
 
         try {
-            resenje = JAXBReader.writeResenjeXml(documentId);
+//            resenje = JAXBReader.writeResenjeXml(documentId);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return resenje;
     }
+
+
 
 }

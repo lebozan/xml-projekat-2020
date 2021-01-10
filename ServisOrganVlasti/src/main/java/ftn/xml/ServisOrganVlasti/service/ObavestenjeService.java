@@ -19,4 +19,8 @@ public class ObavestenjeService {
 
         return obavestenjeRepository.saveObavestenje(fileName);
     }
+
+    public void writeObavestenjeXml(String documentId, String xml) throws Exception {
+        obavestenjeRepository.saveObavestenjeXml(documentId, xml);
+    }
 }

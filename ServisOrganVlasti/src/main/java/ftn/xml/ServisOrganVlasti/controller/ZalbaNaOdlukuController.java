@@ -5,14 +5,11 @@ import ftn.xml.ServisOrganVlasti.service.ZalbaNaOdlukuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(value = "/api/zalbaNaOdluku")
+@RequestMapping(value = "/api/zalba-na-odluku")
 public class ZalbaNaOdlukuController {
 
     @Autowired
@@ -34,6 +31,17 @@ public class ZalbaNaOdlukuController {
     public ResponseEntity<String> writeXmlFile(@RequestParam String fileName) {
         try {
             zalbaNaOdlukuService.writeZalbaNaOdluku(fileName);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/xml/{documentId}", method = RequestMethod.POST, consumes = "application/xml")
+    public ResponseEntity<String> writeZalbaOdlukaXml(@PathVariable String documentId, @RequestBody String xml) {
+        try {
+            zalbaNaOdlukuService.writeZalbaNaOdlukuXml(documentId, xml);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

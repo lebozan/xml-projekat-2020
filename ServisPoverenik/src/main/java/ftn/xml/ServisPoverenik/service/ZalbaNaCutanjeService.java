@@ -20,4 +20,8 @@ public class ZalbaNaCutanjeService {
         return zalbaNaCutanjeRepository.saveZalbaNaCutanje(fileName);
     }
 
+    public void writeZalbaNaCutanjeXml(String documentId, String xml) throws Exception {
+        zalbaNaCutanjeRepository.saveZalbaNaCutanjeXml(documentId, xml);
+    }
+
 }
