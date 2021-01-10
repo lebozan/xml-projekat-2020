@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zahtev_za_pristup_informacijama xmlns="http://www.ftn.uns.ac.rs/zahtev">
+<zahtev_za_pristup_informacijama
+    xmlns="http://www.ftn.uns.ac.rs/zahtev"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/">
     <zaglavlje>
         <organ>
-            <naziv_organa>
-            </naziv_organa>
-            <sediste_organa>
-            </sediste_organa>
+            <naziv_organa>SUP Pozarevac</naziv_organa>
+            <sediste_organa>Pozarevac</sediste_organa>
         </organ>
     </zaglavlje>
-    
     <naslov>
         З А Х Т Е В
         за приступ информацији од јавног значаја
     </naslov>
-    
     <sadrzaj>
-
         <tekst>
-            На основу члана 15. ст. 1. Закона о слободном приступу информацијама од јавног значаја („Службени гласник РС“, бр. 120/04,               54/07, 104/09 и 36/10), од горе наведеног органа захтевам:*
+            На основу члана 15. ст. 1. Закона о слободном приступу информацијама од јавног значаја („Службени гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10), од горе наведеног органа захтевам:*
         </tekst>
-        
-        
         <tipovi_zahteva>
             <tip_zahteva>обавештење да ли поседује тражену информацију</tip_zahteva>
             <tip_zahteva>увид у документ који садржи тражену информацију</tip_zahteva>
@@ -34,34 +30,28 @@
                     <dostava>на други начин:***</dostava>
                 </vrste_dostave>
             </tip_zahteva_dostava>
-            
         </tipovi_zahteva>
-        
         <informacije_o_zahtevu>
             <tekst>Овај захтев се односи на следеће информације:</tekst>
             <opis_zahteva></opis_zahteva>
         </informacije_o_zahtevu>        
-
     </sadrzaj>
-    
-    <informacije_trazioca>
-        <ime></ime>
-        <prezime></prezime>
-        <adresa></adresa>
-        <kontakt_podaci></kontakt_podaci>
+    <informacije_trazioca about="http://www.ftn.uns.ac.rs/rdf/zahtev/trazioc/Bojan_Cakic">
+        <ime >Bojan</ime>
+        <prezime>Cakic</prezime>
+        <adresa property="pred:adresa" datatype="xs:string">Jugoviceva 10</adresa>
+        <kontakt_podaci property="pred:kontakt" datatype="xs:string">064/123-456</kontakt_podaci>
         <potpis></potpis>
     </informacije_trazioca>
-    
     <mesto_i_datum>
         <tekst>У </tekst>
-        <mesto></mesto>
+        <mesto>Pozarevcu</mesto>
         <datum>
             <tekst_dan>дана</tekst_dan>
-            <dan></dan> <mesec></mesec> <godina></godina>
+            <dan>25.</dan><mesec>1.</mesec><godina>2021.</godina>
             <tekst_godina>године</tekst_godina>
         </datum>
     </mesto_i_datum>
-    
     <fusnote>
         <fusnota>* У кућици означити која законска права на приступ информацијама желите да остварите.</fusnota>
         <fusnota>** У кућици означити начин достављања копије докумената.</fusnota>

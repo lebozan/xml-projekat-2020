@@ -20,13 +20,16 @@ import javax.xml.validation.SchemaFactory;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
+import java.io.StringReader;
 
 @Repository
 public class ZalbaNaOdlukuRepository {
 
+    private final String ZALBA_ODLUKA_COLLECTION_NAME = "/db/zalbaNaOdluku";
+
     public boolean saveZalbaNaOdluku(String documentId) {
 
-        String collectionId = "/db/zalbaNaOdluku";
+        String collectionId = ZALBA_ODLUKA_COLLECTION_NAME;
         Collection col = null;
         XMLResource res = null;
         OutputStream os = new ByteArrayOutputStream();
@@ -89,7 +92,7 @@ public class ZalbaNaOdlukuRepository {
     }
 
     public Object findZalbaNaOdluku(String documentId) {
-        String collectionId = "/db/zalbaNaOdluku";
+        String collectionId = ZALBA_ODLUKA_COLLECTION_NAME;
         Collection col = null;
         XMLResource res = null;
 
@@ -143,5 +146,76 @@ public class ZalbaNaOdlukuRepository {
             }
         }
         return test;
+    }
+
+    public void saveZalbaNaOdlukuXml(String documentId, String xml) throws Exception {
+        String collectionId = ZALBA_ODLUKA_COLLECTION_NAME;
+        Collection col = null;
+        XMLResource res = null;
+        OutputStream os = new ByteArrayOutputStream();
+
+        try {
+
+            System.out.println("[INFO] Retrieving the collection: " + collectionId);
+            col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
+
+            /*
+             *  create new XMLResource with a given id
+             *  an id is assigned to the new resource if left empty (null)
+             */
+            System.out.println("[INFO] Inserting the document: " + documentId);
+            res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
+
+            // create an instance of `JAXBContext`
+            JAXBContext context = JAXBContext.newInstance(ZalbaNaOdluku.class);
+
+            // create an instance of `Marshaller`
+            Marshaller marshaller = context.createMarshaller();
+
+            // enable pretty-print XML output
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = sf.newSchema(new File("../xml-documents/zalbanaodluku-schema.xsd"));
+            marshaller.setSchema(schema);
+
+            // create an instance of `Unmarshaller`
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            unmarshaller.setSchema(schema);
+
+            // convert XML file to object
+            StringReader reader = new StringReader(xml);
+            ZalbaNaOdluku zalbaNaOdluku = (ZalbaNaOdluku) unmarshaller.unmarshal(reader);
+            // marshal the contents to an output stream
+            marshaller.marshal(zalbaNaOdluku, os);
+
+            // link the stream to the XML resource
+            res.setContent(os);
+            System.out.println("[INFO] Storing the document: " + res.getId());
+
+            col.storeResource(res);
+            System.out.println("[INFO] Done.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            //don't forget to cleanup
+            if (res != null) {
+                try {
+                    ((EXistResource) res).freeResources();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+
+            if (col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+        }
     }
 }

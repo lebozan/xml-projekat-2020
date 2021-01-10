@@ -50,7 +50,7 @@ public class RdfDbConnectionUtils {
      * @return the configuration object
      */
     public static ConnectionProperties loadProperties() throws IOException {
-        String propsName = "connection.properties";
+        String propsName = "rdf.properties";
 
         InputStream propsStream = openStream(propsName);
         if (propsStream == null)
@@ -81,7 +81,7 @@ public class RdfDbConnectionUtils {
         System.out.println("[INFO] Loading triples from an RDF/XML to a model...");
 
         // RDF triples which are to be loaded into the model
-        String rdfFilePath = "data/rdf/person_metadata.rdf";
+        String rdfFilePath = "src/main/resources/xmlFiles/rdf/metadataTest.rdf";
 
         // Creates a default model
         Model model = ModelFactory.createDefaultModel();

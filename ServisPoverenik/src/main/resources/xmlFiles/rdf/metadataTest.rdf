@@ -1,0 +1,15 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:h="http://www.w3.org/1999/xhtml">
+   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/resenje/obrazlozenje">
+      <pred:trazilac xmlns:pred="http://www.ftn.uns.ac.rs/rdf/resenje/predicate/"
+                     rdf:datatype="http://www.w3.org/2001/XMLSchema-instancestring">trazilac_informacija0</pred:trazilac>
+   </rdf:Description>
+   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/resenje/obrazlozenje">
+      <pred:razlogZalbe xmlns:pred="http://www.ftn.uns.ac.rs/rdf/resenje/predicate/"
+                        rdf:datatype="http://www.w3.org/2001/XMLSchema-instancestring">razlog_zalbe0</pred:razlogZalbe>
+   </rdf:Description>
+   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/resenje/obrazlozenje">
+      <pred:taksa xmlns:pred="http://www.ftn.uns.ac.rs/rdf/resenje/predicate/"
+                  rdf:datatype="http://www.w3.org/2001/XMLSchema-instancestring">0</pred:taksa>
+   </rdf:Description>
+</rdf:RDF>

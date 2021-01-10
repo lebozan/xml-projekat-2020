@@ -23,4 +23,8 @@ public class ZahtevService {
         return zahtevRepository.saveZahtev(fileName);
     }
 
+    public void writeZahtevXml(String documentId, String xml) throws Exception {
+        zahtevRepository.saveZahtevXml(documentId, xml);
+    }
+
 }

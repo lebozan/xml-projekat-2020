@@ -41,6 +41,15 @@ public class ZahtevController {
         }
     }
 
+    @RequestMapping(value = "/xml/{documentId}", method = RequestMethod.POST, consumes = "application/xml")
+    public ResponseEntity<String> writeZahtevXml(@PathVariable String documentId, @RequestBody String xml) {
+        try {
+            zahtevService.writeZahtevXml(documentId, xml);
 
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }

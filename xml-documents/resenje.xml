@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resenje xmlns="http://www.ftn.uns.ac.rs/resenje"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.ftn.uns.ac.rs/resenje file:/C:/DANA/IV%20godina/XML%20i%20web%20servisi/resenje-schema.xsd">
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <zaglavlje>
         <naziv_resenja>Решење – одбија се захтев:</naziv_resenja>Број:<broj_resenja>071-01-4075/2018-03</broj_resenja>
         Датум:<datum_resenja>2020-04-06</datum_resenja>.године 

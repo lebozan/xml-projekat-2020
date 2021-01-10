@@ -210,69 +210,69 @@ public class JAXBReader {
         ftn.xml.ServisPoverenik.model.resenje.ObjectFactory factory = new ftn.xml.ServisPoverenik.model.resenje.ObjectFactory();
 
         Resenje resenje = factory.createResenje();
-        List<Serializable> resenjeContent = new ArrayList<>();
-
-        Resenje.Zaglavlje zaglavlje = factory.createResenjeZaglavlje();
-
-        List<Serializable> zaglavljeContent = new ArrayList<>();
-
-        zaglavljeContent.add(factory.createResenjeZaglavljeNazivResenja("Resenje 123"));
-
-        zaglavljeContent.add(factory.createResenjeZaglavljeBrojResenja("Resenje 123"));
-
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = format.parse("2021-01-10");
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        gregorianCalendar.setTime(date);
-        XMLGregorianCalendar xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(gregorianCalendar.get(Calendar.YEAR),
-                gregorianCalendar.get(Calendar.MONTH)+1,
-                gregorianCalendar.get(Calendar.DAY_OF_MONTH),
-                DatatypeConstants.FIELD_UNDEFINED);
-
-        zaglavljeContent.add(factory.createResenjeZaglavljeDatumResenja(xmlDate));
-
-        zaglavlje.setContent(zaglavljeContent);
-
-        resenjeContent.add(factory.createResenjeZaglavlje(zaglavlje));
-
-
-        Resenje.Sadrzaj sadrzaj = factory.createResenjeSadrzaj();
-        List<Serializable> sadrzajContent = new ArrayList<>();
-
-        Resenje.Sadrzaj.Uvod uvod = factory.createResenjeSadrzajUvod();
-        List<Serializable> uvodContent = new ArrayList<>();
-
-        uvodContent.add(factory.createResenjeSadrzajUvodNazivOrgana("Neki organ"));
-        uvodContent.add("и, у поступку по жалби ");
-        uvodContent.add(factory.createResenjeSadrzajUvodPodnosilac("Bojac Cakic"));
-        uvodContent.add(factory.createResenjeSadrzajUvodNazivUstanove("Ustanova 123"));
-        uvodContent.add(" у ");
-        uvodContent.add(factory.createResenjeSadrzajUvodAdresaUstanove("Adresa ustanove 123"));
-        uvodContent.add(factory.createResenjeSadrzajUvodDatumZalbe(xmlDate));
-
-        Resenje.Sadrzaj.Uvod.Zakon zakon = factory.createResenjeSadrzajUvodZakon();
-        List<Serializable> zakonContent = new ArrayList<>();
-        zakonContent.add(factory.createResenjeSadrzajUvodZakonClan("35."));
-        zakonContent.add(factory.createResenjeSadrzajUvodZakonStav(" став 1. "));
-        zakonContent.add("  тачка ");
-        zakonContent.add(factory.createResenjeSadrzajUvodZakonTacka("5"));
-        zakonContent.add(factory.createResenjeSadrzajUvodZakonNazivZakona(" Закона о слободном приступу информацијама \n" +
-                "                од јавног значаја"));
-        zakonContent.add("  („Сл. гласник РС“ бр. 120/04, 54/07, 104/09 и 36/10), а у вези са чланом 4. тачка 22. Закона\n" +
-                "                о заштити података о личности („Сл. гласник РС“, број 87/2018), као и члана 23. и члана 24. ст. 1. Закона о слободном приступу \n" +
-                "                информацијама од јавног значаја и члана 173. став. 2. Закона о општем управном поступку („Службени гласник РС“, бр. 18/2016 и\n" +
-                "                95/2018 –аутентично тумачење), доноси");
-
-        zakon.setContent(zakonContent);
-        uvodContent.add(factory.createResenjeSadrzajUvodZakon(zakon));
-
-        sadrzajContent.add(factory.createResenjeSadrzajUvod(uvod));
-
-
-
-        resenjeContent.add(factory.createResenjePoverenik("Nikola Jokic"));
-
-        resenje.setContent(resenjeContent);
+//        List<Serializable> resenjeContent = new ArrayList<>();
+//
+//        Resenje.Zaglavlje zaglavlje = factory.createResenjeZaglavlje();
+//
+//        List<Serializable> zaglavljeContent = new ArrayList<>();
+//
+//        zaglavljeContent.add(factory.createResenjeZaglavljeNazivResenja("Resenje 123"));
+//
+//        zaglavljeContent.add(factory.createResenjeZaglavljeBrojResenja("Resenje 123"));
+//
+//        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = format.parse("2021-01-10");
+//        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+//        gregorianCalendar.setTime(date);
+//        XMLGregorianCalendar xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(gregorianCalendar.get(Calendar.YEAR),
+//                gregorianCalendar.get(Calendar.MONTH)+1,
+//                gregorianCalendar.get(Calendar.DAY_OF_MONTH),
+//                DatatypeConstants.FIELD_UNDEFINED);
+//
+//        zaglavljeContent.add(factory.createResenjeZaglavljeDatumResenja(xmlDate));
+//
+//        zaglavlje.setContent(zaglavljeContent);
+//
+//        resenjeContent.add(factory.createResenjeZaglavlje(zaglavlje));
+//
+//
+//        Resenje.Sadrzaj sadrzaj = factory.createResenjeSadrzaj();
+//        List<Serializable> sadrzajContent = new ArrayList<>();
+//
+//        Resenje.Sadrzaj.Uvod uvod = factory.createResenjeSadrzajUvod();
+//        List<Serializable> uvodContent = new ArrayList<>();
+//
+//        uvodContent.add(factory.createResenjeSadrzajUvodNazivOrgana("Neki organ"));
+//        uvodContent.add("и, у поступку по жалби ");
+//        uvodContent.add(factory.createResenjeSadrzajUvodPodnosilac("Bojac Cakic"));
+//        uvodContent.add(factory.createResenjeSadrzajUvodNazivUstanove("Ustanova 123"));
+//        uvodContent.add(" у ");
+//        uvodContent.add(factory.createResenjeSadrzajUvodAdresaUstanove("Adresa ustanove 123"));
+//        uvodContent.add(factory.createResenjeSadrzajUvodDatumZalbe(xmlDate));
+//
+//        Resenje.Sadrzaj.Uvod.Zakon zakon = factory.createResenjeSadrzajUvodZakon();
+//        List<Serializable> zakonContent = new ArrayList<>();
+//        zakonContent.add(factory.createResenjeSadrzajUvodZakonClan("35."));
+//        zakonContent.add(factory.createResenjeSadrzajUvodZakonStav(" став 1. "));
+//        zakonContent.add("  тачка ");
+//        zakonContent.add(factory.createResenjeSadrzajUvodZakonTacka("5"));
+//        zakonContent.add(factory.createResenjeSadrzajUvodZakonNazivZakona(" Закона о слободном приступу информацијама \n" +
+//                "                од јавног значаја"));
+//        zakonContent.add("  („Сл. гласник РС“ бр. 120/04, 54/07, 104/09 и 36/10), а у вези са чланом 4. тачка 22. Закона\n" +
+//                "                о заштити података о личности („Сл. гласник РС“, број 87/2018), као и члана 23. и члана 24. ст. 1. Закона о слободном приступу \n" +
+//                "                информацијама од јавног значаја и члана 173. став. 2. Закона о општем управном поступку („Службени гласник РС“, бр. 18/2016 и\n" +
+//                "                95/2018 –аутентично тумачење), доноси");
+//
+//        zakon.setContent(zakonContent);
+//        uvodContent.add(factory.createResenjeSadrzajUvodZakon(zakon));
+//
+//        sadrzajContent.add(factory.createResenjeSadrzajUvod(uvod));
+//
+//
+//
+//        resenjeContent.add(factory.createResenjePoverenik("Nikola Jokic"));
+//
+//        resenje.setContent(resenjeContent);
 
         return resenje;
     }

@@ -20,4 +20,9 @@ public class ZalbaNaOdlukuService {
 
         return zalbaNaOdlukuRepository.saveZalbaNaOdluku(fileName);
     }
+
+    public void writeZalbaNaOdlukuXml(String documentId, String xml) throws Exception {
+        zalbaNaOdlukuRepository.saveZalbaNaOdlukuXml(documentId, xml);
+    }
+
 }

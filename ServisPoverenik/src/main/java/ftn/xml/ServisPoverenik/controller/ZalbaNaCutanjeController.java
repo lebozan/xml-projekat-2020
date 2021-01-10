@@ -4,10 +4,7 @@ import ftn.xml.ServisPoverenik.service.ZalbaNaCutanjeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/zalbaNaCutanje")
@@ -32,6 +29,17 @@ public class ZalbaNaCutanjeController {
     public ResponseEntity<String> writeXmlFile(@RequestParam String fileName) {
         try {
             zalbaNaCutanjeService.writeZalbaNaCutanje(fileName);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/xml/{documentId}", method = RequestMethod.POST, consumes = "application/xml")
+    public ResponseEntity<String> writeZalbaCutanjeXml(@PathVariable String documentId, @RequestBody String xml) {
+        try {
+            zalbaNaCutanjeService.writeZalbaNaCutanjeXml(documentId, xml);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

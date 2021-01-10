@@ -1,73 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.ftn.uns.ac.rs/resenje" xmlns="http://www.ftn.uns.ac.rs/resenje">
-    <xs:element name="resenje">
-        <xs:complexType mixed="true">
-            <xs:sequence>
-                <xs:element name="zaglavlje">
-                    <xs:complexType mixed="true">
-                        <xs:sequence>
-                            <xs:element name="naziv_resenja" type="xs:string"/>
-                            <xs:element name="broj_resenja">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:pattern value="\d{3}-\d{2}-\d{4}\/\d{4}-\d{2}"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:element>
-                            <xs:element name="datum_resenja" type="xs:date"/>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="sadrzaj">
-                    <xs:complexType mixed="true">
-                        <xs:sequence>
-                            <xs:element name="uvod">
-                                <xs:complexType mixed="true">
-                                    <xs:sequence>
-                                        <xs:element name="naziv_organa" type="xs:string"/>
-                                        <xs:element name="podnosilac" type="xs:string"/>
-                                        <xs:element name="naziv_ustanove" type="xs:string"/>
-                                        <xs:element name="adresa_ustanove" type="xs:string"/>
-                                        <xs:element name="datum_zalbe" type="xs:date"/>
-                                        <xs:element name="zakon ">
-                                            <xs:complexType mixed="true">
-                                                <xs:sequence>
-                                                  <xs:element name="clan" type="xs:string"/>
-                                                  <xs:element name="stav" type="xs:string"/>
-                                                  <xs:element name="tacka" type="xs:string"/>
-                                                  <xs:element name="naziv_zakona" type="xs:string"/>
-                                                </xs:sequence>
-                                            </xs:complexType>
-                                        </xs:element>
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
-                            <xs:element name="doneto_resenje">
-                                <xs:complexType mixed="true">
-                                    <xs:sequence>
-                                        <xs:element name="odluka" type="xs:string"/>
-                                        <xs:element name="tekst" type="xs:string"/>
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
-                            <xs:element name="obrazlozenje">
-                                <xs:complexType mixed="true">
-                                    <xs:sequence>
-                                        <xs:element name="trazilac_informacija" type="xs:string"/>
-                                        <xs:element name="datum_podnosenja_zalbe" type="xs:date"/>
-                                        <xs:element name="razlog_zalbe" type="xs:string"/>
-                                        <xs:element name="postupak_organa" type="xs:string"/>
-                                        <xs:element name="odluka_organa" type="xs:string"/>
-                                        <xs:element name="taksa" type="xs:decimal"/>
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="poverenik" type="xs:string"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-</xs:schema>
+<xsi:schema elementFormDefault="qualified" targetNamespace="http://www.ftn.uns.ac.rs/resenje"
+    xmlns="http://www.ftn.uns.ac.rs/resenje"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/resenje/predicate/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema">
+    <xsi:element name="resenje">
+        <xsi:complexType mixed="true">
+            <xsi:sequence>
+                <xsi:element name="zaglavlje">
+                    <xsi:complexType mixed="true">
+                        <xsi:sequence>
+                            <xsi:element name="naziv_resenja" type="xsi:string"/>
+                            <xsi:element name="broj_resenja">
+                                <xsi:simpleType>
+                                    <xsi:restriction base="xsi:string">
+                                        <xsi:pattern value="\d{3}-\d{2}-\d{4}\/\d{4}-\d{2}"/>
+                                    </xsi:restriction>
+                                </xsi:simpleType>
+                            </xsi:element>
+                            <xsi:element name="datum_resenja" type="xsi:date"/>
+                        </xsi:sequence>
+                    </xsi:complexType>
+                </xsi:element>
+                <xsi:element name="sadrzaj">
+                    <xsi:complexType mixed="true">
+                        <xsi:sequence>
+                            <xsi:element name="uvod">
+                                <xsi:complexType mixed="true">
+                                    <xsi:sequence>
+                                        <xsi:element name="naziv_organa" type="xsi:string"/>
+                                        <xsi:element name="podnosilac" type="xsi:string"/>
+                                        <xsi:element name="naziv_ustanove" type="xsi:string"/>
+                                        <xsi:element name="adresa_ustanove" type="xsi:string"/>
+                                        <xsi:element name="datum_zalbe" type="xsi:date"/>
+                                        <xsi:element name="zakon">
+                                            <xsi:complexType mixed="true">
+                                                <xsi:sequence>
+                                                  <xsi:element name="clan" type="xsi:string"/>
+                                                  <xsi:element name="stav" type="xsi:string"/>
+                                                  <xsi:element name="tacka" type="xsi:string"/>
+                                                  <xsi:element name="naziv_zakona" type="xsi:string"
+                                                  />
+                                                </xsi:sequence>
+                                            </xsi:complexType>
+                                        </xsi:element>
+                                    </xsi:sequence>
+                                </xsi:complexType>
+                            </xsi:element>
+                            <xsi:element name="doneto_resenje">
+                                <xsi:complexType mixed="true">
+                                    <xsi:sequence>
+                                        <xsi:element name="odluka" type="xsi:string"/>
+                                        <xsi:element name="tekst" type="xsi:string"/>
+                                    </xsi:sequence>
+                                </xsi:complexType>
+                            </xsi:element>
+                            <xsi:element name="obrazlozenje">
+                                <xsi:complexType mixed="true">
+                                    <xsi:sequence>
+                                        <xsi:element name="trazilac_informacija">
+                                            <xsi:complexType>
+                                                <xsi:simpleContent>
+                                                  <xsi:extension base="xsi:string">
+                                                  <xsi:attribute fixed="pred:trazilac"
+                                                  name="property" type="xsi:string" use="required"/>
+                                                  <xsi:attribute fixed="xsi:string" name="datatype"
+                                                  type="xsi:string" use="required"/>
+                                                  </xsi:extension>
+                                                </xsi:simpleContent>
+                                            </xsi:complexType>
+                                        </xsi:element>
+                                        <xsi:element name="datum_podnosenja_zalbe" type="xsi:date"/>
+                                        <xsi:element name="razlog_zalbe">
+                                            <xsi:complexType>
+                                                <xsi:simpleContent>
+                                                  <xsi:extension base="xsi:string">
+                                                  <xsi:attribute fixed="pred:razlogZalbe"
+                                                  name="property" type="xsi:string" use="required"/>
+                                                  <xsi:attribute fixed="xsi:string" name="datatype"
+                                                  type="xsi:string" use="required"/>
+                                                  </xsi:extension>
+                                                </xsi:simpleContent>
+                                            </xsi:complexType>
+                                        </xsi:element>
+                                        <xsi:element name="postupak_organa" type="xsi:string"/>
+                                        <xsi:element name="odluka_organa" type="xsi:string"/>
+                                        <xsi:element name="taksa">
+                                            <xsi:complexType>
+                                                <xsi:simpleContent>
+                                                  <xsi:extension base="xsi:decimal">
+                                                  <xsi:attribute fixed="pred:taksa" name="property"
+                                                  type="xsi:string" use="required"/>
+                                                  <xsi:attribute fixed="xsi:string" name="datatype"
+                                                  type="xsi:string" use="required"/>
+                                                  </xsi:extension>
+                                                </xsi:simpleContent>
+                                            </xsi:complexType>
+                                        </xsi:element>
+                                    </xsi:sequence>
+                                    <xsi:attribute
+                                        fixed="http://www.ftn.uns.ac.rs/rdf/resenje/obrazlozenje"
+                                        name="about" type="xsi:string" use="required"/>
+                                </xsi:complexType>
+                            </xsi:element>
+                        </xsi:sequence>
+                    </xsi:complexType>
+                </xsi:element>
+                <xsi:element name="poverenik" type="xsi:string"/>
+            </xsi:sequence>
+        </xsi:complexType>
+    </xsi:element>
+</xsi:schema>
