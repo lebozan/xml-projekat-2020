@@ -67,50 +67,50 @@ public class JAXBReader {
         ZahtevZaPristupInformacijama zahtevZaPristupInformacijama = new ZahtevZaPristupInformacijama();
 
 
-        zahtevZaPristupInformacijama.setZaglavlje(new Zaglavlje(new Organ("naziv", "sediste")));
-
-
-        zahtevZaPristupInformacijama.setNaslov("naslov dokumenta");
-
-        String[] tipoviZahteva = new String[3];
-        tipoviZahteva[0] = "tip z1";
-        tipoviZahteva[1] = "tip z2";
-        tipoviZahteva[2] = "tip z3";
-
-        String[] vrsteDostave = new String[4];
-        vrsteDostave[0] = "tip dostave 1";
-        vrsteDostave[1] = "tip dostave 2";
-        vrsteDostave[2] = "tip dostave 3";
-        vrsteDostave[3] = "tip dostave 4";
-
-        zahtevZaPristupInformacijama.setSadrzaj(new Sadrzaj("tekst",
-                new TipoviZahteva(tipoviZahteva, new TipZahtevaDostava("tekst", vrsteDostave)),
-                new InformacijeOZahtevu("tekst", "opis zahteva")));
-
-
-        zahtevZaPristupInformacijama.setInformacijeTrazioca(
-                new InformacijeTrazioca("ime", "prezime", "adresa", "kontakt", "potpis"));
-
-
-        zahtevZaPristupInformacijama.setMestoIDatum(new MestoIDatum("tekst", "mesto",
-                new TDatum("дана", "01", "05", "2020", "године")));
-
-
-        String[] fusnote = new String[3];
-        fusnote[0] = "* У кућици означити која законска права на приступ информацијама желите да остварите.";
-        fusnote[1] = "** У кућици означити начин достављања копије докумената.";
-        fusnote[2] = "*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.";
-
-        zahtevZaPristupInformacijama.setFusnote(fusnote);
-
-
-        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = sf.newSchema(new File("../xml-documents/zahtev.xsd"));
-        marshaller.setSchema(schema);
-
-
-        // convert user object to XML file
-        marshaller.marshal(zahtevZaPristupInformacijama, file);
+//        zahtevZaPristupInformacijama.setZaglavlje(new Zaglavlje(new Organ("naziv", "sediste")));
+//
+//
+//        zahtevZaPristupInformacijama.setNaslov("naslov dokumenta");
+//
+//        String[] tipoviZahteva = new String[3];
+//        tipoviZahteva[0] = "tip z1";
+//        tipoviZahteva[1] = "tip z2";
+//        tipoviZahteva[2] = "tip z3";
+//
+//        String[] vrsteDostave = new String[4];
+//        vrsteDostave[0] = "tip dostave 1";
+//        vrsteDostave[1] = "tip dostave 2";
+//        vrsteDostave[2] = "tip dostave 3";
+//        vrsteDostave[3] = "tip dostave 4";
+//
+//        zahtevZaPristupInformacijama.setSadrzaj(new Sadrzaj("tekst",
+//                new TipoviZahteva(tipoviZahteva, new TipZahtevaDostava("tekst", vrsteDostave)),
+//                new InformacijeOZahtevu("tekst", "opis zahteva")));
+//
+//
+//        zahtevZaPristupInformacijama.setInformacijeTrazioca(
+//                new InformacijeTrazioca("ime", "prezime", "adresa", "kontakt", "potpis"));
+//
+//
+//        zahtevZaPristupInformacijama.setMestoIDatum(new MestoIDatum("tekst", "mesto",
+//                new TDatum("дана", "01", "05", "2020", "године")));
+//
+//
+//        String[] fusnote = new String[3];
+//        fusnote[0] = "* У кућици означити која законска права на приступ информацијама желите да остварите.";
+//        fusnote[1] = "** У кућици означити начин достављања копије докумената.";
+//        fusnote[2] = "*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.";
+//
+//        zahtevZaPristupInformacijama.setFusnote(fusnote);
+//
+//
+//        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+//        Schema schema = sf.newSchema(new File("../xml-documents/zahtev.xsd"));
+//        marshaller.setSchema(schema);
+//
+//
+//        // convert user object to XML file
+//        marshaller.marshal(zahtevZaPristupInformacijama, file);
 
         return zahtevZaPristupInformacijama;
     }

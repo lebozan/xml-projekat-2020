@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.ftn.uns.ac.rs/zahtev" xmlns="http://www.ftn.uns.ac.rs/zahtev">
+    targetNamespace="http://www.ftn.uns.ac.rs/zahtev" xmlns="http://www.ftn.uns.ac.rs/zahtev"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/">
 
     <xs:include schemaLocation="zahtev-slozeni-tipovi.xsd"/>
     <xs:element name="zahtev_za_pristup_informacijama">
@@ -50,32 +51,57 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="ime">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:minLength value="0"/>
-                                        <xs:maxLength value="30"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute fixed="pred:ime" name="property"
+                                                type="xs:string" use="required"/>
+                                            <xs:attribute fixed="xsi:string" name="datatype"
+                                                type="xs:string" use="required"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
                             </xs:element>
                             <xs:element name="prezime">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:minLength value="0"/>
-                                        <xs:maxLength value="30"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute fixed="pred:prezime" name="property"
+                                                type="xs:string" use="required"/>
+                                            <xs:attribute fixed="xsi:string" name="datatype"
+                                                type="xs:string" use="required"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
                             </xs:element>
                             <xs:element name="adresa">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:minLength value="0"/>
-                                        <xs:maxLength value="50"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute fixed="pred:adresa" name="property"
+                                                type="xs:string" use="required"/>
+                                            <xs:attribute fixed="xsi:string" name="datatype"
+                                                type="xs:string" use="required"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
                             </xs:element>
-                            <xs:element name="kontakt_podaci" type="xs:string"/>
+                            <xs:element name="kontakt_podaci">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute fixed="pred:kontakt" name="property"
+                                                type="xs:string" use="required"/>
+                                            <xs:attribute fixed="xsi:string" name="datatype"
+                                                type="xs:string" use="required"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
                             <xs:element name="potpis" type="xs:string"/>
                         </xs:sequence>
+                        <xs:attribute fixed="http://www.ftn.uns.ac.rs/rdf/resenje/trazilac"
+                            name="about" type="xs:string" use="required"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="mesto_i_datum">
@@ -85,6 +111,8 @@
                             <xs:element name="mesto" type="xs:string"/>
                             <xs:element name="datum" type="TDatum"> </xs:element>
                         </xs:sequence>
+                        <xs:attribute fixed="http://www.ftn.uns.ac.rs/rdf/resenje/mestoDatumZahteva"
+                            name="about"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="fusnote">
