@@ -3,6 +3,8 @@ package ftn.xml.ServisOrganVlasti.repository;
 import ftn.xml.ServisOrganVlasti.model.obavestenje.Obavestenje;
 import ftn.xml.ServisOrganVlasti.model.zahtev.ZahtevZaPristupInformacijama;
 import ftn.xml.ServisOrganVlasti.util.JAXBReader;
+import ftn.xml.ServisOrganVlasti.util.MetadataExtractor;
+import ftn.xml.ServisOrganVlasti.util.RdfDbConnectionUtils;
 import ftn.xml.ServisOrganVlasti.util.XmlDbConnectionUtils;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
@@ -21,15 +23,13 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.OutputStream;
-import java.io.StringReader;
+import java.io.*;
 
 @Repository
 public class ZahtevRepository {
 
     public final String ZAHTEV_COLLECTION_NAME = "/db/zahtev";
+    public final String ZAHTEV_NAMED_GRAPH_URI = "/zahtev/metadata";
 
     public boolean saveZahtev(String documentId) {
         String collectionId = ZAHTEV_COLLECTION_NAME;
@@ -164,6 +164,9 @@ public class ZahtevRepository {
 
         try {
 
+            extractAndSaveMetadata(documentId, xml);
+            readZahteviMetadata();
+
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
             col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
 
@@ -225,6 +228,25 @@ public class ZahtevRepository {
                 }
             }
         }
+    }
+
+    private void extractAndSaveMetadata(String documentId, String xml) throws Exception {
+        MetadataExtractor extractor = new MetadataExtractor();
+        InputStream in = new ByteArrayInputStream(xml.getBytes());
+
+        OutputStream out = new FileOutputStream("src/main/resources/xmlFiles/rdf/" + documentId + ".rdf");
+
+        extractor.extractMetadata(in, out);
+
+        RdfDbConnectionUtils.writeMetadataToDatabase(ZAHTEV_NAMED_GRAPH_URI);
+
+        out.close();
+        File metadata = new File("src/main/resources/xmlFiles/rdf/" + documentId + ".rdf");
+        metadata.delete();
+    }
+
+    private void readZahteviMetadata() throws Exception {
+        RdfDbConnectionUtils.loadMetadataFromDatabase(ZAHTEV_NAMED_GRAPH_URI);
     }
 
 }
