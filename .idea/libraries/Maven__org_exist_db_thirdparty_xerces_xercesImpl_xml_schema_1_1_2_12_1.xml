@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.exist-db.thirdparty.xerces:xercesImpl:xml-schema-1.1:2.12.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/exist-db/thirdparty/xerces/xercesImpl/2.12.1/xercesImpl-2.12.1-xml-schema-1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/exist-db/thirdparty/xerces/xercesImpl/2.12.1/xercesImpl-2.12.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/exist-db/thirdparty/xerces/xercesImpl/2.12.1/xercesImpl-2.12.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

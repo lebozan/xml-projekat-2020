@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zalbaCutanje xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ftn.uns.ac.rs/zalbanacutanje">
+<zalbaCutanje xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.ftn.uns.ac.rs/zalbanacutanje"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/predicate/">
     <zaglavlje>
-        <naslov>ZALBA KADA ORGAN VLASTI NIJE POSTUPIO/nije postupio u celosti/
+        ZALBA KADA ORGAN VLASTI NIJE POSTUPIO/nije postupio u celosti/
          PO ZAHTEVU TUZIOCA U ZAKONSKOM ROKU (CUTANJE UPRAVE)
-        </naslov>
         <primalac>
             <naziv_primaoca>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</naziv_primaoca>
             <adresa_primaoca>
@@ -13,51 +14,47 @@
                 <postanski_broj>11000</postanski_broj>
             </adresa_primaoca>
         </primalac>
-        <tekst>U skladu sa clanom 22. Zakona o slobodnom pristupu informacijama od javnog znacaja podnosim:</tekst>
+       U skladu sa clanom 22. Zakona o slobodnom pristupu informacijama od javnog znacaja podnosim:
     </zaglavlje>
     <sadrzaj>
-        <predmet>
+        <predmet about="http://www.ftn.uns.ac.rs/rdf/azlbacutanje/organ">
             <naziv_predmeta>ZALBU</naziv_predmeta>
-            <tekst>protiv</tekst>
-            <naziv_organa></naziv_organa>
+                            protiv
+            <naziv_organa property="pred:naziv_organa" datatype="xsi:string"> Учитељског факултета у Призрену</naziv_organa>
         </predmet>
         <razlozi_podnsenja>
-            <tekst>zbog toga sto organ vlasti:</tekst>
+            zbog toga sto organ vlasti:
             <tipovi_razloga>
                 <tip_razloga>nije postupio</tip_razloga>
                 <tip_razloga>nije potupio u celosti</tip_razloga>
                 <tip_razloga>u zakonskom roku</tip_razloga>
             </tipovi_razloga>
         </razlozi_podnsenja>
-        <izjava>
-            <tekst>na mom zahtevu za slobodan pristup informacijama od javnog znacaja koji sam podneo tom organu dana</tekst>
-            <datum_podnosenja>2010-05-05</datum_podnosenja> 
-            <tekst>godine, a koji sam trazio//la da mi se u skladu sa Zakonom o slobodnom pristupu informacijama od javnog znacaja 
-                omoguci uvid-kopija dokumenta koji sadrzi informacije o/u vezi sa:</tekst>
-            <podaci_o_zahtevu>doprinosima od javnog znacaja</podaci_o_zahtevu>
-            <predlog>Na osnovu iznetog, predlazem da Poverenik uvazi moju zalbu
-                i omoguci mi pristup trazenoj/im informajici/ma. Kao dokaz, uz zalbu dostavljam kopiju zahteva sa dokazom o predaji organu vlasti.
-                Napomena: Kod zalbe zbog nepostupanju po zahtevu u celosti, treba priloziti
-                i dobijeni odgvor organa vlasti.
-            </predlog>
+        <izjava about="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/podacizahtev">
+            po mom zahtevu za slobodan pristup informacijama od javnog znacaja koji sam podneo tom organu dana
+            <datum_podnosenja>2010-05-05</datum_podnosenja>godine, a koji sam trazio//la da mi se u skladu sa Zakonom o 
+            slobodnom pristupu informacijama od javnog znacaja omoguci uvid-kopija dokumenta koji sadrzi informacije o/u vezi sa:
+            <podaci_o_zahtevu property="pred:podaci_o_zahtevu" datatype="xsi:string">informacijama od javnog znacaja</podaci_o_zahtevu>
+            Na osnovu iznetog, predlazem da Poverenik uvazi moju zalbu i omoguci mi pristup trazenoj/im informajici/ma.
+            Kao dokaz, uz zalbu dostavljam kopiju zahteva sa dokazom o predaji organu vlasti.
+            Napomena: Kod zalbe zbog nepostupanju po zahtevu u celosti, treba priloziti i dobijeni odgvor organa vlasti.
         </izjava>
     </sadrzaj>
-    <podnosilac xsi:type="TFizicko_lice">
-        <broj_racuna>000-0000000000000-00</broj_racuna>
-        <adresa>
-            <mesto>Mesto</mesto>
-            <ulica>Ulica</ulica>
-            <broj>1</broj>
-            <postanski_broj>40000</postanski_broj>
-        </adresa>
-        <ime>ime0</ime>
-        <prezime>prezime0</prezime>
+    <podnosilac>
+        <podnosilac_tuzbe xsi:type="TFizicko_lice">
+            <broj_racuna>000-0000000000000-00</broj_racuna>
+            <adresa>
+                <mesto>Mesto</mesto>
+                <ulica>Ulica</ulica>
+                <broj>1</broj>
+                <postanski_broj>40000</postanski_broj>
+            </adresa>
+            <ime>ime0</ime>
+            <prezime>prezime0</prezime>
+        </podnosilac_tuzbe>
+        <potpis></potpis>
     </podnosilac>
-    <mesto_podnosenja>
-        <tekst>U</tekst>
-        <mesto></mesto> 
-    </mesto_podnosenja>
-    <datum_zalbe>
-        <dan>12.</dan><mesec>2.</mesec><godina>2010.</godina><tekst>godine</tekst>
-    </datum_zalbe>    
+    <mesto_i_datum>
+        U<mesto>Prizrenu</mesto>, dana <datum_zalbe>2010-05-10</datum_zalbe>godine
+    </mesto_i_datum>    
 </zalbaCutanje>

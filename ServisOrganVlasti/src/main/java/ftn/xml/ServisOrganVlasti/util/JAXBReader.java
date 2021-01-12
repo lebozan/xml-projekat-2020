@@ -229,63 +229,63 @@ public class JAXBReader {
 
         ZalbaCutanje zalbaCutanje = new ZalbaCutanje();
 
-        ObjectFactory objectFactory = new ObjectFactory();
+//        ObjectFactory objectFactory = new ObjectFactory();
 
-        zalbaCutanje.setZaglavlje(new ZalbaCutanje.Zaglavlje("naslov",
-                new ZalbaCutanje.Zaglavlje.Primalac("naziv primaoca",
-                        new ftn.xml.ServisOrganVlasti.model.zalbanacutanje.TAdresa("mesto", "ulica", BigInteger.valueOf(5), 12000)),
-                "tekst"));
-
-
-        zalbaCutanje.setDatumZalbe(new ZalbaCutanje.DatumZalbe("8", "12", "2020", "tekst"));
-
-        zalbaCutanje.setMestoPodnosenja(new ZalbaCutanje.MestoPodnosenja("tekst", "mesto"));
-
-        TFizickoLice fizickoLice = new TFizickoLice("Milan", "Milanovic");
-        fizickoLice.setAdresa(new ftn.xml.ServisOrganVlasti.model.zalbanacutanje.TAdresa("lice mesto", "lice ulica", BigInteger.valueOf(10), 21000));
-        fizickoLice.setBrojRacuna("000-0123213-12");
-        zalbaCutanje.setPodnosilac(fizickoLice);
-
-        List<Serializable> tipoviRazloga = new ArrayList<>();
-        tipoviRazloga.add(objectFactory.createTRazlogTipRazloga("Tip razloga 1"));
-        tipoviRazloga.add(objectFactory.createTRazlogTipRazloga("Tip razloga 2"));
-        tipoviRazloga.add(objectFactory.createTRazlogTipRazloga("Tip razloga 3"));
-
-        TRazlog tRazlog = objectFactory.createTRazlog();
-        tRazlog.setContent(tipoviRazloga);
-
-        List<JAXBElement<?>> izjavaContent = new ArrayList<>();
+//        zalbaCutanje.setZaglavlje(new ZalbaCutanje.Zaglavlje("naslov",
+//                new ZalbaCutanje.Zaglavlje.Primalac("naziv primaoca",
+//                        new ftn.xml.ServisOrganVlasti.model.zalbanacutanje.TAdresa("mesto", "ulica", BigInteger.valueOf(5), 12000)),
+//                "tekst"));
 
 
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = format.parse("2020-12-10");
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        gregorianCalendar.setTime(date);
-        XMLGregorianCalendar xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(gregorianCalendar.get(Calendar.YEAR),
-                gregorianCalendar.get(Calendar.MONTH)+1,
-                gregorianCalendar.get(Calendar.DAY_OF_MONTH),
-                DatatypeConstants.FIELD_UNDEFINED);
+//        zalbaCutanje.setDatumZalbe(new ZalbaCutanje.DatumZalbe("8", "12", "2020", "tekst"));
 
-        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaTekst("tekst"));
-        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaDatumPodnosenja(xmlDate));
-        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaTekst("tekst"));
-        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaPodaciOZahtevu("podaci o zahtevu"));
-        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaPredlog("predlog"));
+//        zalbaCutanje.setMestoPodnosenja(new ZalbaCutanje.MestoPodnosenja("tekst", "mesto"));
 
-        ZalbaCutanje.Sadrzaj.Izjava izjava = objectFactory.createZalbaCutanjeSadrzajIzjava();
-        izjava.setContent(izjavaContent);
+//        TFizickoLice fizickoLice = new TFizickoLice("Milan", "Milanovic");
+//        fizickoLice.setAdresa(new ftn.xml.ServisOrganVlasti.model.zalbanacutanje.TAdresa("lice mesto", "lice ulica", BigInteger.valueOf(10), 21000));
+//        fizickoLice.setBrojRacuna("000-0123213-12");
+//        zalbaCutanje.setPodnosilac(fizickoLice);
 
-        zalbaCutanje.setSadrzaj(new ZalbaCutanje.Sadrzaj(new ZalbaCutanje.Sadrzaj.Predmet("naziv predmeta", "tekst", "naziv organa"),
-                new ZalbaCutanje.Sadrzaj.RazloziPodnsenja("tekst", tRazlog),
-                izjava));
+//        List<Serializable> tipoviRazloga = new ArrayList<>();
+//        tipoviRazloga.add(objectFactory.createTRazlogTipRazloga("Tip razloga 1"));
+//        tipoviRazloga.add(objectFactory.createTRazlogTipRazloga("Tip razloga 2"));
+//        tipoviRazloga.add(objectFactory.createTRazlogTipRazloga("Tip razloga 3"));
+
+//        TRazlog tRazlog = objectFactory.createTRazlog();
+//        tRazlog.setContent(tipoviRazloga);
+
+//        List<JAXBElement<?>> izjavaContent = new ArrayList<>();
 
 
-        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = sf.newSchema(new File("../xml-documents/zalbanacutanje.xsd"));
-        marshaller.setSchema(schema);
+//        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = format.parse("2020-12-10");
+//        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+//        gregorianCalendar.setTime(date);
+//        XMLGregorianCalendar xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(gregorianCalendar.get(Calendar.YEAR),
+//                gregorianCalendar.get(Calendar.MONTH)+1,
+//                gregorianCalendar.get(Calendar.DAY_OF_MONTH),
+//                DatatypeConstants.FIELD_UNDEFINED);
+
+//        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaTekst("tekst"));
+//        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaDatumPodnosenja(xmlDate));
+//        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaTekst("tekst"));
+//       izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaPodaciOZahtevu("podaci o zahtevu"));
+//        izjavaContent.add(objectFactory.createZalbaCutanjeSadrzajIzjavaPredlog("predlog"));
+
+//        ZalbaCutanje.Sadrzaj.Izjava izjava = objectFactory.createZalbaCutanjeSadrzajIzjava();
+ //       izjava.setContent(izjavaContent);
+
+//        zalbaCutanje.setSadrzaj(new ZalbaCutanje.Sadrzaj(new ZalbaCutanje.Sadrzaj.Predmet("naziv predmeta", "tekst", "naziv organa"),
+ //               new ZalbaCutanje.Sadrzaj.RazloziPodnsenja("tekst", tRazlog),
+ //               izjava));
+
+
+ //       SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+  //      Schema schema = sf.newSchema(new File("../xml-documents/zalbanacutanje.xsd"));
+ //       marshaller.setSchema(schema);
 
         // convert user object to XML file
-        marshaller.marshal(zalbaCutanje, file);
+ //       marshaller.marshal(zalbaCutanje, file);
 
         return zalbaCutanje;
     }

@@ -1,8 +1,9 @@
 package ftn.xml.ServisOrganVlasti.repository;
 
-import ftn.xml.ServisOrganVlasti.model.zahtev.ZahtevZaPristupInformacijama;
 import ftn.xml.ServisOrganVlasti.model.zalbanacutanje.ZalbaCutanje;
 import ftn.xml.ServisOrganVlasti.util.JAXBReader;
+import ftn.xml.ServisOrganVlasti.util.MetadataExtractor;
+import ftn.xml.ServisOrganVlasti.util.RdfDbConnectionUtils;
 import ftn.xml.ServisOrganVlasti.util.XmlDbConnectionUtils;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
@@ -17,15 +18,13 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.OutputStream;
-import java.io.StringReader;
+import java.io.*;
 
 @Repository
 public class ZalbaNaCutanjeRepository {
 
     private final String ZALBA_CUTANJE_COLLECTION_NAME = "/db/zalbaNaCutanje";
+    public final String ZALBA_CUTANJE_NAMED_GRAPH_URI = "/zalbacutanje/metadata";
 
     public boolean saveZalbaNaCutanje(String documentId) {
         String collectionId = ZALBA_CUTANJE_COLLECTION_NAME;
@@ -162,6 +161,9 @@ public class ZalbaNaCutanjeRepository {
 
         try {
 
+            extractAndSaveMetadata(documentId, xml);
+            readZahteviMetadata();
+
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
             col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
 
@@ -224,5 +226,25 @@ public class ZalbaNaCutanjeRepository {
             }
         }
     }
+
+    private void extractAndSaveMetadata(String documentId, String xml) throws Exception {
+        MetadataExtractor extractor = new MetadataExtractor();
+        InputStream in = new ByteArrayInputStream(xml.getBytes());
+
+        OutputStream out = new FileOutputStream("src/main/resources/xmlFiles/rdf/" + documentId + ".rdf");
+
+        extractor.extractMetadata(in, out);
+
+        RdfDbConnectionUtils.writeMetadataToDatabase(ZALBA_CUTANJE_NAMED_GRAPH_URI);
+        System.out.println(ZALBA_CUTANJE_NAMED_GRAPH_URI);
+        out.close();
+        File metadata = new File("src/main/resources/xmlFiles/rdf/" + documentId + ".rdf");
+        metadata.delete();
+    }
+
+    private void readZahteviMetadata() throws Exception {
+        RdfDbConnectionUtils.loadMetadataFromDatabase(ZALBA_CUTANJE_NAMED_GRAPH_URI);
+    }
+
 
 }
