@@ -2,6 +2,11 @@ package ftn.xml.ServisPoverenik.model.zalbanaodluku;
 
 import javax.xml.bind.annotation.XmlElement;
 
+@XmlType(name = "zaglavlje", propOrder = {
+    "naslov",
+    "primalac",
+    "adresaPrimaoca"
+})
 public class ZalbaZaglavlje {
     
     private String naslov;

@@ -2,6 +2,11 @@ package ftn.xml.ServisPoverenik.model.zalbanaodluku;
 
 import javax.xml.bind.annotation.XmlElement;
 
+
+@XmlType(name = "Paragrafi", propOrder = {
+    "paragrafPodaci",
+    "paragraf"
+})
 public class Paragrafi {
     
     private ParagrafPodaci paragrafPodaci;

@@ -6,6 +6,11 @@ import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlElement;
 
+
+@XmlType(name = "ParagrafPodaci", propOrder = {
+    "datum",
+    "razlog"
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
