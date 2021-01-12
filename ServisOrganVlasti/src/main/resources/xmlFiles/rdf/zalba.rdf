@@ -1,0 +1,11 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:h="http://www.w3.org/1999/xhtml">
+   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/azlbacutanje/organ">
+      <pred:naziv_organa xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/predicate/"
+                         rdf:datatype="http://www.w3.org/2001/XMLSchema-instancestring"> Учитељског факултета у Призрену</pred:naziv_organa>
+   </rdf:Description>
+   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/podacizahtev">
+      <pred:podaci_o_zahtevu xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/predicate/"
+                             rdf:datatype="http://www.w3.org/2001/XMLSchema-instancestring">informacijama od javnog znacaja</pred:podaci_o_zahtevu>
+   </rdf:Description>
+</rdf:RDF>
