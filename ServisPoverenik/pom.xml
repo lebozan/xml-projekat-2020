@@ -86,8 +86,6 @@
 			<version>3.9.0</version>
 			<type>pom</type>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>

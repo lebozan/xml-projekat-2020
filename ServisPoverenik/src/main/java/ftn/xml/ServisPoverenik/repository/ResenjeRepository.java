@@ -41,7 +41,7 @@ public class ResenjeRepository {
     private void extractAndSaveMetadata(String xml) throws Exception {
         MetadataExtractor extractor = new MetadataExtractor();
         InputStream in = new ByteArrayInputStream(xml.getBytes());
-
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
         OutputStream out = new FileOutputStream("src/main/resources/xmlFiles/rdf/metadataTest.rdf");
 
         extractor.extractMetadata(in, out);
