@@ -118,7 +118,7 @@ public class RdfDbConnectionUtils {
 
     }
 
-    public static void loadMetadataFromDatabase(String namedGraphUri) throws Exception{
+    public static void loadMetadataFromDatabase(String namedGraphUri) throws Exception {
         ConnectionProperties conn = loadProperties();
 
         // Querying the first named graph with a simple SPARQL query
