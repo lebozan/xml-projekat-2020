@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import * as React from 'react';
+import Root from "./components/Root";
+import { BrowserRouter } from "react-router-dom";
+import PoverenikContext from './context/poverenik-context';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends React.Component {
+	state = {
+	};
+
+
+
+	render() {
+		return (
+			<PoverenikContext.Provider 
+			value={{
+
+			}}>
+				<BrowserRouter>
+					<Root />
+				</BrowserRouter>
+			</PoverenikContext.Provider>
+		);
+	}
 }
 
 export default App;
