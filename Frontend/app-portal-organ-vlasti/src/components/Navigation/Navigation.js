@@ -1,6 +1,5 @@
 import * as React from "react";
 import PortalContext from '../../context/portal-context'
-
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
 
 
@@ -8,6 +7,7 @@ import "./Navigation.css";
 
 class Navigation extends React.Component {
     static contextType = PortalContext;
+
 
     render() {
             
@@ -22,6 +22,7 @@ class Navigation extends React.Component {
                   <Nav className="mr-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
                     <Nav.Link href="#link">Link</Nav.Link>
+                      <Nav.Link href="createZahtev">Zahtev</Nav.Link>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                       <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                       <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
