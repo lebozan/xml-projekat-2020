@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<korisnik xmlns="http://www.ftn.un.ac.rs/korisnik"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ftn.un.ac.rs/korisnik file:/D:/DANA/IV%20godina/XML%20i%20web%20servisi/projekat/xml-projekat-2020/xml-documents/korisnik.xsd" id_korisnika="http://www.oxygenxml.com/">
+    <korisnicko_ime>test</korisnicko_ime>
+    <lozinka>test1</lozinka>
+    <ime>Test Testic</ime>
+    <tip_korisnika>fizicko lice</tip_korisnika>
+    <uloga>gradjanin</uloga>
+</korisnik>
