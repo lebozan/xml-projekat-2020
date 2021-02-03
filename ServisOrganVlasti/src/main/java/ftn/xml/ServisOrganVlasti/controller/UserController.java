@@ -23,11 +23,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 
@@ -47,14 +45,12 @@ public class UserController {
     private UserDetailsService userDetailsService;
 
     @PostMapping(value = "/addUser", consumes = "application/xml", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> test(@RequestBody Korisnik k) {
-
+    public ResponseEntity<String> test(@RequestBody Korisnik korisnik) {
         try {
-            this.service.saveUser(k);
+            this.service.saveUser(korisnik);
 
-            return new ResponseEntity<>(k.getKorisnickoIme(), HttpStatus.OK);
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException | XMLDBException
-                | JAXBException e) {
+            return new ResponseEntity<>(korisnik.getKorisnickoIme(), HttpStatus.OK);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException | XMLDBException | JAXBException | SAXException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return new ResponseEntity<>("ERROR", HttpStatus.BAD_REQUEST);

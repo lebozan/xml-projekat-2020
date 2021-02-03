@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 
@@ -25,8 +26,8 @@ public class KorisnikService {
     @Autowired
     private KorisnikRDFRepository repoRdf;
 
-    public void saveUser(Korisnik k) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, XMLDBException, JAXBException {
-        this.repo.saveUser(k);
+    public void saveUser(Korisnik korisnik) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, XMLDBException, JAXBException, SAXException {
+        this.repo.saveUser(korisnik);
     }
 
     public void metapodaci() throws Exception {

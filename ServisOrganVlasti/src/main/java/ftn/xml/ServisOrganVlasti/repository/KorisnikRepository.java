@@ -5,13 +5,17 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 
 import ftn.xml.ServisOrganVlasti.model.korisnik.Korisnici;
 import ftn.xml.ServisOrganVlasti.model.korisnik.Korisnik;
+import ftn.xml.ServisOrganVlasti.model.zahtev.ZahtevZaPristupInformacijama;
 import ftn.xml.ServisOrganVlasti.rdf.DomUtil;
 import ftn.xml.ServisOrganVlasti.rdf.GenerisiMetapodatke;
 import ftn.xml.ServisOrganVlasti.util.*;
@@ -19,6 +23,7 @@ import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.CompiledExpression;
 import org.xmldb.api.base.Resource;
@@ -43,25 +48,28 @@ public class KorisnikRepository {
     @Autowired
     DomUtil dom;
 
-    public void saveUser(Korisnik k) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
-            IOException, XMLDBException, JAXBException {
+    public void saveUser(Korisnik korisnik) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
+            IOException, XMLDBException, JAXBException, SAXException {
         Collection col = null;
+        OutputStream os = new ByteArrayOutputStream();
         String targetNamespace = "http://www.ftn.un.ac.rs/korisnici";
         try {
-            XMLResourcesDB resourcesDb = this.connection.run("korisnici.xml");
+//            XMLResourcesDB resourcesDb = this.connection.run("korisnici.xml");
 
-            col = resourcesDb.getCollection();
-            XMLResource res = resourcesDb.getXmlResource();
-            System.out.println(col);
+            col = XmlDbConnectionUtils.getOrCreateCollection("/db/korisnici");
+            XMLResource res = (XMLResource) col.getResource("korisnici.xml");
+//            res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
 
-
-            StringWriter sw = new StringWriter();
             JAXBContext jaxbContext = JAXBContext.newInstance(Korisnik.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            jaxbMarshaller.marshal(k, sw);
-            String xmlFragment = sw.toString();
+            jaxbMarshaller.marshal(korisnik, os);
+
+            res.setContent(os);
+
+//            col.storeResource(res);
+            String xmlFragment = os.toString();
             String xmlStart = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
             xmlFragment = xmlFragment.replace(xmlStart, "");
             System.out.println(xmlFragment);
@@ -73,6 +81,8 @@ public class KorisnikRepository {
             long mods = service.updateResource("korisnici.xml",
                     String.format(XUpdateTemplate.append(targetNamespace), contextPath, xmlFragment));
             System.out.println("[INFO] " + mods + " modifications processed.");
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (col != null) {
                 try {
