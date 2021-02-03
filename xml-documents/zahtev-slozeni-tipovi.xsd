@@ -3,24 +3,26 @@
 
     <xs:complexType mixed="false" name="TDostava">
         <xs:sequence>
-            <xs:element name="dostava" type="xs:string"/>
-            <xs:element name="dostava" type="xs:string"/>
-            <xs:element name="dostava" type="xs:string"/>
-            <xs:element name="dostava" type="xs:string"/>
+            <xs:element name="dostava" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="odabrana" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType mixed="false" name="TDatum">
+    <xs:complexType mixed="true" name="TDatum">
         <xs:sequence>
-            <xs:element fixed="дана" name="tekst_dan" type="xs:string"/>
             <xs:element name="dan" type="xs:string"/>
             <xs:element name="mesec" type="xs:string"/>
             <xs:element name="godina" type="xs:string"/>
-            <xs:element fixed="године" name="tekst_godina" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="TInformacijeOZahtevu">
+    <xs:complexType name="TInformacijeOZahtevu" mixed="true">
         <xs:sequence>
-            <xs:element name="tekst" type="xs:string"/>
             <xs:element name="opis_zahteva" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
