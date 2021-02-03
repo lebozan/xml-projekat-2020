@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Navigation from './Navigation/Navigation'
 import Home from "./Home/Home";
 import LogIn from "./LogIn/LogIn";
+import CreateZalbaOdluka from "./ZalbaNaOdluku/CreateZalbaOdluka";
 
 
 
@@ -17,7 +18,8 @@ const Root = () => {
             <Switch>
                 <Route component={Home} exact path="/" /> 
                 <Route component={Home} exact path="/home" /> 
-                <Route component={LogIn} exact path="/logIn" /> 
+                <Route component={LogIn} exact path="/logIn" />
+                <Route component={CreateZalbaOdluka} path="/createZalbaOdluka" />
             </Switch>
         </div>
     );
