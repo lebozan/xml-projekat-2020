@@ -26,6 +26,9 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/zahtev")
@@ -36,6 +39,8 @@ public class ZahtevController {
 
     @Autowired
     ZahtevXSLTransformer zahtevXSLTransformer;
+
+    UUID uuid = UUID.randomUUID();
 
     @RequestMapping(value = "/read", method = RequestMethod.GET, produces = "application/xml")
     public ResponseEntity<Object> readXmlFile(@RequestParam String documentId) {
@@ -49,21 +54,13 @@ public class ZahtevController {
     }
 
 
-    @RequestMapping(value = "/write", method = RequestMethod.GET)
-    public ResponseEntity<String> writeXmlFile(@RequestParam String fileName) {
+    @RequestMapping(value = "/createZahtev", method = RequestMethod.POST, consumes = "application/xml")
+    public ResponseEntity<String> writeZahtevXml(@RequestBody String xml) {
         try {
-            zahtevService.writeZahtev(fileName);
-
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @RequestMapping(value = "/xml/{documentId}", method = RequestMethod.POST, consumes = "application/xml")
-    public ResponseEntity<String> writeZahtevXml(@PathVariable String documentId, @RequestBody String xml) {
-        try {
-            zahtevService.writeZahtevXml(documentId, xml);
+            String documentId = UUID.randomUUID().toString();
+            zahtevXSLTransformer.generateXML(xml);
+            String transformedXml = Files.readString(Path.of("src/main/resources/xmlFiles/xhtml/zahtev.xml"));
+            zahtevService.writeZahtevXml(documentId, transformedXml);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -88,8 +85,8 @@ public class ZahtevController {
             // convert XML file to object
             ZahtevZaPristupInformacijama zahtev = (ZahtevZaPristupInformacijama) unmarshaller.unmarshal(new File("src/main/resources/xmlFiles/xhtml/zahtev.xml"));
 
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (FileNotFoundException | JAXBException | SAXException e) {
+            return new ResponseEntity<>(Files.readString(Path.of("src/main/resources/xmlFiles/xhtml/zahtev.xml")), HttpStatus.OK);
+        } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -101,7 +98,7 @@ public class ZahtevController {
             zahtevXSLTransformer.generateHTML(xml);
 
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

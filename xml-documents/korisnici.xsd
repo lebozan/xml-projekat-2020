@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    xmlns:ns1="http://www.ftn.un.ac.rs/korisnik">
+    xmlns:ns1="http://www.ftn.un.ac.rs/korisnik" targetNamespace="http://www.ftn.un.ac.rs/korisnici"
+    xmlns="http://www.ftn.un.ac.rs/korisnici">
     <xs:import namespace="http://www.ftn.un.ac.rs/korisnik" schemaLocation="korisnik.xsd"/>
     <xs:element name="korisnici">
         <xs:complexType>

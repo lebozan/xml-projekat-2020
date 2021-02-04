@@ -5,6 +5,7 @@ import Navigation from './Navigation/Navigation'
 import Home from "./Home/Home";
 import LogIn from "./LogIn/LogIn";
 import CreateZahtev from "./Zahtev/CreateZahtev";
+import Register from "./Register/Register";
 
 
 
@@ -18,7 +19,8 @@ const Root = () => {
             <Switch>
                 <Route component={Home} exact path="/" /> 
                 <Route component={Home} exact path="/home" /> 
-                <Route component={LogIn} exact path="/logIn" />
+                <Route component={LogIn} exact path="/login" />
+                <Route component={Register} exact path="/register"/>
                 <Route component={CreateZahtev} path="/createZahtev" />
             </Switch>
         </div>

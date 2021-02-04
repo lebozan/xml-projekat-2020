@@ -63,6 +63,7 @@
                     <xsl:value-of select="z:zahtev/z:mesto_i_datum/z:mesto[text()]"></xsl:value-of>
                 </z:mesto>
                 <z:datum>
+                    dana
                     <z:dan>
                         <xsl:value-of select="z:zahtev/z:mesto_i_datum/z:datum/z:dan"></xsl:value-of>
                     </z:dan>
@@ -71,7 +72,7 @@
                     </z:mesec>
                     <z:godina>
                         <xsl:value-of select="z:zahtev/z:mesto_i_datum/z:datum/z:godina"></xsl:value-of>
-                    </z:godina>
+                    </z:godina> godine
                 </z:datum>
             </z:mesto_i_datum>
             <z:fusnote>
