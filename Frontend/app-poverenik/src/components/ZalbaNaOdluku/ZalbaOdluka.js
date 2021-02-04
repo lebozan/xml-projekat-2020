@@ -72,7 +72,7 @@ const ZalbaOdluka = (props) => {
                 />
             </div>
 
-            <div>
+            <div align={'center'} style={{marginTop:20}}>
                 <p>Наведеном одлуком органа власти (решењем, закључком, обавештењем у писаној форми са елементима одлуке) , супротно закону, одбијен-одбачен је мој захтев који сам поднео/ла-упутио/ла дана </p>
                 <TextField required id="datumPodnosenja" label="Datum podnosenja zahteva" variant="outlined"
                            value={datumPodnosenja}
@@ -90,13 +90,15 @@ const ZalbaOdluka = (props) => {
                     Жалбу подносим благовремено, у законском року утврђеном у члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.
                 </p>
             </div>
-            <div>
-                <p>други подаци за контакт</p>
+            <div align={'center'} style={{marginTop:20}}>
+                <p>други подаци за контакт:</p>
                 <TextField id="drugiKontakt" label="Drugi podaci za kontakt" variant="outlined"
                            value={drugiKontakt}
                            style={{marginLeft:20, minWidth:50}}
                            onChange={(e) => {setDrugiKontakt(e.target.value)}}
                 />
+            </div>
+            <div align={'center'} style={{marginTop:20}}>
                 <Button
                     variant="contained"
                     color="primary"

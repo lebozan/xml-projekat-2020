@@ -11,7 +11,7 @@ export default class ZalbaOdlukaService {
                     if (res.status === 200) {
                         resolve(res.data);
                     } else {
-                        reject("Error posting zahtev!");
+                        reject("Error posting zalba na odluku!");
                     }
                 })
         );

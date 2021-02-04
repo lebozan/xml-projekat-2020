@@ -5,6 +5,7 @@ import Navigation from './Navigation/Navigation'
 import Home from "./Home/Home";
 import LogIn from "./LogIn/LogIn";
 import CreateZalbaOdluka from "./ZalbaNaOdluku/CreateZalbaOdluka";
+import CreateZalbaCutanje from "./ZalbaNaCutanje/CreateZalbaCutanje";
 
 
 
@@ -20,6 +21,7 @@ const Root = () => {
                 <Route component={Home} exact path="/home" /> 
                 <Route component={LogIn} exact path="/logIn" />
                 <Route component={CreateZalbaOdluka} path="/createZalbaOdluka" />
+                <Route component={CreateZalbaCutanje} path="/createZalbaCutanje" />
             </Switch>
         </div>
     );
