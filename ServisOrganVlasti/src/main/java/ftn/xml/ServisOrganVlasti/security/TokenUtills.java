@@ -80,11 +80,14 @@ public class TokenUtills {
     }
 
     public String generateToken(UserDetails userDetails) {
+        Korisnik korisnik = (Korisnik) userDetails;
         Map<String, Object> claims = new HashMap<String, Object>();
         Korisnik user = this.korisnikRepository.login(userDetails.getUsername());
         claims.put("sub", userDetails.getUsername());
-
-        claims.put("role",user.getUloga() );
+        claims.put("id", korisnik.getIdKorisnika());
+        claims.put("ime", korisnik.getIme().split(" ")[0]);
+        claims.put("prezime", korisnik.getIme().split(" ")[1]);
+        claims.put("role", user.getUloga() );
         claims.put("created", new Date(System.currentTimeMillis()));
         return Jwts.builder().setClaims(claims)
                 .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))

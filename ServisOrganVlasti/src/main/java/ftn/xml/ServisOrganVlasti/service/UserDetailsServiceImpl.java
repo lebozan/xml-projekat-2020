@@ -44,8 +44,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
             authorities.add(grantedAuthority);
 
-            return new org.springframework.security.core.userdetails.User(username, user.getLozinka(),
-                    authorities);
+            return user;
         }
 
     }

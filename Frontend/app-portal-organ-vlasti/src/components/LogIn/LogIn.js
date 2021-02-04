@@ -1,6 +1,7 @@
 import React from "react";
 import {Button, Link, TextField} from "@material-ui/core";
 import AuthService from "../../service/auth-service";
+import jwtDecode from "jwt-decode";
 
 const LogIn = () => {
     const [username, setUsername] = React.useState('');
@@ -19,7 +20,9 @@ const LogIn = () => {
 
         AuthService.login(xml).then(
             (response) => {
-                console.log(response.headers.token);
+                console.log(jwtDecode(response.headers.token));
+                localStorage.setItem("token", response.headers.token);
+
             }, (error) => {
                 console.log(error);
             });
