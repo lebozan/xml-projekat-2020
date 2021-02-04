@@ -160,20 +160,20 @@ public class JAXBReader {
         z.setAdresaPrimaoca("adresaPrimaoca");
         zalbaNaOdluku.setZaglavlje(z);
 
-        // Popunjavanje sadrzaja zalbe
-        TAdresa adr = new TAdresa("ulica1", "21","Novi Sad");
-        TPodnosilacZalbe pz = new TPodnosilacZalbe("Ivko","Ivic",adr);
-        Paragrafi pf = new Paragrafi();
-        String[] paragraf = new String[3];
-        paragraf[0] = "На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.";
-        paragraf[1] = "Жалбу подносим благовремено, у законском року утврђеном у члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.";
-        ParagrafPodaci pd = new ParagrafPodaci("1.1.2021","dugacak tekst");
-        pf.setParagraf(paragraf);
-        pf.setParagrafPodaci(pd);
-        Podaci po = new Podaci("ime","prezime","mesto",adr,"danMesec","godina","drugi podaci i kontakt","potpis");
-        ZalbaSadrzaj zs = new ZalbaSadrzaj(pz,"naziv organa vlasti", "1001","2021",pf,po);
+//        // Popunjavanje sadrzaja zalbe
+//        TAdresa adr = new TAdresa("ulica1", "21","Novi Sad");
+//        TPodnosilacZalbe pz = new TPodnosilacZalbe("Ivko","Ivic",adr);
+//        Paragrafi pf = new Paragrafi();
+//        String[] paragraf = new String[3];
+//        paragraf[0] = "На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.";
+//        paragraf[1] = "Жалбу подносим благовремено, у законском року утврђеном у члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.";
+//        ParagrafPodaci pd = new ParagrafPodaci("1.1.2021","dugacak tekst");
+//        pf.setParagraf(paragraf);
+//        pf.setParagrafPodaci(pd);
+//        Podaci po = new Podaci("ime","prezime","mesto",adr,"danMesec","godina","drugi podaci i kontakt","potpis");
+//        ZalbaSadrzaj zs = new ZalbaSadrzaj(pz,"naziv organa vlasti", "1001","2021",pf,po);
 
-        zalbaNaOdluku.setZalbaSadrzaj(zs);
+//        zalbaNaOdluku.setZalbaSadrzaj(zs);
 
         // Popunjavanje napomena
         String[] napomene = new String[2];

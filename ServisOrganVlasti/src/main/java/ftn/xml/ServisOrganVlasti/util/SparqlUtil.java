@@ -1,5 +1,8 @@
 package ftn.xml.ServisOrganVlasti.util;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SparqlUtil {
 
     /* The following operation causes all of the triples in all of the graphs to be deleted */
@@ -48,5 +51,13 @@ public class SparqlUtil {
 
     public static String selectData(String graphURI, String sparqlCondition) {
         return String.format(SELECT_NAMED_GRAPH_TEMPLATE, graphURI, sparqlCondition);
+    }
+
+    public String unesiPodatke(String graphURI, String ntriples) {
+        return String.format(UPDATE_TEMPLATE_NAMED_GRAPH, graphURI, ntriples);
+    }
+
+    public String selektujPodatke(String graphURI, String uslovi) {
+        return String.format(SELECT_NAMED_GRAPH_TEMPLATE, graphURI, uslovi);
     }
 }
