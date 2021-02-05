@@ -8,7 +8,7 @@ const ZalbaOdluka = (props) => {
     const [brojUlicePodnosioca, setBrojUlicePodnosioca] = React.useState('');
     const [gradPodnosioca, setGradPodnosioca] = React.useState('');
     const [nazivOrgana, setNazivOrgana] = React.useState('');
-    const [brojZalbe, setBrojZalbe] = React.useState('');
+    const [brojResenja, setBrojResenja] = React.useState('');
     const [godina, setGodina] = React.useState('');
     const [datumPodnosenja, setDatumPodnosenja] = React.useState('');
     const [razlog, setRazlog] = React.useState('');
@@ -59,11 +59,10 @@ const ZalbaOdluka = (props) => {
                            onChange={(e) => {setNazivOrgana(e.target.value)}}
                 />
                 <p>(назив органа који је донео одлуку)</p>
-                <p> Број жалбe и година</p>
-                <TextField required id="brojZalbe" label="Broj zalbe" variant="outlined"
-                           value={brojZalbe}
+                <TextField required id="brojResenja" label="Broj resenja" variant="outlined"
+                           value={brojResenja}
                            style={{marginLeft:20, minWidth:250}}
-                           onChange={(e) => {setBrojZalbe(e.target.value)}}
+                           onChange={(e) => {setBrojResenja(e.target.value)}}
                 />
                 <TextField required id="godina" label="Godina" variant="outlined"
                            value={godina}
@@ -110,7 +109,7 @@ const ZalbaOdluka = (props) => {
                             brojUlicePodnosioca:brojUlicePodnosioca,
                             gradPodnosioca:gradPodnosioca,
                             nazivOrgana:nazivOrgana,
-                            brojZalbe:brojZalbe,
+                            brojResenja:brojResenja,
                             godina:godina,
                             datumPodnosenja:datumPodnosenja,
                             razlog:razlog,

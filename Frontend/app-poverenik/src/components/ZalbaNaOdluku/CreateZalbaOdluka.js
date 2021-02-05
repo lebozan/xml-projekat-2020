@@ -39,7 +39,7 @@ const CreateZalbaOdluka = () => {
             '        против решења-закључка \n' +
             '        <naziv_organa_vlasti>'+ data.nazivOrgana + '</naziv_organa_vlasti>\n' +
             '        Број\n' +
-            '        <broj_zalbe>'+ data.brojZalbe + '</broj_zalbe>\n' +
+            '        <broj_resenja>'+ data.brojResenja + '</broj_resenja>\n' +
             '        од\n' +
             '        <godina>'+ data.godina + '</godina>\n' +
             '        године.\n'
@@ -63,17 +63,21 @@ const CreateZalbaOdluka = () => {
             '                слободном приступу информацијама од јавног значаја\n' +
             '            </paragraf>\n' +
             '        </paragrafi>\n'
-        // TODO: Izmeniti ovaj deo
+
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = dd + '/' + mm + '/' + yyyy;
+
         xml += '        <podaci>\n' +
             '            <ime>'+ data.ime + '</ime>\n' +
             '            <prezime>'+ data.prezime + '</prezime>\n' +
             '            дана\n' +
-            '            <dan_mesec></dan_mesec>\n' +
-            '            201\n' +
-            '            <godina></godina>\n' +
+            '            <datum_podnosenja>'+ today + '</datum_podnosenja>\n' +
             '            године\n' +
-            '            <drugi_podaci_kontakt></drugi_podaci_kontakt>\n' +
-            '            <potpis></potpis>\n' +
+            '            <drugi_podaci_kontakt>'+ data.drugiKontakt + '</drugi_podaci_kontakt>\n' +
             '        </podaci>\n' +
             '    </zalba_sadrzaj>\n'
 

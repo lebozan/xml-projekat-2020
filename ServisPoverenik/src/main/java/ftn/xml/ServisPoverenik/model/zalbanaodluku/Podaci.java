@@ -6,6 +6,12 @@ import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlElement;
 
+@XmlType(name = "podaci", propOrder = {
+        "ime",
+        "prezime",
+        "datum_podnosenja",
+        "drugi_podaci_kontakt",
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,12 +19,8 @@ public class Podaci {
 
     private String ime;
     private String prezime;
-    private String mesto;
-    private TAdresa adresaMesta;
-    private String danMesec;
-    private String godina;
-    private String drugiPodaciKontakt;
-    private String potpis;
+    private String datum_podnosenja;
+    private String drugi_podaci_kontakt;
 
     public String getIme() {
         return ime;
@@ -38,41 +40,16 @@ public class Podaci {
         this.prezime = prezime;
     }
 
-    public String getMesto() {
-        return mesto;
+
+    public String getDatumPodnosenja() {
+        return datum_podnosenja;
     }
 
-    @XmlElement(name = "mesto")
-    public void setMesto(String mesto) {
-        this.mesto = mesto;
+    @XmlElement(name = "datum_podnosenja")
+    public void setDatumPodnosenja(String datumPodnosenja) {
+        this.datum_podnosenja = datumPodnosenja;
     }
 
-    public TAdresa getAdresaMesta() {
-        return adresaMesta;
-    }
-
-    @XmlElement(name = "adresa_mesta")
-    public void setAdresaMesta(TAdresa adresaMesta) {
-        this.adresaMesta = adresaMesta;
-    }
-
-    public String getDanMesec() {
-        return danMesec;
-    }
-
-    @XmlElement(name = "dan_mesec")
-    public void setDanMesec(String danMesec) {
-        this.danMesec = danMesec;
-    }
-
-    public String getGodina() {
-        return godina;
-    }
-
-    @XmlElement(name = "godina")
-    public void setGodina(String godina) {
-        this.godina = godina;
-    }
 
     public String getDrugiPodaciKontakt() {
         return drugiPodaciKontakt;
@@ -83,12 +60,4 @@ public class Podaci {
         this.drugiPodaciKontakt = drugiPodaciKontakt;
     }
 
-    public String getPotpis() {
-        return potpis;
-    }
-
-    @XmlElement(name = "potpis")
-    public void setPotpis(String potpis) {
-        this.potpis = potpis;
-    }
 }

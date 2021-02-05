@@ -28,7 +28,7 @@
         против решења-закључка 
         <naziv_organa_vlasti></naziv_organa_vlasti>
         Број
-        <broj_zalbe></broj_zalbe>
+        <broj_resenja></broj_resenja>
         од
         <godina></godina>
         године.
@@ -54,21 +54,10 @@
         <podaci>
             <ime></ime>
             <prezime></prezime>
-            У
-            <mesto></mesto>
-            ,
-            <adresa_mesta>
-                <ulica></ulica>
-                <broj></broj>
-                <grad></grad>
-            </adresa_mesta>
             дана
-            <dan_mesec></dan_mesec>
-            201
-            <godina></godina>
+            <datum_podnosenja></datum_podnosenja>
             године
             <drugi_podaci_kontakt></drugi_podaci_kontakt>
-            <potpis></potpis>
         </podaci>
     </zalba_sadrzaj>
     <napomene>

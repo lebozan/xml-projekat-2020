@@ -6,6 +6,15 @@ import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlElement;
 
+
+@XmlType(name = "ZalbaSadrzaj", propOrder = {
+        "podnosilacZalbe",
+        "naziv_organa_vlasti",
+        "broj_zalbe",
+        "godina",
+        "paragrafi",
+        "podaci"
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -67,7 +76,7 @@ public class ZalbaSadrzaj {
         return podaci;
     }
 
-    @XmlElement(name = "paragrafi")
+    @XmlElement(name = "podaci")
     public void setPodaci(Podaci podaci) {
         this.podaci = podaci;
     }

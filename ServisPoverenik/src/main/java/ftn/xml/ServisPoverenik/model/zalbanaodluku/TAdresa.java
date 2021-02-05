@@ -6,6 +6,11 @@ import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlElement;
 
+@XmlType(name = "TAdresa", propOrder = {
+        "ulica",
+        "broj",
+        "grad"
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

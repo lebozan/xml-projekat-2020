@@ -4,6 +4,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
+@XmlType(name = "", propOrder = {
+        "zaglavlje",
+        "zalbaSadrzaj",
+        "napomene"
+})
 @XmlRootElement(name="zalba_na_odluku")
 public class ZalbaNaOdluku {
     
