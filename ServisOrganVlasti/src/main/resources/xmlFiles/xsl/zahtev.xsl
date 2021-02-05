@@ -21,16 +21,35 @@
                 На основу члана 15. ст. 1. Закона о слободном приступу информацијама од јавног значаја („Службени гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10), од горе наведеног органа захтевам:*
                 <z:tipovi_zahteva>
                     <xsl:for-each select="z:zahtev/z:sadrzaj/z:tip_zahteva">
+                        <xsl:variable name="odabran" select="@odabran"></xsl:variable>
                         <z:tip_zahteva>
+                            <xsl:if test="$odabran != ''">
+                                <xsl:attribute name="odabran">
+                                    <xsl:value-of select="$odabran"></xsl:value-of>
+                                </xsl:attribute>
+                            </xsl:if>
                             <xsl:value-of select="text()"></xsl:value-of>
                         </z:tip_zahteva>
                     </xsl:for-each>
-                    <z:tip_zahteva_dostava>достављање копије документа који садржи тражену информацију:**
+                    <z:tip_zahteva_dostava>
+                        <xsl:variable name="odabranDostava" select="z:zahtev/z:sadrzaj/z:tip_zahteva_dostava/@odabran"></xsl:variable>
+                        <xsl:if test="$odabranDostava != ''">
+                            <xsl:attribute name="odabran">
+                                <xsl:value-of select="$odabranDostava"></xsl:value-of>
+                            </xsl:attribute>
+                        </xsl:if>
+                        dostavljanje kopije dokumenta koji sadrži traženu informaciju:**
                         <z:vrste_dostave>
                             <xsl:for-each
                                     select="z:zahtev/z:sadrzaj/z:tip_zahteva_dostava/z:dostava"
                             >
+                                <xsl:variable name="odabrana" select="@odabrana"></xsl:variable>
                                 <z:dostava>
+                                    <xsl:if test="$odabrana != ''">
+                                        <xsl:attribute name="odabrana">
+                                            <xsl:value-of select="$odabrana"></xsl:value-of>
+                                        </xsl:attribute>
+                                    </xsl:if>
                                     <xsl:value-of select="text()"></xsl:value-of>
                                 </z:dostava>
                             </xsl:for-each>

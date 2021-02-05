@@ -16,10 +16,11 @@
          <z:tip_zahteva>obavestenje da li poseduje trazenu informaciju</z:tip_zahteva>
          <z:tip_zahteva>uvid u dokument koji sadrzi trazenu informaciju</z:tip_zahteva>
          <z:tip_zahteva>kopiju dokumenta koji sadrzi trazenu informaciju</z:tip_zahteva>
-         <z:tip_zahteva_dostava>достављање копије документа који садржи тражену информацију:**
+         <z:tip_zahteva_dostava odabran="true">
+                        dostavljanje kopije dokumenta koji sadrži traženu informaciju:**
                         <z:vrste_dostave>
                <z:dostava>postom</z:dostava>
-               <z:dostava>elektronskom postom</z:dostava>
+               <z:dostava odabrana="true">elektronskom postom</z:dostava>
                <z:dostava>faksom</z:dostava>
                <z:dostava>na drugi nacim:***</z:dostava>
             </z:vrste_dostave>

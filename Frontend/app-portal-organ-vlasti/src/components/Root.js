@@ -6,6 +6,8 @@ import Home from "./Home/Home";
 import LogIn from "./LogIn/LogIn";
 import CreateZahtev from "./Zahtev/CreateZahtev";
 import Register from "./Register/Register";
+import ProtectedRoute from "./LogIn/ProtectedRoute";
+import SafeComponent from "./SafeComponent";
 
 
 
@@ -21,7 +23,9 @@ const Root = () => {
                 <Route component={Home} exact path="/home" /> 
                 <Route component={LogIn} exact path="/login" />
                 <Route component={Register} exact path="/register"/>
-                <Route component={CreateZahtev} path="/createZahtev" />
+                <Route path="/safe/*">
+                    <ProtectedRoute component={SafeComponent}/>
+                </Route>
             </Switch>
         </div>
     );

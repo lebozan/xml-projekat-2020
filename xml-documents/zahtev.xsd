@@ -28,14 +28,21 @@
                             <xs:element name="tipovi_zahteva">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="tip_zahteva" type="xs:string"/>
-                                        <xs:element name="tip_zahteva" type="xs:string"/>
-                                        <xs:element name="tip_zahteva" type="xs:string"/>
+                                        <xs:element name="tip_zahteva" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute name="odabran" type="xs:string"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
                                         <xs:element name="tip_zahteva_dostava">
                                             <xs:complexType mixed="true">
                                                 <xs:sequence>
                                                   <xs:element name="vrste_dostave" type="TDostava"/>
                                                 </xs:sequence>
+                                                <xs:attribute name="odabran" type="xs:string"/>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
@@ -125,6 +132,7 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
+            <xs:attribute name="id" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

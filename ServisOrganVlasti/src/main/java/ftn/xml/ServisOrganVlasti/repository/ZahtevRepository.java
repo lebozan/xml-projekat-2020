@@ -221,20 +221,6 @@ public class ZahtevRepository {
 
             col.storeResource(res);
 
-//            String xmlFragment = os.toString();
-//            String xmlStart = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
-//            xmlFragment = xmlFragment.replace(xmlStart, "");
-//
-//            XUpdateQueryService service = (XUpdateQueryService) col.getService("XUpdateQueryService", "1.0");
-//            service.setProperty("indent", "yes");
-//
-//            String contextPath = "/zahtevi";
-//            String targetNamespace = "http://www.ftn.un.ac.rs/zahtevi";
-//            System.out.println(String.format(XUpdateTemplate.append(targetNamespace), contextPath, xmlFragment));
-//            long mods = service.updateResource("zahtevi.xml", String.format(XUpdateTemplate.append(targetNamespace), contextPath, xmlFragment));
-//
-//            System.out.println("[INFO] " + mods + " modifications processed.");
-
 
         } catch (Exception e) {
             e.printStackTrace();
