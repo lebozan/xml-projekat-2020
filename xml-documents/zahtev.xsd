@@ -115,11 +115,11 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="fusnota" type="xs:string" maxOccurs="1" minOccurs="1"
-                                fixed="* У кућици означити која законска права на приступ информацијама желите да остварите."/>
+                                fixed="* U kućici označiti koja zakonska prava na pristup želite da ostvarite."/>
                             <xs:element name="fusnota" type="xs:string" maxOccurs="1" minOccurs="1"
-                                fixed="** У кућици означити начин достављања копије докумената."/>
+                                fixed="** U kućici označiti način dostavljanja kopije dokumenta."/>
                             <xs:element name="fusnota" type="xs:string" maxOccurs="1" minOccurs="1"
-                                fixed="*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате."
+                                fixed="*** Kada zahtevate drugi način dostavljanja obavezno upisati koji način dostavljanja zahtevate."
                             />
                         </xs:sequence>
                     </xs:complexType>

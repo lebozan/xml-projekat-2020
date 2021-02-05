@@ -58,4 +58,8 @@ public class KorisnikService {
         return repo.getUserById(id);
     }
 
+    public Korisnici getAllUsers() {
+        return repo.getAllKorisnici();
+    }
+
 }
