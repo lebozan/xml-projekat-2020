@@ -1,7 +1,9 @@
 package ftn.xml.ServisOrganVlasti.service;
 
+import com.github.krukow.clj_lang.Obj;
 import ftn.xml.ServisOrganVlasti.dto.PathDTO;
 import ftn.xml.ServisOrganVlasti.model.zahtev.ZahtevZaPristupInformacijama;
+import ftn.xml.ServisOrganVlasti.model.zahtevi.Zahtevi;
 import ftn.xml.ServisOrganVlasti.repository.ZahtevRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +20,13 @@ public class ZahtevService {
         return zahtevRepository.findZahtev(documentId);
     }
 
-    public boolean writeZahtev(String fileName) {
 
-        return zahtevRepository.saveZahtev(fileName);
+    public void writeZahtevXml(ZahtevZaPristupInformacijama zahtev) throws Exception {
+        zahtevRepository.saveZahtevXml(zahtev);
     }
 
-    public void writeZahtevXml(String documentId, String xml) throws Exception {
-        zahtevRepository.saveZahtevXml(documentId, xml);
+    public Object getAllZahtevi() {
+        return zahtevRepository.getAllZahtevi();
     }
 
 }

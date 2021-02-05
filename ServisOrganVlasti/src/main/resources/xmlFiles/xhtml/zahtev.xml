@@ -2,8 +2,8 @@
 <z:zahtev_za_pristup_informacijama xmlns:z="http://www.ftn.uns.ac.rs/zahtev">
    <z:zaglavlje>
       <z:organ>
-         <z:naziv_organa>naziv_organa0</z:naziv_organa>
-         <z:sediste_organa>sediste_organa0</z:sediste_organa>
+         <z:naziv_organa>Dom Zdravlja</z:naziv_organa>
+         <z:sediste_organa>Pozarevac</z:sediste_organa>
       </z:organ>
    </z:zaglavlje>
    <z:naslov>
@@ -46,8 +46,8 @@
                 </z:datum>
    </z:mesto_i_datum>
    <z:fusnote>
-      <z:fusnota>* У кућици означити која законска права на приступ информацијама желите да остварите.</z:fusnota>
-      <z:fusnota>** У кућици означити начин достављања копије докумената.</z:fusnota>
-      <z:fusnota>*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.</z:fusnota>
+      <z:fusnota>* U kućici označiti koja zakonska prava na pristup želite da ostvarite.</z:fusnota>
+      <z:fusnota>** U kućici označiti način dostavljanja kopije dokumenta.</z:fusnota>
+      <z:fusnota>*** Kada zahtevate drugi način dostavljanja obavezno upisati koji način dostavljanja zahtevate.</z:fusnota>
    </z:fusnote>
 </z:zahtev_za_pristup_informacijama>

@@ -220,26 +220,25 @@ const RenderZahtev = (props) => {
                     onChange={(e) => {setZahtevInfo(e.target.value)}}
                     style={{maxWidth:1300, marginTop:50, marginBottom:50}}
                 />
-
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                        const data = {
-                            nazivOrgana:nazivOrgana,
-                            sedisteOrgana:sedisteOrgana,
-                            zahtevInfo:zahtevInfo,
-                            tipZahteva:[checkedTip1, checkedTip2, checkedTip3, checkedTip4],
-                            tipDostave:[checkDostava1, checkDostava2, checkDostava3, checkDostava4]
-                        }
-                        props.sendZahtevData(data);
-                    }}
-                >
-                    Primary
-                </Button>
-
             </div>
-
+            <Button
+                style={{left:'50%', marginBottom:50}}
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                    const data = {
+                        nazivOrgana:nazivOrgana,
+                        sedisteOrgana:sedisteOrgana,
+                        zahtevInfo:zahtevInfo,
+                        tipZahteva:[checkedTip1, checkedTip2, checkedTip3, checkedTip4],
+                        tipDostave:[checkDostava1, checkDostava2, checkDostava3, checkDostava4],
+                        customDostava: customDostava,
+                    }
+                    props.sendZahtevData(data);
+                }}
+            >
+                Submit
+            </Button>
 
         </React.Fragment>
 

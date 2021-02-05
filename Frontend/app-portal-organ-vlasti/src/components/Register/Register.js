@@ -14,7 +14,7 @@ const Register = () => {
         }
         let xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
             "<korisnik xmlns=\"http://www.ftn.un.ac.rs/korisnik\"\n" +
-            "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" id_korisnika='111'>\n" +
+            "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" id_korisnika='" + Math.floor(Math.random() * 10000) + 4 + "';>\n" +
             "    <korisnicko_ime>" + username + "</korisnicko_ime>\n" +
             "    <lozinka>" + password + "</lozinka>\n" +
             "    <ime>" + firstName + " " + lastName + "</ime>\n" +

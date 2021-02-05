@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = '/api/zahtev';
+const url = '/api/api/zahtev';
 
 export default class ZahtevService {
 
@@ -19,7 +19,7 @@ export default class ZahtevService {
 
     static postZahtev(xml) {
         return new Promise((resolve, reject) =>
-            axios.post(url + '/xml/testZahtev', xml, {headers: {'content-type': 'application/xml'}})
+            axios.post(url + '/createZahtev', xml, {headers: {'content-type': 'application/xml'}})
                 .then(res => {
                     if (res.status === 200) {
                         resolve(res.data);
@@ -27,6 +27,11 @@ export default class ZahtevService {
                         reject("Error posting zahtev!");
                     }
                 })
+                .catch(
+                    error => {
+                        console.log(error);
+                    }
+                )
         );
     }
 }

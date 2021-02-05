@@ -6,30 +6,30 @@
 //
 
 
-package ftn.xml.ServisOrganVlasti.model.zahtev;
+package ftn.xml.ServisOrganVlasti.model.zahtevi;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlMixed;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import ftn.xml.ServisOrganVlasti.model.zahtev.ZahtevZaPristupInformacijama;
+import lombok.Data;
 
 
 /**
- * <p>Java class for TInformacijeOZahtevu complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TInformacijeOZahtevu">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="opis_zahteva" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element ref="{http://www.ftn.uns.ac.rs/zahtev}zahtev_za_pristup_informacijama" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,43 +39,43 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TInformacijeOZahtevu", propOrder = {
-    "content"
+@XmlType(name = "", propOrder = {
+    "zahtevZaPristupInformacijama"
 })
-public class TInformacijeOZahtevu {
+@XmlRootElement(name = "zahtevi")
+@Data
+public class Zahtevi {
 
-    @XmlElementRef(name = "opis_zahteva", namespace = "http://www.ftn.uns.ac.rs/zahtev", type = JAXBElement.class)
-    @XmlMixed
-    protected List<Serializable> content;
+    @XmlElement(name = "zahtev_za_pristup_informacijama", namespace = "http://www.ftn.uns.ac.rs/zahtev")
+    protected List<ZahtevZaPristupInformacijama> zahtevZaPristupInformacijama;
 
     /**
-     * Gets the value of the content property.
+     * Gets the value of the zahtevZaPristupInformacijama property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the content property.
+     * This is why there is not a <CODE>set</CODE> method for the zahtevZaPristupInformacijama property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getContent().add(newItem);
+     *    getZahtevZaPristupInformacijama().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
+     * {@link ZahtevZaPristupInformacijama }
      * 
      * 
      */
-    public List<Serializable> getContent() {
-        if (content == null) {
-            content = new ArrayList<Serializable>();
+    public List<ZahtevZaPristupInformacijama> getZahtevZaPristupInformacijama() {
+        if (zahtevZaPristupInformacijama == null) {
+            zahtevZaPristupInformacijama = new ArrayList<ZahtevZaPristupInformacijama>();
         }
-        return this.content;
+        return this.zahtevZaPristupInformacijama;
     }
 
 }

@@ -5,5 +5,5 @@
 // Generated on: 2021.02.05 at 06:38:58 PM CET 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/zahtev", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package ftn.xml.ServisOrganVlasti.model.zahtev;
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/zahtevi", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package ftn.xml.ServisOrganVlasti.model.zahtevi;

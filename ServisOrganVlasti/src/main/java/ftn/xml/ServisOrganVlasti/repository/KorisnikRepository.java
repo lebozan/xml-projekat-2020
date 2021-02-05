@@ -132,7 +132,7 @@ public class KorisnikRepository {
 
         System.out.println("[INFO] Using defaults.");
         collectionId = "/db/organVlastiKorisnici";
-        xqueryFilePath = ".//src//main//java//resources//query//getAllKorisnici.xqy";
+        xqueryFilePath = "src\\main\\resources\\query\\getAllKorisnici.xqy";
 
         System.out.println("\t- collection ID: " + collectionId);
         System.out.println("\t- xQuery file path: " + xqueryFilePath);
@@ -284,14 +284,6 @@ public class KorisnikRepository {
         }
         return null;
 
-    }
-
-
-
-    private Document dodajMetaPodatke(Document doktument) {
-        generator.dodajMetaPodatkeKorisniku(doktument);
-
-        return doktument;
     }
 
 
