@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import javax.xml.bind.JAXBException;
 
-import ftn.xml.ServisOrganVlasti.dto.LoginDTO;
-import ftn.xml.ServisOrganVlasti.model.korisnik.Korisnici;
+import ftn.xml.ServisOrganVlasti.model.korisnici.Korisnici;
 import ftn.xml.ServisOrganVlasti.model.korisnik.Korisnik;
 import ftn.xml.ServisOrganVlasti.repository.KorisnikRDFRepository;
 import ftn.xml.ServisOrganVlasti.repository.KorisnikRepository;
@@ -26,29 +25,20 @@ public class KorisnikService {
     @Autowired
     private KorisnikRDFRepository repoRdf;
 
-    public void saveUser(Korisnik korisnik) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, XMLDBException, JAXBException, SAXException {
-        this.repo.saveUser(korisnik);
-    }
-
-    public void metapodaci() throws Exception {
-
-
-        //Sthis.repo.metapodaci();
-
+    public boolean saveUser(Korisnik korisnik) {
+        return this.repo.saveUser(korisnik);
     }
 
 
-    public void makeRDF() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, XMLDBException, JAXBException {
-        Korisnici korisnici = this.repo.getAllKorisnici();
-        this.repoRdf.saveRdf(korisnici);;
+//    public void makeRDF() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, XMLDBException, JAXBException {
+//        Korisnici korisnici = this.repo.getAllKorisnici();
+//        this.repoRdf.saveRdf(korisnici);;
+//
+//    }
 
-    }
 
-
-    public Korisnik login(LoginDTO login) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, XMLDBException, JAXBException {
-        Korisnik k = this.repo.login(login.getUsername());
-        return k;
-
+    public Korisnik login(String username) {
+        return this.repo.login(username);
     }
 
 
@@ -62,6 +52,10 @@ public class KorisnikService {
             throw new Exception("Nije pronadjen ulogovani korisnik!");
         }
 
+    }
+
+    public Korisnik getUser(String id) {
+        return repo.getUserById(id);
     }
 
 }

@@ -1,6 +1,6 @@
 package ftn.xml.ServisOrganVlasti.repository;
 
-import ftn.xml.ServisOrganVlasti.model.korisnik.Korisnici;
+import ftn.xml.ServisOrganVlasti.model.korisnici.Korisnici;
 import ftn.xml.ServisOrganVlasti.model.korisnik.Korisnik;
 import ftn.xml.ServisOrganVlasti.rdf.AuthenticationProperties;
 import ftn.xml.ServisOrganVlasti.util.SparqlUtil;
@@ -17,7 +17,6 @@ import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.io.*;

@@ -4,6 +4,8 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
@@ -13,9 +15,9 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-import ftn.xml.ServisOrganVlasti.model.korisnik.Korisnici;
+import ftn.xml.ServisOrganVlasti.model.korisnici.Korisnici;
+import ftn.xml.ServisOrganVlasti.model.korisnici.ObjectFactory;
 import ftn.xml.ServisOrganVlasti.model.korisnik.Korisnik;
-import ftn.xml.ServisOrganVlasti.model.zahtev.ZahtevZaPristupInformacijama;
 import ftn.xml.ServisOrganVlasti.rdf.DomUtil;
 import ftn.xml.ServisOrganVlasti.rdf.GenerisiMetapodatke;
 import ftn.xml.ServisOrganVlasti.util.*;
@@ -23,7 +25,6 @@ import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.CompiledExpression;
 import org.xmldb.api.base.Resource;
@@ -40,35 +41,59 @@ public class KorisnikRepository {
 
 
     @Autowired
-    private ExistConnection connection;
-
-    @Autowired
     GenerisiMetapodatke generator;
 
     @Autowired
     DomUtil dom;
 
-    public void saveUser(Korisnik korisnik) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
-            IOException, XMLDBException, JAXBException, SAXException {
+    public boolean saveUser(Korisnik korisnik) {
         Collection col = null;
         OutputStream os = new ByteArrayOutputStream();
         String targetNamespace = "http://www.ftn.un.ac.rs/korisnici";
+
+        Korisnik postojeci = getUserById(korisnik.getIdKorisnika());
+        if (postojeci != null) {
+            return false;
+        }
         try {
 //            XMLResourcesDB resourcesDb = this.connection.run("korisnici.xml");
 
-            col = XmlDbConnectionUtils.getOrCreateCollection("/db/korisnici");
+            col = XmlDbConnectionUtils.getOrCreateCollection("/db/organVlastiKorisnici");
             XMLResource res = (XMLResource) col.getResource("korisnici.xml");
-//            res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
+
+            if (res == null) {
+                res = (XMLResource) col.createResource("korisnici.xml", XMLResource.RESOURCE_TYPE);
+                JAXBContext jaxbContext = JAXBContext.newInstance(Korisnici.class);
+                Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+                jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+                Korisnici korisnici = new Korisnici();
+                List<Korisnik> lista = new ArrayList<>();
+                Korisnik prvi = new Korisnik();
+                prvi.setIdKorisnika("1");
+                prvi.setKorisnickoIme("korisnik");
+                prvi.setIme("Nikola Tesla");
+                prvi.setLozinka("Lozinka");
+                prvi.setTipKorisnika("korisnik");
+                prvi.setUloga("gradjanin");
+                lista.add(prvi);
+                korisnici.setKorisnik(lista);
+                jaxbMarshaller.marshal(korisnici, os);
+
+                res.setContent(os);
+
+                col.storeResource(res);
+            }
 
             JAXBContext jaxbContext = JAXBContext.newInstance(Korisnik.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
+            os = new ByteArrayOutputStream();
             jaxbMarshaller.marshal(korisnik, os);
 
             res.setContent(os);
 
-//            col.storeResource(res);
             String xmlFragment = os.toString();
             String xmlStart = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
             xmlFragment = xmlFragment.replace(xmlStart, "");
@@ -78,8 +103,9 @@ public class KorisnikRepository {
             service.setProperty("indent", "yes");
 
             String contextPath = "/korisnici";
-            long mods = service.updateResource("korisnici.xml",
-                    String.format(XUpdateTemplate.append(targetNamespace), contextPath, xmlFragment));
+            System.out.println(String.format(XUpdateTemplate.append(targetNamespace), contextPath, xmlFragment));
+            long mods = service.updateResource("korisnici.xml", String.format(XUpdateTemplate.append(targetNamespace), contextPath, xmlFragment));
+
             System.out.println("[INFO] " + mods + " modifications processed.");
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,12 +118,12 @@ public class KorisnikRepository {
                 }
             }
         }
-
+        return true;
     }
 
 
 
-    public Korisnici getAllKorisnici() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, XMLDBException, JAXBException {
+    public Korisnici getAllKorisnici() {
         System.out.println("[INFO] " + KorisnikRepository.class.getSimpleName());
 
         // initialize collection and document identifiers
@@ -105,14 +131,13 @@ public class KorisnikRepository {
         String xqueryFilePath = null, xqueryExpression = null;
 
         System.out.println("[INFO] Using defaults.");
-        collectionId = "/db/sample/library";
+        collectionId = "/db/organVlastiKorisnici";
         xqueryFilePath = ".//src//main//java//resources//query//getAllKorisnici.xqy";
 
         System.out.println("\t- collection ID: " + collectionId);
         System.out.println("\t- xQuery file path: " + xqueryFilePath);
 
 
-        XMLResourcesDB resourcesDb = this.connection.run("korisnici.xml");
 
         Collection col = null;
 
@@ -120,7 +145,7 @@ public class KorisnikRepository {
 
             // get the collection
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
-            col = resourcesDb.getCollection();
+            col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
 
             // get an instance of xquery service
             XQueryService xqueryService = (XQueryService) col.getService("XQueryService", "1.0");
@@ -165,6 +190,8 @@ public class KorisnikRepository {
             }
 
             return null;
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
 
             // don't forget to cleanup
@@ -176,32 +203,18 @@ public class KorisnikRepository {
                 }
             }
         }
+        // promeni
+        return null;
     }
 
 
 
-
-
-    public Korisnik login(String username)
-            throws IOException, XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException, JAXBException {
-
-        System.out.println("[INFO] " + KorisnikRepository.class.getSimpleName());
+    public Korisnik login(String username) {
 
         // initialize collection and document identifiers
-        String collectionId = null;
+        String collectionId = "/db/organVlastiKorisnici";
         String xqueryFilePath = null, xqueryExpression = null;
-
-
-        System.out.println("[INFO] Using defaults.");
-        collectionId = "/db/sample/library";
-        xqueryFilePath = ".//src//main//java//resources//query//query-log.xqy";
-
-
-        System.out.println("\t- collection ID: " + collectionId);
-        System.out.println("\t- xQuery file path: " + xqueryFilePath);
-
-        XMLResourcesDB resourcesDb = this.connection.run("korisnici.xml");
-
+        xqueryFilePath = "src/main/resources/query/query-log.xqy";
 
         Collection col = null;
 
@@ -209,7 +222,7 @@ public class KorisnikRepository {
 
             // get the collection
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
-            col = resourcesDb.getCollection();
+            col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
 
             // get an instance of xquery service
             XQueryService xqueryService = (XQueryService) col.getService("XQueryService", "1.0");
@@ -231,14 +244,19 @@ public class KorisnikRepository {
             Resource res = null;
 
             JAXBContext jaxbContext = JAXBContext.newInstance(Korisnik.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = sf.newSchema(new File("../xml-documents/korisnik.xsd"));
+            unmarshaller.setSchema(schema);
+
+
             while(i.hasMoreResources()) {
 
                 try {
                     res = i.nextResource();
                     XMLResource xmlResource = (XMLResource)res;
-                    Korisnik k = (Korisnik)unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+                    Korisnik k = (Korisnik) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
                     return k;
                 } finally {
 
@@ -251,6 +269,8 @@ public class KorisnikRepository {
                 }
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
 
             // don't forget to cleanup
@@ -283,7 +303,7 @@ public class KorisnikRepository {
     }
 
 
-    public Korisnik getUserById(String idOsiguranika) throws JAXBException, ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, XMLDBException {
+    public Korisnik getUserById(String id) {
         //vracamo korisnika po id-u
 
         System.out.println("[INFO] " + KorisnikRepository.class.getSimpleName());
@@ -293,13 +313,11 @@ public class KorisnikRepository {
         String xqueryFilePath = null, xqueryExpression = null;
 
         System.out.println("[INFO] Using defaults.");
-        collectionId = "/db/sample/library";
-        xqueryFilePath = ".//src//main//ftn.xml.ServisOrganVlasti//resources//query//getUserById.xqy";
+        collectionId = "/db/organVlastiKorisnici";
+        xqueryFilePath = "src/main/resources/query/getUserById.xqy";
 
         System.out.println("\t- collection ID: " + collectionId);
         System.out.println("\t- xQuery file path: " + xqueryFilePath);
-
-        XMLResourcesDB resourcesDb = this.connection.run("korisnici.xml");
 
         Collection col = null;
 
@@ -307,7 +325,7 @@ public class KorisnikRepository {
 
             // get the collection
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
-            col = resourcesDb.getCollection();
+            col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
 
             // get an instance of xquery service
             XQueryService xqueryService = (XQueryService) col.getService("XQueryService", "1.0");
@@ -316,7 +334,7 @@ public class KorisnikRepository {
             // read xquery
             System.out.println("[INFO] Invoking XQuery service for: " + xqueryFilePath);
 
-            xqueryExpression = String.format(this.readFile(xqueryFilePath), idOsiguranika);
+            xqueryExpression = String.format(this.readFile(xqueryFilePath), id);
             System.out.println(xqueryExpression);
 
             // compile and execute the expression
@@ -353,6 +371,8 @@ public class KorisnikRepository {
 
 
             return null;
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
 
             // don't forget to cleanup
@@ -365,5 +385,6 @@ public class KorisnikRepository {
             }
         }
 
+        return null;
     }
 }

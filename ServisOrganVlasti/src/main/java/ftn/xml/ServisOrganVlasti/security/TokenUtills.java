@@ -30,7 +30,7 @@ public class TokenUtills {
     private Long expiration;
 
     @Autowired
-    KorisnikRepository uR;
+    KorisnikRepository korisnikRepository;
 
 
 
@@ -79,10 +79,9 @@ public class TokenUtills {
 
     }
 
-    public String generateToken(UserDetails userDetails) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, XMLDBException, JAXBException {
+    public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<String, Object>();
-        System.out.println(userDetails.getPassword()+userDetails.getUsername());
-        Korisnik user=this.uR.login(userDetails.getUsername());
+        Korisnik user = this.korisnikRepository.login(userDetails.getUsername());
         claims.put("sub", userDetails.getUsername());
 
         claims.put("role",user.getUloga() );

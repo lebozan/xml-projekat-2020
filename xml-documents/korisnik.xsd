@@ -35,11 +35,12 @@
                         <xs:restriction base="xs:string">
                             <xs:enumeration value="gradjanin"/>
                             <xs:enumeration value="sluzbenik"/>
+                            <xs:enumeration value="poverenik"/>
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
             </xs:sequence>
-            <xs:attribute name="id_korisnika" type="xs:anyURI" use="required"/>
+            <xs:attribute name="id_korisnika" type="xs:anyURI" use="optional"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

@@ -31,7 +31,7 @@ public class ServisOrganVlastiApplication {
 	{
 		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		FileSystemResource[] fsr = new FileSystemResource[] {
-				new FileSystemResource(".//src//main//resources//seme//korisnik.xsd")
+				new FileSystemResource("../xml-documents/korisnik.xsd")
 		};
 		jaxb2Marshaller.setSchemas(fsr);
 		Class[] classes = new Class[] {Korisnik.class};

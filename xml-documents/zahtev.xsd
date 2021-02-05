@@ -23,9 +23,8 @@
                 </xs:element>
                 <xs:element name="naslov" type="xs:string"/>
                 <xs:element name="sadrzaj">
-                    <xs:complexType>
+                    <xs:complexType mixed="true">
                         <xs:sequence>
-                            <xs:element name="tekst"/>
                             <xs:element name="tipovi_zahteva">
                                 <xs:complexType>
                                     <xs:sequence>
@@ -33,9 +32,8 @@
                                         <xs:element name="tip_zahteva" type="xs:string"/>
                                         <xs:element name="tip_zahteva" type="xs:string"/>
                                         <xs:element name="tip_zahteva_dostava">
-                                            <xs:complexType mixed="false">
+                                            <xs:complexType mixed="true">
                                                 <xs:sequence>
-                                                  <xs:element name="tekst"/>
                                                   <xs:element name="vrste_dostave" type="TDostava"/>
                                                 </xs:sequence>
                                             </xs:complexType>
@@ -55,9 +53,9 @@
                                     <xs:simpleContent>
                                         <xs:extension base="xs:string">
                                             <xs:attribute fixed="pred:ime" name="property"
-                                                type="xs:string" use="required"/>
+                                                type="xs:string" use="optional"/>
                                             <xs:attribute fixed="xsi:string" name="datatype"
-                                                type="xs:string" use="required"/>
+                                                type="xs:string" use="optional"/>
                                         </xs:extension>
                                     </xs:simpleContent>
                                 </xs:complexType>
@@ -67,9 +65,9 @@
                                     <xs:simpleContent>
                                         <xs:extension base="xs:string">
                                             <xs:attribute fixed="pred:prezime" name="property"
-                                                type="xs:string" use="required"/>
+                                                type="xs:string" use="optional"/>
                                             <xs:attribute fixed="xsi:string" name="datatype"
-                                                type="xs:string" use="required"/>
+                                                type="xs:string" use="optional"/>
                                         </xs:extension>
                                     </xs:simpleContent>
                                 </xs:complexType>
@@ -79,9 +77,9 @@
                                     <xs:simpleContent>
                                         <xs:extension base="xs:string">
                                             <xs:attribute fixed="pred:adresa" name="property"
-                                                type="xs:string" use="required"/>
+                                                type="xs:string" use="optional"/>
                                             <xs:attribute fixed="xsi:string" name="datatype"
-                                                type="xs:string" use="required"/>
+                                                type="xs:string" use="optional"/>
                                         </xs:extension>
                                     </xs:simpleContent>
                                 </xs:complexType>
@@ -91,23 +89,21 @@
                                     <xs:simpleContent>
                                         <xs:extension base="xs:string">
                                             <xs:attribute fixed="pred:kontakt" name="property"
-                                                type="xs:string" use="required"/>
+                                                type="xs:string" use="optional"/>
                                             <xs:attribute fixed="xsi:string" name="datatype"
-                                                type="xs:string" use="required"/>
+                                                type="xs:string" use="optional"/>
                                         </xs:extension>
                                     </xs:simpleContent>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="potpis" type="xs:string"/>
                         </xs:sequence>
                         <xs:attribute fixed="http://www.ftn.uns.ac.rs/rdf/resenje/trazilac"
-                            name="about" type="xs:string" use="required"/>
+                            name="about" type="xs:string" use="optional"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="mesto_i_datum">
-                    <xs:complexType mixed="false">
+                    <xs:complexType mixed="true">
                         <xs:sequence>
-                            <xs:element name="tekst" type="xs:string"/>
                             <xs:element name="mesto" type="xs:string"/>
                             <xs:element name="datum" type="TDatum"> </xs:element>
                         </xs:sequence>
