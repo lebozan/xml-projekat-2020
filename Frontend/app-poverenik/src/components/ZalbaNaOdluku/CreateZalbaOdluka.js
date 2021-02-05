@@ -11,7 +11,7 @@ const CreateZalbaOdluka = () => {
         xml += '<?xml version="1.0" encoding="UTF-8"?>\n' +
             '<zalba_na_odluku xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n' +
             '    xmlns = "http://www.ftn.uns.ac.rs/zalbaOdluka"\n' +
-            '    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/predicate/">\n'
+            '    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zalbaOdluka/predicate/">\n'
         xml += '    <zaglavlje>\n' +
             '        <naslov>\n' +
             '            ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ\n' +
@@ -63,6 +63,34 @@ const CreateZalbaOdluka = () => {
             '                слободном приступу информацијама од јавног значаја\n' +
             '            </paragraf>\n' +
             '        </paragrafi>\n'
+        // TODO: Izmeniti ovaj deo
+        xml += '        <podaci>\n' +
+            '            <ime>'+ data.ime + '</ime>\n' +
+            '            <prezime>'+ data.prezime + '</prezime>\n' +
+            '            дана\n' +
+            '            <dan_mesec></dan_mesec>\n' +
+            '            201\n' +
+            '            <godina></godina>\n' +
+            '            године\n' +
+            '            <drugi_podaci_kontakt></drugi_podaci_kontakt>\n' +
+            '            <potpis></potpis>\n' +
+            '        </podaci>\n' +
+            '    </zalba_sadrzaj>\n'
+
+        xml += '    <napomene>\n' +
+            '        Напомена:\n' +
+            '        <napomena>\n' +
+            '            У жалби се мора навести одлука која се побија (решење, закључак, обавештење), \n' +
+            '            назив органа који је одлуку донео, као и број и датум одлуке. Довољно је да жалилац наведе \n' +
+            '            у жалби у ком погледу је незадовољан одлуком, с тим да жалбу не мора посебно образложити. \n' +
+            '            Ако жалбу изјављује на овом обрасцу, додатно образложење може  посебно приложити.\n' +
+            '        </napomena>\n' +
+            '        <napomena>\n' +
+            '            Уз жалбу обавезно приложити копију поднетог захтева и доказ о његовој \n' +
+            '            предаји-упућивању органу као и копију одлуке органа која се оспорава жалбом.\n' +
+            '        </napomena>\n' +
+            '    </napomene>\n' +
+            '</zalba_na_odluku>'
 
 
         console.log(xml);

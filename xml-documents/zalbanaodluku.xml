@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zalba_na_odluku xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns = "http://www.ftn.uns.ac.rs/zalbaOdluka"
-    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/predicate/">
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zalbaOdluka/predicate/">
     <zaglavlje>
         <naslov>
             ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ 
