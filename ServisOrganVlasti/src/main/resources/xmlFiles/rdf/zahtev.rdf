@@ -1,0 +1,19 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:h="http://www.w3.org/1999/xhtml">
+   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/resenje/trazilac">
+      <pred:ime xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/"
+                rdf:datatype="http://www.w3.org/2001/XMLSchema-instancestring">Bojan</pred:ime>
+   </rdf:Description>
+   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/resenje/trazilac">
+      <pred:prezime xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/"
+                    rdf:datatype="http://www.w3.org/2001/XMLSchema-instancestring">Cakic</pred:prezime>
+   </rdf:Description>
+   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/resenje/trazilac">
+      <pred:adresa xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/"
+                   rdf:datatype="http://www.w3.org/2001/XMLSchema-instancestring">Adresa 123</pred:adresa>
+   </rdf:Description>
+   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/resenje/trazilac">
+      <pred:kontakt xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/"
+                    rdf:datatype="http://www.w3.org/2001/XMLSchema-instancestring">064-123123123</pred:kontakt>
+   </rdf:Description>
+</rdf:RDF>

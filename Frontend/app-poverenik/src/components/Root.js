@@ -4,6 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import Navigation from './Navigation/Navigation'
 import Home from "./Home/Home";
 import LogIn from "./LogIn/LogIn";
+import ProtectedRoute from "./LogIn/ProtectedRoute";
+import SafeComponent from "./SafeComponent";
 
 
 
@@ -16,8 +18,12 @@ const Root = () => {
             <Navigation />
             <Switch>
                 <Route component={Home} exact path="/" /> 
-                <Route component={Home} exact path="/home" /> 
-                <Route component={LogIn} exact path="/logIn" /> 
+                <Route component={Home} exact path="/home" />
+                <Route component={LogIn} exact path="/login" />
+                <Route component={Register} exact path="/register"/>
+                <Route path="/safe/*">
+                    <ProtectedRoute component={SafeComponent}/>
+                </Route>
             </Switch>
         </div>
     );

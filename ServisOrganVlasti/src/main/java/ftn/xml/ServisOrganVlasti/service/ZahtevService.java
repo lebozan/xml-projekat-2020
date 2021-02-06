@@ -15,9 +15,9 @@ public class ZahtevService {
     @Autowired
     ZahtevRepository zahtevRepository;
 
-    public Object readZahtev(String documentId) {
+    public Object readZahtev(String id) {
 
-        return zahtevRepository.findZahtev(documentId);
+        return zahtevRepository.findZahtev(id);
     }
 
 

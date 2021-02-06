@@ -81,7 +81,7 @@ public class RdfDbConnectionUtils {
         System.out.println("[INFO] Loading triples from an RDF/XML to a model...");
 
         // RDF triples which are to be loaded into the model
-        String rdfFilePath = "src/main/resources/xmlFiles/rdf/metadataTest.rdf";
+        String rdfFilePath = "src/main/resources/xmlFiles/rdf/metadata.rdf";
 
         // Creates a default model
         Model model = ModelFactory.createDefaultModel();
@@ -94,7 +94,6 @@ public class RdfDbConnectionUtils {
         System.out.println("[INFO] Rendering model as RDF/XML...");
         model.write(System.out, SparqlUtil.RDF_XML);
 
-        // Delete all of the triples in all of the named graphs
 //        UpdateRequest drop = UpdateFactory.create();
 //        drop.add(SparqlUtil.dropAll());
 //
