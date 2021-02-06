@@ -18,7 +18,7 @@ public class ZalbaNaOdlukuXSLTransformer {
 
     private static TransformerFactory transformerFactory = TransformerFactory.newInstance();
 
-    public ZahtevXSLTransformer() {
+    public ZalbaNaOdlukuXSLTransformer() {
         documentFactory.setNamespaceAware(true);
         documentFactory.setIgnoringComments(true);
         documentFactory.setIgnoringElementContentWhitespace(true);

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/zahtev/soap"
+    xmlns:targetNamespace="http://www.ftn.uns.ac.rs/zahtev/soap"
+    xmlns:tns="http://www.ftn.uns.ac.rs/zahtev/soap" xmlns:z="http://www.ftn.uns.ac.rs/zahtev">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/zahtev"
+        schemaLocation="../../../../../xml-documents/zahtev.xsd"/>
+    <xs:element name="getZahtevRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getZahtevResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="z:zahtev_za_pristup_informacijama"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -8,7 +8,6 @@ import ftn.xml.ServisPoverenik.model.zalbanaodluku.ZalbaNaOdluku.Zaglavlje;
 import ftn.xml.ServisPoverenik.model.zalbanaodluku.ZalbaNaOdluku.ZalbaSadrzaj;
 import ftn.xml.ServisPoverenik.model.zalbanaodluku.ZalbaNaOdluku.ZalbaSadrzaj.Paragrafi;
 import ftn.xml.ServisPoverenik.model.zalbanaodluku.ZalbaNaOdluku.ZalbaSadrzaj.Paragrafi.ParagrafPodaci;
-import ftn.xml.ServisPoverenik.util.JAXBReader;
 import ftn.xml.ServisPoverenik.util.XUpdateTemplate;
 import ftn.xml.ServisPoverenik.util.XmlDbConnectionUtils;
 //import rdf.domuti;

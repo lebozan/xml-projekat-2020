@@ -125,13 +125,13 @@ public class ZahtevController {
 
     private void sendEmail() {
         Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
-        Korisnik korisnik = (Korisnik) currentUser.getPrincipal();
+        String korisnik = "ggwp012@gmail.com";
         EmailTemplate emailTemplate = new EmailTemplate();
         emailTemplate.setAttachmentPath("D:\\Users\\Hp Zbook 15\\Desktop\\xml-projekat-2020\\ServisOrganVlasti\\src\\main\\resources\\xmlFiles\\xhtml\\zahtev.html");
         emailTemplate.setBody("HTML kreiranog zahteva.");
         emailTemplate.setSentFrom("Servis organa vlasti");
         emailTemplate.setSubject("Uspesno kreiran zahtev");
-        emailTemplate.setSendTo(korisnik.getUsername());
+        emailTemplate.setSendTo(korisnik);
 
 
         RestTemplate restTemplate = new RestTemplate();

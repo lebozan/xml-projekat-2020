@@ -28,6 +28,9 @@ public class ZalbaNaOdlukuController {
     @Autowired
     ZalbaNaOdlukuService zalbaNaOdlukuService;
 
+    @Autowired
+    ZalbaNaOdlukuXSLTransformer zalbaNaOdlukuXSLTransformer;
+
     @RequestMapping(value = "/read", method = RequestMethod.GET, produces = "application/xml")
     public ResponseEntity<Object> readXmlFile(@RequestParam String documentId) {
         try {
@@ -54,7 +57,7 @@ public class ZalbaNaOdlukuController {
     @RequestMapping(value = "/createZalbaOdluka", method = RequestMethod.POST, consumes = "application/xml")
     public ResponseEntity<String> writeZalbaOdlukaXml(@RequestBody String xml) {
         try {
-            ZalbaNaOdlukuXSLTransformer.generateXML(xml);
+            zalbaNaOdlukuXSLTransformer.generateXML(xml);
 
             JAXBContext context = JAXBContext.newInstance(ZalbaNaOdluku.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -66,6 +69,7 @@ public class ZalbaNaOdlukuController {
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

@@ -73,7 +73,7 @@ public class MailService {
 
             //Text body part
             MimeBodyPart textBodyPart = new MimeBodyPart();
-            textBodyPart.setText("My multipart text");
+            textBodyPart.setText("U prilogu se nalazi HTML fajl zahteva koji ste kreirali.");
 
             //Attachment body part.
             MimeBodyPart fileAttachment = new MimeBodyPart();

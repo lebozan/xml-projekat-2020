@@ -18,8 +18,7 @@ const CreateZahtev = () => {
 
         xml += "<sediste_organa>" + data.sedisteOrgana + "</sediste_organa>" +
             "</zaglavlje>\n" +
-            '<sadrzaj>\n' +
-            '<tipovi_zahteva>\n';
+            '<sadrzaj>\n';
 
         if (data.tipZahteva[0]) {
             xml += '            <tip_zahteva odabran="true">obavestenje da li poseduje trazenu informaciju</tip_zahteva>\n';
@@ -37,9 +36,9 @@ const CreateZahtev = () => {
             xml += '            <tip_zahteva>kopiju dokumenta koji sadrzi trazenu informaciju</tip_zahteva>\n';
         }
         if (data.tipZahteva[3]) {
-            xml += '            <tip_zahteva_dostava odabran="true">dostavljanje kopije dokumenta koji sadrzi trazenu informaciju:**</tip_zahteva_dostava>\n';
+            xml += '            <tip_zahteva_dostava odabran="true">dostavljanje kopije dokumenta koji sadrzi trazenu informaciju:**\n';
         } else {
-            xml += '            <tip_zahteva_dostava>dostavljanje kopije dokumenta koji sadrzi trazenu informaciju:**</tip_zahteva_dostava>\n';
+            xml += '            <tip_zahteva_dostava>dostavljanje kopije dokumenta koji sadrzi trazenu informaciju:**\n';
         }
         if (data.tipDostave[0]) {
             xml += '            <dostava odabrana="true">postom</dostava>\n';
@@ -64,17 +63,16 @@ const CreateZahtev = () => {
         let user = jwtDecode(localStorage.getItem('tokenOrganVlasti'));
         xml +=
             '        </tip_zahteva_dostava>\n' +
-            '     </tipovi_zahteva>\n' +
             '     <opis>' + data.zahtevInfo + '</opis>\n' +
             '    </sadrzaj>\n'
 
         let datum = new Date();
-        xml += '    <trazilac\n' +
+        xml += '  <trazilac>\n' +
             '        <ime>' + user.ime + '</ime>\n' +
             '        <prezime>'+ user.prezime + '</prezime>\n' +
             '        <adresa>Adresa 123</adresa>\n' +
             '        <kontakt_podaci>064-123123</kontakt_podaci>\n' +
-            '    </trzilac>\n' +
+            '    </trazilac>\n' +
             '    <mesto_i_datum>\n' +
             '        <mesto>Pozarevac</mesto>\n' +
             '        <datum>\n' +

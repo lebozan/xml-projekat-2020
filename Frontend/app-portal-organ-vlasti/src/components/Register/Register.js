@@ -2,7 +2,7 @@ import React from "react";
 import {Button, TextField} from "@material-ui/core";
 import AuthService from "../../service/auth-service";
 
-const Register = () => {
+const Register = (props) => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [firstName, setFirstName] = React.useState('');
@@ -25,8 +25,10 @@ const Register = () => {
         AuthService.register(xml).then(
             (response) => {
                 console.log(response.status);
+                props.history.push('/login')
             }, (error) => {
                 console.log(error);
+                props.history.push('/login')
             });
     }
 

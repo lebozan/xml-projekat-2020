@@ -8,6 +8,7 @@ import CreateZalbaOdluka from "./ZalbaNaOdluku/CreateZalbaOdluka";
 import CreateZalbaCutanje from "./ZalbaNaCutanje/CreateZalbaCutanje";
 import ProtectedRoute from "./LogIn/ProtectedRoute";
 import SafeComponent from "./SafeComponent";
+import Register from "./Register/Register";
 
 
 
@@ -25,7 +26,7 @@ const Root = () => {
                 <Route component={LogIn} exact path="/login" />
                 <Route component={Register} exact path="/register"/>
                 <Route path="/safe/*">
-                    <ProtectedRoute component={SafeComponent}/>
+                    <ProtectedRoute component={<SafeComponent/>}/>
                 </Route>
             </Switch>
         </div>

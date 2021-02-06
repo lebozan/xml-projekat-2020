@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="19de2ad1-e924-4e0d-bc02-ae0f42caffbd" name="Default Changelist" comment="" />
+    <list default="true" id="19de2ad1-e924-4e0d-bc02-ae0f42caffbd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../EmailMicroService/src/main/java/ftn/xml/EmailMicroService/service/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../EmailMicroService/src/main/java/ftn/xml/EmailMicroService/service/MailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../EmailMicroService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../EmailMicroService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-portal-organ-vlasti/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/LogIn/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/LogIn/LogIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Register/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Register/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Zahtev/CreateZahtev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Zahtev/CreateZahtev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LogIn/LogIn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navigation/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navigation/Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Register/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Register/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Root.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Root.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SafeComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SafeComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/zalbaOdluka-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/zalbaOdluka-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setupProxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupProxy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/controller/ZahtevController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/controller/ZahtevController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/resources/xmlFiles/rdf/metadata.rdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/resources/xmlFiles/rdf/metadata.rdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/resources/xmlFiles/xhtml/zahtev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/resources/xmlFiles/xhtml/zahtev.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/controller/ZalbaNaOdlukuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/controller/ZalbaNaOdlukuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/model/zalbanaodluku/ObjectFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/model/zalbanaodluku/TPodnosilacZalbe.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/model/zalbanaodluku/TPodnosilacZalbe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/model/zalbanaodluku/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/model/zalbanaodluku/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/repository/ZalbaNaCutanjeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/repository/ZalbaNaCutanjeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/repository/ZalbaNaOdlukuRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/repository/ZalbaNaOdlukuRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/util/JAXBReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/util/ZalbaNaOdlukuXSLTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisPoverenik/src/main/java/ftn/xml/ServisPoverenik/util/ZalbaNaOdlukuXSLTransformer.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,6 +73,9 @@
       <updated>1612561079404</updated>
       <workItem from="1612561081663" duration="2378000" />
       <workItem from="1612626616106" duration="1484000" />
+      <workItem from="1612644142668" duration="59000" />
+      <workItem from="1612647973564" duration="256000" />
+      <workItem from="1612648239132" duration="1946000" />
     </task>
     <servers />
   </component>
