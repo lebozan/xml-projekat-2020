@@ -22,6 +22,7 @@ const LogIn = (props) => {
 
         AuthService.login(xml).then(
             (response) => {
+
                 let korisnik = jwtDecode(response.headers.token);
                 console.log(korisnik);
                 checkRole(korisnik.role);

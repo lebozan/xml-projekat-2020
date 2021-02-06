@@ -28,9 +28,6 @@ const Root = () => {
                 <Route path="/safe/*">
                     <ProtectedRoute component={SafeComponent}/>
                 </Route>
-                <Route component={CreateZahtev} path="/createZahtev" />
-                <Route component={Sluzbenik} path="/sluzbenik" />
-                <Route component={AddObavestenje} path="/addObavestenje" />
             </Switch>
         </div>
     );
