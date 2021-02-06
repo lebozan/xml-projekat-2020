@@ -40,6 +40,9 @@ const LogIn = (props) => {
                 console.log(role);
                 props.history.push("/safe/sluzbenik");
                 break;
+            case  "gradjanin":
+                props.history.push("/safe/createZahtev");
+                break;
             default:
                 break;
         }

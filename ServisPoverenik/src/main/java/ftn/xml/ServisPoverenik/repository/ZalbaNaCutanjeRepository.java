@@ -1,7 +1,6 @@
 package ftn.xml.ServisPoverenik.repository;
 
 import ftn.xml.ServisPoverenik.model.zalbanacutanje.ZalbaCutanje;
-import ftn.xml.ServisPoverenik.util.JAXBReader;
 import ftn.xml.ServisPoverenik.util.XmlDbConnectionUtils;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
@@ -27,71 +26,70 @@ public class ZalbaNaCutanjeRepository {
     private final String ZALBA_CUTANJE_COLLECTION_NAME = "/db/zalbaNaCutanje";
 
     public boolean saveZalbaNaCutanje(String documentId) {
-        String collectionId = ZALBA_CUTANJE_COLLECTION_NAME;
-        Collection col = null;
-        XMLResource res = null;
-        OutputStream os = new ByteArrayOutputStream();
-
-        try {
-
-            System.out.println("[INFO] Retrieving the collection: " + collectionId);
-            col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
-
-            /*
-             *  create new XMLResource with a given id
-             *  an id is assigned to the new resource if left empty (null)
-             */
-            System.out.println("[INFO] Inserting the document: " + documentId);
-            res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
-
-            // create an instance of `JAXBContext`
-            JAXBContext context = JAXBContext.newInstance(ZalbaCutanje.class);
-
-            // create an instance of `Marshaller`
-            Marshaller marshaller = context.createMarshaller();
-
-            // enable pretty-print XML output
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = sf.newSchema(new File("../xml-documents/zalbanacutanje.xsd"));
-            marshaller.setSchema(schema);
-
-            // samo privremeno
-            ZalbaCutanje zalbaCutanje = JAXBReader.writeZalbaNaCutanjeXml(documentId);
-
-            // marshal the contents to an output stream
-            marshaller.marshal(zalbaCutanje, os);
-
-            // link the stream to the XML resource
-            res.setContent(os);
-            System.out.println("[INFO] Storing the document: " + res.getId());
-
-            col.storeResource(res);
-            System.out.println("[INFO] Done.");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-
-            //don't forget to cleanup
-            if (res != null) {
-                try {
-                    ((EXistResource) res).freeResources();
-                } catch (XMLDBException xe) {
-                    xe.printStackTrace();
-                }
-            }
-
-            if (col != null) {
-                try {
-                    col.close();
-                } catch (XMLDBException xe) {
-                    xe.printStackTrace();
-                }
-            }
-        }
+//        String collectionId = ZALBA_CUTANJE_COLLECTION_NAME;
+//        Collection col = null;
+//        XMLResource res = null;
+//        OutputStream os = new ByteArrayOutputStream();
+//
+//        try {
+//
+//            System.out.println("[INFO] Retrieving the collection: " + collectionId);
+//            col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
+//
+//            /*
+//             *  create new XMLResource with a given id
+//             *  an id is assigned to the new resource if left empty (null)
+//             */
+//            System.out.println("[INFO] Inserting the document: " + documentId);
+//            res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
+//
+//            // create an instance of `JAXBContext`
+//            JAXBContext context = JAXBContext.newInstance(ZalbaCutanje.class);
+//
+//            // create an instance of `Marshaller`
+//            Marshaller marshaller = context.createMarshaller();
+//
+//            // enable pretty-print XML output
+//            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//
+//            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+//            Schema schema = sf.newSchema(new File("../xml-documents/zalbanacutanje.xsd"));
+//            marshaller.setSchema(schema);
+//
+//            // samo privremeno
+//
+//            // marshal the contents to an output stream
+//            marshaller.marshal(zalbaCutanje, os);
+//
+//            // link the stream to the XML resource
+//            res.setContent(os);
+//            System.out.println("[INFO] Storing the document: " + res.getId());
+//
+//            col.storeResource(res);
+//            System.out.println("[INFO] Done.");
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        } finally {
+//
+//            //don't forget to cleanup
+//            if (res != null) {
+//                try {
+//                    ((EXistResource) res).freeResources();
+//                } catch (XMLDBException xe) {
+//                    xe.printStackTrace();
+//                }
+//            }
+//
+//            if (col != null) {
+//                try {
+//                    col.close();
+//                } catch (XMLDBException xe) {
+//                    xe.printStackTrace();
+//                }
+//            }
+//        }
         return true;
     }
 

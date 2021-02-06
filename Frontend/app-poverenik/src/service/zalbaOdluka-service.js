@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const url = '/api/zalbaOdluka';
+const url = '/api/api/zalbaNaOdluku';
 
 export default class ZalbaOdlukaService {
 
     static postZalbaOdluka(xml){
         return new Promise((resolve, reject) =>
-            axios.post(url + '/xml/testZalbaOdluka', xml, {headers: {'content-type': 'application/xml'}})
+            axios.post(url + '/createZalbaOdluka', xml, {headers: {'content-type': 'application/xml'}})
                 .then(res => {
                     if (res.status === 200) {
                         resolve(res.data);

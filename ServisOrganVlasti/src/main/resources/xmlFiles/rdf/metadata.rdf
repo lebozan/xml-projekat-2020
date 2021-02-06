@@ -14,6 +14,6 @@
    </rdf:Description>
    <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/resenje/trazilac">
       <pred:kontakt xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/"
-                    rdf:datatype="http://www.w3.org/2001/XMLSchema-instancestring">064-123123123</pred:kontakt>
+                    rdf:datatype="http://www.w3.org/2001/XMLSchema-instancestring">064-123123</pred:kontakt>
    </rdf:Description>
 </rdf:RDF>

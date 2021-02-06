@@ -63,7 +63,7 @@ import javax.xml.bind.annotation.XmlValue;
         "adresaPodnosioca"
 })
 @XmlSeeAlso({
-        rs.ac.uns.ftn.zalbanaodluku.ZalbaNaOdluku.ZalbaSadrzaj.PodnosilacZalbe.class
+        ftn.xml.ServisPoverenik.model.zalbanaodluku.ZalbaNaOdluku.ZalbaSadrzaj.PodnosilacZalbe.class
 })
 public class TPodnosilacZalbe {
 
