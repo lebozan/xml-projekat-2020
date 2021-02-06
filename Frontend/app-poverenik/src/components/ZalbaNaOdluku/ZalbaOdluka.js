@@ -26,45 +26,45 @@ const ZalbaOdluka = (props) => {
             </div>
             <div align={'center'} style={{marginTop:20}}>
                 <h4>Ж А Л Б А</h4>
-                <TextField required id="ime" label="Ime podnosioca" variant="outlined"
+                <TextField required id="ime" label="Име подносиоца" variant="outlined"
                            value={ime}
                            style={{marginLeft:20, minWidth:250}}
                            onChange={(e) => {setIme(e.target.value)}}
                 />
-                <TextField required id="prezime" label="Prezime podnosioca" variant="outlined"
+                <TextField required id="prezime" label="Презиме подносиоца" variant="outlined"
                            value={prezime}
                            style={{marginLeft:20, minWidth:250}}
                            onChange={(e) => {setPrezime(e.target.value)}}
                 />
-                <TextField required id="ulicaPodnosioca" label="Adresa-ulica" variant="outlined"
+                <TextField required id="ulicaPodnosioca" label="Адреса-улица" variant="outlined"
                            value={ulicaPodnosioca}
                            style={{marginLeft:20, minWidth:250}}
                            onChange={(e) => {setUlicaPodnosioca(e.target.value)}}
                 />
-                <TextField required id="broj" label="Adresa-broj" variant="outlined"
+                <TextField required id="broj" label="Адреса-број" variant="outlined"
                            value={brojUlicePodnosioca}
                            style={{marginLeft:20, minWidth:100}}
                            onChange={(e) => {setBrojUlicePodnosioca(e.target.value)}}
                 />
-                <TextField required id="grad" label="Adresa-grad" variant="outlined"
+                <TextField required id="grad" label="Адреса-град" variant="outlined"
                            value={gradPodnosioca}
                            style={{marginLeft:20, minWidth:150}}
                            onChange={(e) => {setGradPodnosioca(e.target.value)}}
                 />
                 <p>(Име, презиме, односно назив, адреса и седиште жалиоца)</p>
                 <p>против решења-закључка</p>
-                <TextField required id="nazivOrgana" label="Naziv organa" variant="outlined"
+                <TextField required id="nazivOrgana" label="Назив органа" variant="outlined"
                            value={nazivOrgana}
                            style={{marginLeft:20, minWidth:250}}
                            onChange={(e) => {setNazivOrgana(e.target.value)}}
                 />
                 <p>(назив органа који је донео одлуку)</p>
-                <TextField required id="brojResenja" label="Broj resenja" variant="outlined"
+                <TextField required id="brojResenja" label="Број решења" variant="outlined"
                            value={brojResenja}
                            style={{marginLeft:20, minWidth:250}}
                            onChange={(e) => {setBrojResenja(e.target.value)}}
                 />
-                <TextField required id="godina" label="Godina" variant="outlined"
+                <TextField required id="godina" label="Година" variant="outlined"
                            value={godina}
                            style={{marginLeft:20, minWidth:250}}
                            onChange={(e) => {setGodina(e.target.value)}}
@@ -73,13 +73,13 @@ const ZalbaOdluka = (props) => {
 
             <div align={'center'} style={{marginTop:20}}>
                 <p>Наведеном одлуком органа власти (решењем, закључком, обавештењем у писаној форми са елементима одлуке) , супротно закону, одбијен-одбачен је мој захтев који сам поднео/ла-упутио/ла дана </p>
-                <TextField required id="datumPodnosenja" label="Datum podnosenja zahteva" variant="outlined"
+                <TextField required id="datumPodnosenja" label="Датум подношења захтева" variant="outlined"
                            value={datumPodnosenja}
                            style={{marginLeft:20, minWidth:50}}
                            onChange={(e) => {setDatumPodnosenja(e.target.value)}}
                 />
                 <p>године и тако ми ускраћено-онемогућено остваривање уставног и законског права на слободан приступ информацијама од јавног значаја. Oдлуку побијам у целости, односно у делу којим</p>
-                <TextField id="razlog" label="razlog" variant="outlined" multiline rows={3}
+                <TextField id="razlog" label="Разлог" variant="outlined" multiline rows={3}
                            value={razlog}
                            style={{marginLeft:20, minWidth:1000}}
                            onChange={(e) => {setRazlog(e.target.value)}}
@@ -91,7 +91,7 @@ const ZalbaOdluka = (props) => {
             </div>
             <div align={'center'} style={{marginTop:20}}>
                 <p>други подаци за контакт:</p>
-                <TextField id="drugiKontakt" label="Drugi podaci za kontakt" variant="outlined"
+                <TextField id="drugiKontakt" label="Други подаци за контакт" variant="outlined"
                            value={drugiKontakt}
                            style={{marginLeft:20, minWidth:50}}
                            onChange={(e) => {setDrugiKontakt(e.target.value)}}
@@ -118,7 +118,7 @@ const ZalbaOdluka = (props) => {
                         props.sendZalbaOdlukaData(data);
                     }}
                 >
-                    Primary
+                    Поднеси
                 </Button>
             </div>
 

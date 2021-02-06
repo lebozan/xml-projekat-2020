@@ -27,7 +27,6 @@ const CreateZalbaCutanje = () => {
             '       U skladu sa clanom 22. Zakona o slobodnom pristupu informacijama od javnog znacaja podnosim:\n' +
             '    </zaglavlje>\n'
         //TODO: Tip razloga treba da se dobije kroz datu sa front page-a ; mozda treba remodelovati xml
-        //TODO: Proveri da li u <predmet> treb da stoji about= ; kao i property/datatype u <naziv_organa>
         xml += '    <sadrzaj>\n' +
             '        <predmet about="http://www.ftn.uns.ac.rs/rdf/azlbacutanje/organ">\n' +
             '            <naziv_predmeta>ZALBU</naziv_predmeta>\n' +
@@ -36,11 +35,25 @@ const CreateZalbaCutanje = () => {
             '        </predmet>\n' +
             '        <razlozi_podnsenja>\n' +
             '            zbog toga sto organ vlasti:\n' +
-            '            <tipovi_razloga>\n' +
-            '                <tip_razloga>nije postupio</tip_razloga>\n' +
-            '                <tip_razloga>nije potupio u celosti</tip_razloga>\n' +
-            '                <tip_razloga>u zakonskom roku</tip_razloga>\n' +
-            '            </tipovi_razloga>\n' +
+            '            <tipovi_razloga>\n'
+
+        if (data.razlogZalbe[0]) {
+            xml += '                <tip_razloga odabran="true">nije postupio</tip_razloga>\n';
+        } else {
+            xml += '                <tip_razloga>nije postupio</tip_razloga>\n';
+        }
+        if (data.razlogZalbe[1]) {
+            xml += '                <tip_razloga odabran="true">nije potupio u celosti</tip_razloga>\n';
+        } else {
+            xml += '                <tip_razloga>nije potupio u celosti</tip_razloga>\n';
+        }
+        if (data.razlogZalbe[2]) {
+            xml += '                <tip_razloga odabran="true">u zakonskom roku</tip_razloga>\n';
+        } else {
+            xml += '                <tip_razloga>u zakonskom roku</tip_razloga>\n';
+        }
+
+        xml += '            </tipovi_razloga>\n' +
             '        </razlozi_podnsenja>\n'
 
         xml += '        <izjava about="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/podacizahtev">\n' +
@@ -54,10 +67,15 @@ const CreateZalbaCutanje = () => {
             '        </izjava>\n' +
             '    </sadrzaj>\n'
 
-        //TODO: izmeniti ovaj deo ; i ovaj deo u xml-u takodje  --- broj racuna,potpis i mesto ne treba; datum da se uzme datum requesta sa fronta
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = dd + '/' + mm + '/' + yyyy;
+
         xml += '    <podnosilac>\n' +
             '        <podnosilac_tuzbe xsi:type="TFizicko_lice">\n' +
-            '            <broj_racuna>000-0000000000000-00</broj_racuna>\n' +
             '            <adresa>\n' +
             '                <mesto>'+ data.gradPodnosioca + '</mesto>\n' +
             '                <ulica>'+ data.ulicaPodnosioca + '</ulica>\n' +
@@ -67,10 +85,9 @@ const CreateZalbaCutanje = () => {
             '            <ime>'+ data.ime + '</ime>\n' +
             '            <prezime>'+ data.prezime + '</prezime>\n' +
             '        </podnosilac_tuzbe>\n' +
-            '        <potpis></potpis>\n' +
             '    </podnosilac>\n' +
             '    <mesto_i_datum>\n' +
-            '        U<mesto>Prizrenu</mesto>, dana <datum_zalbe>2010-05-10</datum_zalbe>godine\n' +
+            '        U<mesto>VEB Servisu</mesto>, dana <datum_zalbe>'+ today + '</datum_zalbe>godine\n' +
             '    </mesto_i_datum>    \n' +
             '</zalbaCutanje>'
 
