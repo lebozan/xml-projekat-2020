@@ -82,8 +82,7 @@
                 <xs:element name="podnosilac">
                     <xs:complexType mixed="true">
                         <xs:sequence>
-                            <xs:element name="podnosilac_tuzbe" type="TLice"> </xs:element>
-                            <xs:element name="potpis" type="xs:string"/>
+                            <xs:element name="podnosilac_tuzbe" type="TFizicko_lice"> </xs:element>
                         </xs:sequence>
                         <xs:attribute fixed="http://www.ftn.uns.ac.rs/rdf/zalba/podnosilac"
                             name="about"/>

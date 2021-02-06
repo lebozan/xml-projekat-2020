@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zalba_na_odluku>
+<zalba_na_odluku xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns = "http://www.ftn.uns.ac.rs/zalbaNaOdluku"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zalbaNaOdluku/predicate/">
     <zaglavlje>
         <naslov>
             ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ 
@@ -14,9 +16,9 @@
     </zaglavlje>
     <zalba_sadrzaj>
         Жалбa
-        <podnosilac_zalbe>
-            <ime></ime>
-            <prezime></prezime>
+        <podnosilac_zalbe about="http://www.ftn.uns.ac.rs/rdf/zalbaNaOdluku/podnosilac/Mika_Mikic">
+            <ime property="pred:ime" datatype="xs:string">Mika</ime>
+            <prezime property="pred:prezime" datatype="xs:string">Mikic</prezime>
             <adresa_podnosioca>
                 <ulica></ulica>
                 <broj></broj>
@@ -26,7 +28,7 @@
         против решења-закључка 
         <naziv_organa_vlasti></naziv_organa_vlasti>
         Број
-        <broj_zalbe></broj_zalbe>
+        <broj_resenja></broj_resenja>
         од
         <godina></godina>
         године.
@@ -52,21 +54,10 @@
         <podaci>
             <ime></ime>
             <prezime></prezime>
-            У
-            <mesto></mesto>
-            ,
-            <adresa_mesta>
-                <ulica></ulica>
-                <broj></broj>
-                <grad></grad>
-            </adresa_mesta>
             дана
-            <dan_mesec></dan_mesec>
-            201
-            <godina></godina>
+            <datum_podnosenja></datum_podnosenja>
             године
             <drugi_podaci_kontakt></drugi_podaci_kontakt>
-            <potpis></potpis>
         </podaci>
     </zalba_sadrzaj>
     <napomene>

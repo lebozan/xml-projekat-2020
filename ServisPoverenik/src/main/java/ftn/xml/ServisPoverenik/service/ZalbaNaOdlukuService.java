@@ -1,5 +1,6 @@
 package ftn.xml.ServisPoverenik.service;
 
+import ftn.xml.ServisPoverenik.model.zalbanaodluku.ZalbaNaOdluku;
 import ftn.xml.ServisPoverenik.repository.ZalbaNaOdlukuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,12 @@ public class ZalbaNaOdlukuService {
 
     public boolean writeZalbaNaOdluku(String fileName) {
 
-        return zalbaNaOdlukuRepository.saveZalbaNaOdluku(fileName);
+        //return zalbaNaOdlukuRepository.saveZalbaNaOdluku(fileName);
+        return false;
     }
 
-    public void writeZalbaNaOdlukuXml(String documentId, String xml) throws Exception {
-        zalbaNaOdlukuRepository.saveZalbaNaOdlukuXml(documentId, xml);
+    public void writeZalbaNaOdlukuXml(ZalbaNaOdluku zo) throws Exception {
+        zalbaNaOdlukuRepository.saveZalbaNaOdluku(zo);
     }
 
 }

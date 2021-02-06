@@ -25,9 +25,9 @@
         <razlozi_podnsenja>
             zbog toga sto organ vlasti:
             <tipovi_razloga>
-                <tip_razloga>nije postupio</tip_razloga>
-                <tip_razloga>nije potupio u celosti</tip_razloga>
-                <tip_razloga>u zakonskom roku</tip_razloga>
+                <tip_razloga odabran="pred:odabran">nije postupio</tip_razloga>
+                <tip_razloga odabran="pred:odabran">nije potupio u celosti</tip_razloga>
+                <tip_razloga odabran="pred:odabran">u zakonskom roku</tip_razloga>
             </tipovi_razloga>
         </razlozi_podnsenja>
         <izjava about="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/podacizahtev">
@@ -42,7 +42,6 @@
     </sadrzaj>
     <podnosilac>
         <podnosilac_tuzbe xsi:type="TFizicko_lice">
-            <broj_racuna>000-0000000000000-00</broj_racuna>
             <adresa>
                 <mesto>Mesto</mesto>
                 <ulica>Ulica</ulica>
@@ -52,7 +51,6 @@
             <ime>ime0</ime>
             <prezime>prezime0</prezime>
         </podnosilac_tuzbe>
-        <potpis></potpis>
     </podnosilac>
     <mesto_i_datum>
         U<mesto>Prizrenu</mesto>, dana <datum_zalbe>2010-05-10</datum_zalbe>godine
