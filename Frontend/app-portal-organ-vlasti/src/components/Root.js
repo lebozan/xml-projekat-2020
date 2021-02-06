@@ -6,7 +6,8 @@ import Home from "./Home/Home";
 import LogIn from "./LogIn/LogIn";
 import CreateZahtev from "./Zahtev/CreateZahtev";
 import Register from "./Register/Register";
-
+import Sluzbenik from "./Sluzbenik/Sluzbenik";
+import AddObavestenje from "./Sluzbenik/Obavestenje/AddObavestenje";
 
 
 const Root = () => {
@@ -22,6 +23,8 @@ const Root = () => {
                 <Route component={LogIn} exact path="/login" />
                 <Route component={Register} exact path="/register"/>
                 <Route component={CreateZahtev} path="/createZahtev" />
+                <Route component={Sluzbenik} path="/sluzbenik" />
+                <Route component={AddObavestenje} path="/addObavestenje" />
             </Switch>
         </div>
     );

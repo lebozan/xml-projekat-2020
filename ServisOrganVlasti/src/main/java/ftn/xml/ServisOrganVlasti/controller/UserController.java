@@ -63,7 +63,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> login(@RequestBody Korisnik login) {
+    public ResponseEntity<Korisnik> login(@RequestBody Korisnik login) {
         try {
 
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(login.getKorisnickoIme(),
@@ -82,7 +82,7 @@ public class UserController {
             headers.add("token", authToken);
             Korisnik k = this.service.login(login.getKorisnickoIme());
 
-            return new ResponseEntity<>(k.getKorisnickoIme(),
+            return new ResponseEntity<>(k,
                     headers, HttpStatus.OK);
 
         } catch (Exception e) {

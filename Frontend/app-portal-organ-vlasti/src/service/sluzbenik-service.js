@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-const url = "localhost:8085";
+const url = '/api/api/zahtev/';
 
-class SluzbenikService {
-
+export class SluzbenikService {
    static getZahtevi() {
       return new Promise((resolve, reject) =>
-         axios.get(url)
+         axios.get(url + "getAll")
            .then(res => {
                if (res.status === 200) {
                    resolve(res.data);
@@ -17,5 +16,3 @@ class SluzbenikService {
       );
    };
 };
-
-export default SluzbenikService;
