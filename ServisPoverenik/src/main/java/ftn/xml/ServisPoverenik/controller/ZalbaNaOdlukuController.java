@@ -62,7 +62,7 @@ public class ZalbaNaOdlukuController {
             Schema schema = sf.newSchema(new File("../xml-documents/zalbanaodluku-schema.xsd"));
             unmarshaller.setSchema(schema);
             ZalbaNaOdluku zalbaOdluka = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("../xml-documents/zalbanaodluku.xml"));
-            zalbaNaOdlukuService.writeZalbaNaOdluku(zalbaOdluka);
+            zalbaNaOdlukuService.writeZalbaNaOdlukuXml(zalbaOdluka);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
