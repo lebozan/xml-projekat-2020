@@ -1,9 +1,10 @@
 import * as React from "react";
 import PortalContext from '../../context/portal-context'
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Button } from "react-bootstrap";
 
 
 import "./Navigation.css";
+import { Link } from "react-router-dom";
 
 class Navigation extends React.Component {
     static contextType = PortalContext;
@@ -16,10 +17,10 @@ class Navigation extends React.Component {
         <PortalContext.Consumer>
             {context => (
                 <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                <Navbar.Brand href="home">Portal - Pristup javnim informacijama</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                  <Nav className="mr-auto">
+                  {/* <Nav className="mr-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
                     <Nav.Link href="#link">Link</Nav.Link>
                     <Nav.Link href="safe/createZahtev">Zahtev</Nav.Link>
@@ -30,11 +31,10 @@ class Navigation extends React.Component {
                       <NavDropdown.Divider />
                       <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                     </NavDropdown>
-                  </Nav>
-                  <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-success">Search</Button>
-                  </Form>
+                  </Nav> */}
+                  <Link to="/login" className="ml-auto">
+                    <Button variant="outline-primary">LogIn</Button>
+                  </Link>
                 </Navbar.Collapse>
               </Navbar>
             )}

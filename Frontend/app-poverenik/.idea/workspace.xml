@@ -2,14 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19de2ad1-e924-4e0d-bc02-ae0f42caffbd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/LogIn/LogIn.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Sluzbenik/Obavestenje/AddObavestenje.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Sluzbenik/Obavestenje/Obavestenje.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Sluzbenik/Sluzbenik.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Sluzbenik/Sluzbenik.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/service/sluzbenik-service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app-portal-organ-vlasti/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-portal-organ-vlasti/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-portal-organ-vlasti/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/LogIn/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/LogIn/LogIn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Navigation/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Navigation/Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Register/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Register/Register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Root.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app-portal-organ-vlasti/src/components/Root.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Root.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Root.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/repository/ZahtevRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/repository/ZahtevRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ServisPoverenik/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisPoverenik/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/ServisOrganVlastiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/ServisOrganVlastiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/config/WebServiceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/config/WebServiceConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/repository/KorisnikRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/java/ftn/xml/ServisOrganVlasti/repository/KorisnikRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/resources/exist.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../ServisOrganVlasti/src/main/resources/exist.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +65,7 @@
       <option name="presentableId" value="Default" />
       <updated>1612561079404</updated>
       <workItem from="1612561081663" duration="2378000" />
+      <workItem from="1612626616106" duration="1367000" />
     </task>
     <servers />
   </component>
@@ -68,5 +82,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
