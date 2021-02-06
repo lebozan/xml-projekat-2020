@@ -13,7 +13,6 @@ class SafeComponent extends Component {
             <div>
                 <main>
                     <Route component={CreateZahtev} exact path='/safe/createZahtev'/>
-                    <Route component={CreateZahtev} path="/safe/createZahtev" />
                     <Route component={Sluzbenik} path="/safe/sluzbenik" />
                     <Route component={AddObavestenje} path="/safe/addObavestenje" />
                 </main>

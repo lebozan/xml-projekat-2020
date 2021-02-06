@@ -1,17 +1,19 @@
 package ftn.xml.EmailMicroService.service;
 
-import ftn.xml.EmailMicroService.model.MailTemplate;
+import ftn.xml.EmailMicroService.model.EmailTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamSource;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.io.IOException;
 
 @Service
@@ -21,9 +23,7 @@ public class MailService {
     private JavaMailSender javaMailSender;
 
 
-    public void sendTextEmail(MailTemplate emailTemplate) {
-
-
+    public void sendTextEmail(EmailTemplate emailTemplate) {
 
         try {
 
@@ -59,7 +59,7 @@ public class MailService {
 
     }
 
-    public void sendEmailWithAttachment(MailTemplate mailTemplate, MultipartFile multipartFile) throws MessagingException, IOException {
+    public void sendEmailWithAttachment(EmailTemplate mailTemplate) throws MessagingException {
 
         MimeMessage msg = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
@@ -69,10 +69,20 @@ public class MailService {
             helper.setSubject(mailTemplate.getSubject());
             // default = text/plain
             // true = text/html
-            helper.setText("<h1>" + "Find the Attachment file" + "</h1>", true);
-            InputStreamSource attachment = new ByteArrayResource(multipartFile.getBytes());
+            Multipart emailContent = new MimeMultipart();
 
-            helper.addAttachment(multipartFile.getOriginalFilename(), attachment);
+            //Text body part
+            MimeBodyPart textBodyPart = new MimeBodyPart();
+            textBodyPart.setText("My multipart text");
+
+            //Attachment body part.
+            MimeBodyPart fileAttachment = new MimeBodyPart();
+            fileAttachment.attachFile(mailTemplate.getAttachmentPath());
+
+            //Attach body parts
+            emailContent.addBodyPart(textBodyPart);
+            emailContent.addBodyPart(fileAttachment);
+            msg.setContent(emailContent);
             javaMailSender.send(msg);
         } catch (Exception e) {
             e.printStackTrace();
