@@ -1,11 +1,24 @@
 package ftn.xml.ServisPoverenik.controller;
 
-
+import ftn.xml.ServisPoverenik.model.zalbanaodluku.ZalbaNaOdluku;
+import ftn.xml.ServisPoverenik.model.zalbanaodluku.ZalbeNaOdluku;
 import ftn.xml.ServisPoverenik.service.ZalbaNaOdlukuService;
+
+import java.io.File;
+import java.util.UUID;
+
+import javax.xml.XMLConstants;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.JAXBException;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ftn.xml.ServisPoverenik.util.ZalbaNaOdlukuXSLTransformer;
 
 
 @RestController
@@ -38,10 +51,18 @@ public class ZalbaNaOdlukuController {
         }
     }
 
-    @RequestMapping(value = "/xml/{documentId}", method = RequestMethod.POST, consumes = "application/xml")
-    public ResponseEntity<String> writeZalbaOdlukaXml(@PathVariable String documentId, @RequestBody String xml) {
+    @RequestMapping(value = "/createZalbaOdluka", method = RequestMethod.POST, consumes = "application/xml")
+    public ResponseEntity<String> writeZalbaOdlukaXml(@RequestBody String xml) {
         try {
-            zalbaNaOdlukuService.writeZalbaNaOdlukuXml(documentId, xml);
+            ZalbaNaOdlukuXSLTransformer.generateXML(xml);
+
+            JAXBContext context = JAXBContext.newInstance(ZalbaNaOdluku.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = sf.newSchema(new File("../xml-documents/zalbanaodluku-schema.xsd"));
+            unmarshaller.setSchema(schema);
+            ZalbaNaOdluku zalbaOdluka = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("../xml-documents/zalbanaodluku.xml"));
+            zalbaNaOdlukuService.writeZalbaNaOdluku(zalbaOdluka);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

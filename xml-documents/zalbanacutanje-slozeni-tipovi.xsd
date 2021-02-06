@@ -17,7 +17,6 @@
     </xs:complexType>
     <xs:complexType abstract="true" name="TLice">
         <xs:sequence>
-            <xs:element default="000-0000000000000-00" name="broj_racuna" type="TBroj_racuna"/>
             <xs:element name="adresa" type="TAdresa"/>
         </xs:sequence>
     </xs:complexType>
@@ -47,9 +46,15 @@
     </xs:simpleType>
     <xs:complexType mixed="true" name="TRazlog">
         <xs:sequence>
-            <xs:element name="tip_razloga" type="xs:string"/>
-            <xs:element name="tip_razloga" type="xs:string"/>
-            <xs:element name="tip_razloga" type="xs:string"/>
+            <xs:element name="tip_razloga" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="odabran" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
