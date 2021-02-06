@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/email" xmlns="http://www.ftn.uns.ac.rs/email">
+
+    <xs:element name="EmailTemplate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="sentFrom" type="xs:string"/>
+                <xs:element name="sendTo" type="xs:string"/>
+                <xs:element name="subject" type="xs:string"/>
+                <xs:element name="body" type="xs:string"/>
+                <xs:element name="attachmentPath" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

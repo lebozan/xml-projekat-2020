@@ -36,6 +36,6 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
     @Bean
     public XsdSchema zahtevSchema() {
-        return new SimpleXsdSchema(new FileSystemResource("ServisOrganVlasti/src/main/resources/seme/zahtevWSDL.xsd"));
+        return new SimpleXsdSchema(new FileSystemResource("src/main/resources/seme/zahtevWSDL.xsd"));
     }
 }

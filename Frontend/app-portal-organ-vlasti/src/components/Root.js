@@ -26,7 +26,7 @@ const Root = () => {
                 <Route component={LogIn} exact path="/login" />
                 <Route component={Register} exact path="/register"/>
                 <Route path="/safe/*">
-                    <ProtectedRoute component={SafeComponent}/>
+                    <ProtectedRoute component={<SafeComponent/>}/>
                 </Route>
             </Switch>
         </div>

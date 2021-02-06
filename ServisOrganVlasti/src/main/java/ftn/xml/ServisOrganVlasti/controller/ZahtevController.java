@@ -1,6 +1,8 @@
 package ftn.xml.ServisOrganVlasti.controller;
 
 import ftn.xml.ServisOrganVlasti.dto.PathDTO;
+import ftn.xml.ServisOrganVlasti.model.email.EmailTemplate;
+import ftn.xml.ServisOrganVlasti.model.korisnik.Korisnik;
 import ftn.xml.ServisOrganVlasti.model.zahtev.ZahtevZaPristupInformacijama;
 import ftn.xml.ServisOrganVlasti.model.zahtevi.Zahtevi;
 import ftn.xml.ServisOrganVlasti.service.ZahtevService;
@@ -9,7 +11,12 @@ import ftn.xml.ServisOrganVlasti.util.JAXBReader;
 import ftn.xml.ServisOrganVlasti.util.ZahtevXSLTransformer;
 import org.checkerframework.checker.formatter.qual.ReturnsFormat;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -73,6 +80,8 @@ public class ZahtevController {
             zahtev.setId(UUID.randomUUID().toString());
             zahtevService.writeZahtevXml(zahtev);
 
+            sendEmail();
+
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,5 +123,22 @@ public class ZahtevController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    private void sendEmail() {
+        Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        Korisnik korisnik = (Korisnik) currentUser.getPrincipal();
+        EmailTemplate emailTemplate = new EmailTemplate();
+        emailTemplate.setAttachmentPath("D:\\Users\\Hp Zbook 15\\Desktop\\xml-projekat-2020\\ServisOrganVlasti\\src\\main\\resources\\xmlFiles\\xhtml\\zahtev.html");
+        emailTemplate.setBody("HTML kreiranog zahteva.");
+        emailTemplate.setSentFrom("Servis organa vlasti");
+        emailTemplate.setSubject("Uspesno kreiran zahtev");
+        emailTemplate.setSendTo(korisnik.getUsername());
+
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<EmailTemplate> entity = new HttpEntity<>(emailTemplate);
+
+
+        restTemplate.postForEntity("http://localhost:6969/email/send/attachemail", entity, String.class);
+    }
 
 }

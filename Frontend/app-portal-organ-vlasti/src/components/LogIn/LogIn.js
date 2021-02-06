@@ -26,7 +26,7 @@ const LogIn = (props) => {
                 let korisnik = jwtDecode(response.headers.token);
                 console.log(korisnik);
                 checkRole(korisnik.role);
-                localStorage.setItem("token", response.headers.token);
+                localStorage.setItem("tokenOrganVlasti", response.headers.token);
 
             }, (error) => {
                 console.log(error);

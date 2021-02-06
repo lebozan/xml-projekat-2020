@@ -248,6 +248,8 @@ public class ZahtevRepository {
         }
     }
 
+
+
     public Object getAllZahtevi() {
         String collectionId = null;
         String xqueryFilePath = null, xqueryExpression = null;
