@@ -38,17 +38,20 @@ import java.util.List;
 public class ZalbaNaOdlukuRepository {
 
     private final String ZALBA_ODLUKA_COLLECTION_NAME = "/db/zalbaNaOdluku";
+    public final String ZALBA_ODLUKA_NAMED_GRAPH_URI = "/zalbaNaOdluku/metadata";
 
-    public boolean saveZalbaNaOdluku(ZalbaNaOdluku zo){
+    public void saveZalbaNaOdluku(ZalbaNaOdluku zo) throws Exception{
 
+        String collectionId = ZALBA_ODLUKA_COLLECTION_NAME;
         Collection col = null;
         OutputStream os = new ByteArrayOutputStream();
         String targetNamespace = "http://www.ftn.un.ac.rs/zalbaNaOdluku";
+        XMLResource res = null;
 
         try {
             
-            col = XmlDbConnectionUtils.getOrCreateCollection("/db/ZalbeNaOdluku");
-            XMLResource res = (XMLResource) col.getResource("ZalbeNaOdluku.xml");
+            col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
+            res = (XMLResource) col.getResource("ZalbeNaOdluku.xml");
 
             if (res == null) {
                 res = (XMLResource) col.createResource("ZalbeNaOdluku.xml", XMLResource.RESOURCE_TYPE);
@@ -56,10 +59,9 @@ public class ZalbaNaOdlukuRepository {
                 Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
                 jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-//                ZalbeNaOdluku zalbenaodluku = new ZalbeNaOdluku();
-//                List<ZalbaNaOdluku> lista = new ArrayList<>();
+                ZalbeNaOdluku zalbenaodluku = new ZalbeNaOdluku();
+                List<ZalbaNaOdluku> lista = new ArrayList<>();
 //                ZalbaNaOdluku prvi = new ZalbaNaOdluku();
-//                //TODO: postaviti sve atribute zalbe
 //                Zaglavlje z = new Zaglavlje();
 //                z.setNaslov("ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ");
 //                z.setPrimalac("Повереникy за информације од јавног значаја и заштиту података о личности");
@@ -80,31 +82,48 @@ public class ZalbaNaOdlukuRepository {
                 col.storeResource(res);
             }
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(ZalbaNaOdluku.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
+            JAXBContext contextZalbaOdluka = JAXBContext.newInstance(ZalbaNaOdluku.class);
+            Unmarshaller unmarshaller = contextZalbaOdluka.createUnmarshaller();
             os = new ByteArrayOutputStream();
-            jaxbMarshaller.marshal(documentId, os);
+
+            SchemaFactory sfZalbeOdluka = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schemaZalbeOdluka = sfZalbeOdluka.newSchema(new File("../xml-documents/zalbanaodluku-schema.xsd"));
+            unmarshaller.setSchema(schemaZalbeOdluka);
+
+            ZalbeNaOdluku zalbe =(ZalbeNaOdluku) unmarshaller.unmarshal(res.getContentAsDOM());
+            zalbe.getZalbaNaOdluku().add(zo);
+
+            Marshaller marshaller = contextZalbaOdluka.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller.setSchema(schemaZalbeOdluka);
+            marshaller.marshal(zalbe, os);
 
             res.setContent(os);
 
-            String xmlFragment = os.toString();
-            String xmlStart = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
-            xmlFragment = xmlFragment.replace(xmlStart, "");
-            System.out.println(xmlFragment);
+            col.storeResource(res);
+            
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
 
-            XUpdateQueryService service = (XUpdateQueryService) col.getService("XUpdateQueryService", "1.0");
-            service.setProperty("indent", "yes");
+            //don't forget to cleanup
+            if (res != null) {
+                try {
+                    ((EXistResource) res).freeResources();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
 
-            String contextPath = "/ZalbeNaOdluku";
-            System.out.println(String.format(XUpdateTemplate.append(targetNamespace), contextPath, xmlFragment));
-            long mods = service.updateResource("ZalbeNaOdluku.xml", String.format(XUpdateTemplate.append(targetNamespace), contextPath, xmlFragment));
-
-            System.out.println("[INFO] " + mods + " modifications processed.");
+            if (col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
         }
 
-        return true;
     }
 
 
