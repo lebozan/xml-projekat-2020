@@ -8,6 +8,9 @@ import CreateZahtev from "./Zahtev/CreateZahtev";
 import Register from "./Register/Register";
 import Sluzbenik from "./Sluzbenik/Sluzbenik";
 import AddObavestenje from "./Sluzbenik/Obavestenje/AddObavestenje";
+import ProtectedRoute from "./LogIn/ProtectedRoute";
+import SafeComponent from "./SafeComponent";
+
 
 
 const Root = () => {
@@ -22,6 +25,9 @@ const Root = () => {
                 <Route component={Home} exact path="/home" /> 
                 <Route component={LogIn} exact path="/login" />
                 <Route component={Register} exact path="/register"/>
+                <Route path="/safe/*">
+                    <ProtectedRoute component={SafeComponent}/>
+                </Route>
                 <Route component={CreateZahtev} path="/createZahtev" />
                 <Route component={Sluzbenik} path="/sluzbenik" />
                 <Route component={AddObavestenje} path="/addObavestenje" />

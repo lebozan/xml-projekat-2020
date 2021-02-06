@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    xmlns:ns1="http://www.ftn.uns.ac.rs/zalbanacutanje"
+    targetNamespace="http://www.ftn.un.ac.rs/zalbeNaOdluku"
+    xmlns="http://www.ftn.un.ac.rs/zalbeNaOdluku">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/zalbanacutanje"
+        schemaLocation="zalbanacutanje.xsd"/>
+    <xs:element name="zalbeNaCutanje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="ns1:zalbaCutanje"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

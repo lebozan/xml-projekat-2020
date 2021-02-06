@@ -304,27 +304,20 @@ public class KorisnikRepository {
         String collectionId = null;
         String xqueryFilePath = null, xqueryExpression = null;
 
-        System.out.println("[INFO] Using defaults.");
         collectionId = "/db/organVlastiKorisnici";
         xqueryFilePath = "src/main/resources/query/getUserById.xqy";
-
-        System.out.println("\t- collection ID: " + collectionId);
-        System.out.println("\t- xQuery file path: " + xqueryFilePath);
 
         Collection col = null;
 
         try {
 
             // get the collection
-            System.out.println("[INFO] Retrieving the collection: " + collectionId);
             col = XmlDbConnectionUtils.getOrCreateCollection(collectionId);
 
             // get an instance of xquery service
             XQueryService xqueryService = (XQueryService) col.getService("XQueryService", "1.0");
             xqueryService.setProperty("indent", "yes");
 
-            // read xquery
-            System.out.println("[INFO] Invoking XQuery service for: " + xqueryFilePath);
 
             xqueryExpression = String.format(this.readFile(xqueryFilePath), id);
             System.out.println(xqueryExpression);
@@ -332,9 +325,6 @@ public class KorisnikRepository {
             // compile and execute the expression
             CompiledExpression compiledXquery = xqueryService.compile(xqueryExpression);
             ResourceSet result = xqueryService.execute(compiledXquery);
-
-            // handle the results
-            System.out.println("[INFO] Handling the results... ");
 
             ResourceIterator i = result.getIterator();
             Resource res = null;

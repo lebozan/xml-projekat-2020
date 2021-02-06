@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:z="http://www.ftn.uns.ac.rs/zahtev" version="1.0">
+                xmlns:z="http://www.ftn.uns.ac.rs/zahtev"
+                xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
     <xsl:template match="/">
-        <z:zahtev_za_pristup_informacijama>
+        <z:zahtev_za_pristup_informacijama >
             <z:zaglavlje>
                 <z:organ>
                     <z:naziv_organa>
@@ -21,16 +23,35 @@
                 На основу члана 15. ст. 1. Закона о слободном приступу информацијама од јавног значаја („Службени гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10), од горе наведеног органа захтевам:*
                 <z:tipovi_zahteva>
                     <xsl:for-each select="z:zahtev/z:sadrzaj/z:tip_zahteva">
+                        <xsl:variable name="odabran" select="@odabran"></xsl:variable>
                         <z:tip_zahteva>
+                            <xsl:if test="$odabran != ''">
+                                <xsl:attribute name="odabran">
+                                    <xsl:value-of select="$odabran"></xsl:value-of>
+                                </xsl:attribute>
+                            </xsl:if>
                             <xsl:value-of select="text()"></xsl:value-of>
                         </z:tip_zahteva>
                     </xsl:for-each>
-                    <z:tip_zahteva_dostava>достављање копије документа који садржи тражену информацију:**
+                    <z:tip_zahteva_dostava>
+                        <xsl:variable name="odabranDostava" select="z:zahtev/z:sadrzaj/z:tip_zahteva_dostava/@odabran"></xsl:variable>
+                        <xsl:if test="$odabranDostava != ''">
+                            <xsl:attribute name="odabran">
+                                <xsl:value-of select="$odabranDostava"></xsl:value-of>
+                            </xsl:attribute>
+                        </xsl:if>
+                        dostavljanje kopije dokumenta koji sadrži traženu informaciju:**
                         <z:vrste_dostave>
                             <xsl:for-each
                                     select="z:zahtev/z:sadrzaj/z:tip_zahteva_dostava/z:dostava"
                             >
+                                <xsl:variable name="odabrana" select="@odabrana"></xsl:variable>
                                 <z:dostava>
+                                    <xsl:if test="$odabrana != ''">
+                                        <xsl:attribute name="odabrana">
+                                            <xsl:value-of select="$odabrana"></xsl:value-of>
+                                        </xsl:attribute>
+                                    </xsl:if>
                                     <xsl:value-of select="text()"></xsl:value-of>
                                 </z:dostava>
                             </xsl:for-each>
@@ -45,16 +66,25 @@
                 </z:informacije_o_zahtevu>
             </z:sadrzaj>
             <z:informacije_trazioca>
+                <xsl:attribute name="about">http://www.ftn.uns.ac.rs/rdf/resenje/trazilac</xsl:attribute>
                 <z:ime>
+                    <xsl:attribute name="property">pred:ime</xsl:attribute>
+                    <xsl:attribute name="datatype">xsi:string</xsl:attribute>
                     <xsl:value-of select="z:zahtev/z:trazilac/z:ime[text()]"></xsl:value-of>
                 </z:ime>
                 <z:prezime>
+                    <xsl:attribute name="property">pred:prezime</xsl:attribute>
+                    <xsl:attribute name="datatype">xsi:string</xsl:attribute>
                     <xsl:value-of select="z:zahtev/z:trazilac/z:prezime[text()]"></xsl:value-of>
                 </z:prezime>
                 <z:adresa>
+                    <xsl:attribute name="property">pred:adresa</xsl:attribute>
+                    <xsl:attribute name="datatype">xsi:string</xsl:attribute>
                     <xsl:value-of select="z:zahtev/z:trazilac/z:adresa[text()]"></xsl:value-of>
                 </z:adresa>
                 <z:kontakt_podaci>
+                    <xsl:attribute name="property">pred:kontakt</xsl:attribute>
+                    <xsl:attribute name="datatype">xsi:string</xsl:attribute>
                     <xsl:value-of select="z:zahtev/z:trazilac/z:kontakt_podaci[text()]"></xsl:value-of>
                 </z:kontakt_podaci>
             </z:informacije_trazioca>

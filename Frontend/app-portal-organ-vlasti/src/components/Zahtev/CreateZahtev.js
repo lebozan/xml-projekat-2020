@@ -72,8 +72,8 @@ const CreateZahtev = () => {
         xml += '    <trazilac\n' +
             '        <ime>' + user.ime + '</ime>\n' +
             '        <prezime>'+ user.prezime + '</prezime>\n' +
-            '        <adresa>adresa0</adresa>\n' +
-            '        <kontakt_podaci>kontakt_podaci0</kontakt_podaci>\n' +
+            '        <adresa>Adresa 123</adresa>\n' +
+            '        <kontakt_podaci>064-123123</kontakt_podaci>\n' +
             '    </trzilac>\n' +
             '    <mesto_i_datum>\n' +
             '        <mesto>Pozarevac</mesto>\n' +
