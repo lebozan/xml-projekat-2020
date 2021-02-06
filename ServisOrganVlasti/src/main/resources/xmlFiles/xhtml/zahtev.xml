@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<z:zahtev_za_pristup_informacijama xmlns:z="http://www.ftn.uns.ac.rs/zahtev">
+<z:zahtev_za_pristup_informacijama xmlns:z="http://www.ftn.uns.ac.rs/zahtev"
+                                   xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/"
+                                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <z:zaglavlje>
       <z:organ>
          <z:naziv_organa>Dom Zdravlja</z:naziv_organa>
@@ -31,11 +33,11 @@
                     <z:opis_zahteva>Stanje kvaliteta vode</z:opis_zahteva>
       </z:informacije_o_zahtevu>
    </z:sadrzaj>
-   <z:informacije_trazioca>
-      <z:ime>Bojan</z:ime>
-      <z:prezime>Cakic</z:prezime>
-      <z:adresa>Adresa 123</z:adresa>
-      <z:kontakt_podaci>064-123123123</z:kontakt_podaci>
+   <z:informacije_trazioca about="http://www.ftn.uns.ac.rs/rdf/resenje/trazilac">
+      <z:ime property="pred:ime" datatype="xsi:string">Bojan</z:ime>
+      <z:prezime property="pred:prezime" datatype="xsi:string">Cakic</z:prezime>
+      <z:adresa property="pred:adresa" datatype="xsi:string">Adresa 123</z:adresa>
+      <z:kontakt_podaci property="pred:kontakt" datatype="xsi:string">064-123123123</z:kontakt_podaci>
    </z:informacije_trazioca>
    <z:mesto_i_datum>
       <z:mesto>Pozarevac</z:mesto>

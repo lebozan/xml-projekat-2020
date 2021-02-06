@@ -45,15 +45,15 @@ public class ZahtevController {
     @Autowired
     ZahtevXSLTransformer zahtevXSLTransformer;
 
-    UUID uuid = UUID.randomUUID();
 
-    @RequestMapping(value = "/read", method = RequestMethod.GET, produces = "application/xml")
-    public ResponseEntity<Object> readXmlFile(@RequestParam String documentId) {
+    @RequestMapping(value = "/read/{id}", method = RequestMethod.GET, produces = "application/xml")
+    public ResponseEntity<Object> findZahtevById(@PathVariable String id) {
         try {
-            Object zahtev = zahtevService.readZahtev(documentId);
+            Object zahtev = zahtevService.readZahtev(id);
 
             return new ResponseEntity<>(zahtev, HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -70,7 +70,7 @@ public class ZahtevController {
             Schema schema = sf.newSchema(new File("../xml-documents/zahtev.xsd"));
             unmarshaller.setSchema(schema);
             ZahtevZaPristupInformacijama zahtev = (ZahtevZaPristupInformacijama) unmarshaller.unmarshal(new File("src/main/resources/xmlFiles/xhtml/zahtev.xml"));
-
+            zahtev.setId(UUID.randomUUID().toString());
             zahtevService.writeZahtevXml(zahtev);
 
             return new ResponseEntity<>(HttpStatus.OK);

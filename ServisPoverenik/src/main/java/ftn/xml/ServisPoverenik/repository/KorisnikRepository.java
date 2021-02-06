@@ -52,7 +52,7 @@ public class KorisnikRepository {
         try {
 //            XMLResourcesDB resourcesDb = this.connection.run("korisnici.xml");
 
-            col = XmlDbConnectionUtils.getOrCreateCollection("/db/organVlastiKorisnici");
+            col = XmlDbConnectionUtils.getOrCreateCollection("/db/poverenikKorisnici");
             XMLResource res = (XMLResource) col.getResource("korisnici.xml");
 
             if (res == null) {

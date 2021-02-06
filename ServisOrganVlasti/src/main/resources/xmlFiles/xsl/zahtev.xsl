@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:z="http://www.ftn.uns.ac.rs/zahtev" version="1.0">
+                xmlns:z="http://www.ftn.uns.ac.rs/zahtev"
+                xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
     <xsl:template match="/">
-        <z:zahtev_za_pristup_informacijama>
+        <z:zahtev_za_pristup_informacijama >
             <z:zaglavlje>
                 <z:organ>
                     <z:naziv_organa>
@@ -64,16 +66,25 @@
                 </z:informacije_o_zahtevu>
             </z:sadrzaj>
             <z:informacije_trazioca>
+                <xsl:attribute name="about">http://www.ftn.uns.ac.rs/rdf/resenje/trazilac</xsl:attribute>
                 <z:ime>
+                    <xsl:attribute name="property">pred:ime</xsl:attribute>
+                    <xsl:attribute name="datatype">xsi:string</xsl:attribute>
                     <xsl:value-of select="z:zahtev/z:trazilac/z:ime[text()]"></xsl:value-of>
                 </z:ime>
                 <z:prezime>
+                    <xsl:attribute name="property">pred:prezime</xsl:attribute>
+                    <xsl:attribute name="datatype">xsi:string</xsl:attribute>
                     <xsl:value-of select="z:zahtev/z:trazilac/z:prezime[text()]"></xsl:value-of>
                 </z:prezime>
                 <z:adresa>
+                    <xsl:attribute name="property">pred:adresa</xsl:attribute>
+                    <xsl:attribute name="datatype">xsi:string</xsl:attribute>
                     <xsl:value-of select="z:zahtev/z:trazilac/z:adresa[text()]"></xsl:value-of>
                 </z:adresa>
                 <z:kontakt_podaci>
+                    <xsl:attribute name="property">pred:kontakt</xsl:attribute>
+                    <xsl:attribute name="datatype">xsi:string</xsl:attribute>
                     <xsl:value-of select="z:zahtev/z:trazilac/z:kontakt_podaci[text()]"></xsl:value-of>
                 </z:kontakt_podaci>
             </z:informacije_trazioca>
