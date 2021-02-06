@@ -214,7 +214,7 @@ public class KorisnikRepository {
         // initialize collection and document identifiers
         String collectionId = "/db/organVlastiKorisnici";
         String xqueryFilePath = null, xqueryExpression = null;
-        xqueryFilePath = "src/main/resources/query/query-log.xqy";
+        xqueryFilePath = "ServisOrganVlasti/src/main/resources/query/query-log.xqy";
 
         Collection col = null;
 
@@ -247,7 +247,7 @@ public class KorisnikRepository {
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
             SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = sf.newSchema(new File("../xml-documents/korisnik.xsd"));
+            Schema schema = sf.newSchema(new File("ServisOrganVlasti/src/main/resources/seme/korisnik.xsd"));
             unmarshaller.setSchema(schema);
 
 

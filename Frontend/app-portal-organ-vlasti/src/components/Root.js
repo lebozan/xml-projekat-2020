@@ -6,6 +6,8 @@ import Home from "./Home/Home";
 import LogIn from "./LogIn/LogIn";
 import CreateZahtev from "./Zahtev/CreateZahtev";
 import Register from "./Register/Register";
+import Sluzbenik from "./Sluzbenik/Sluzbenik";
+import AddObavestenje from "./Sluzbenik/Obavestenje/AddObavestenje";
 import ProtectedRoute from "./LogIn/ProtectedRoute";
 import SafeComponent from "./SafeComponent";
 
@@ -26,6 +28,9 @@ const Root = () => {
                 <Route path="/safe/*">
                     <ProtectedRoute component={SafeComponent}/>
                 </Route>
+                <Route component={CreateZahtev} path="/createZahtev" />
+                <Route component={Sluzbenik} path="/sluzbenik" />
+                <Route component={AddObavestenje} path="/addObavestenje" />
             </Switch>
         </div>
     );
