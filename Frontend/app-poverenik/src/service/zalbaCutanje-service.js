@@ -17,4 +17,17 @@ export default class ZalbaCutanjeService {
         );
 
     }
+
+    static getZalbaCutanje(documentId) {
+        return new Promise((resolve, reject) =>
+            axios.get(url + '/read?documentId=' + documentId)
+                .then(res => {
+                    if (res.status === 200) {
+                        resolve(res.data);
+                    } else {
+                        reject("Error getting zalba na cutanje!");
+                    }
+                })
+        );
+    };
 }
