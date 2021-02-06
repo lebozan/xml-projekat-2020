@@ -9,6 +9,7 @@
 package ftn.xml.ServisOrganVlasti.model.korisnik;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,6 +19,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -244,8 +246,13 @@ public class Korisnik implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(getTipKorisnika());
+        ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        authorities.add(grantedAuthority);
+        return authorities;
     }
+
+
 
     @Override
     public String getPassword() {

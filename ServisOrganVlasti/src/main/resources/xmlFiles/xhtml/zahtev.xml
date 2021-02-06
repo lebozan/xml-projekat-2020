@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<z:zahtev_za_pristup_informacijama xmlns:z="http://www.ftn.uns.ac.rs/zahtev">
+<z:zahtev_za_pristup_informacijama xmlns:z="http://www.ftn.uns.ac.rs/zahtev"
+                                   xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/"
+                                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <z:zaglavlje>
       <z:organ>
-         <z:naziv_organa>naziv_organa0</z:naziv_organa>
-         <z:sediste_organa>sediste_organa0</z:sediste_organa>
+         <z:naziv_organa>Dom Zdravlja</z:naziv_organa>
+         <z:sediste_organa>Pozarevac</z:sediste_organa>
       </z:organ>
    </z:zaglavlje>
    <z:naslov>
@@ -16,10 +18,11 @@
          <z:tip_zahteva>obavestenje da li poseduje trazenu informaciju</z:tip_zahteva>
          <z:tip_zahteva>uvid u dokument koji sadrzi trazenu informaciju</z:tip_zahteva>
          <z:tip_zahteva>kopiju dokumenta koji sadrzi trazenu informaciju</z:tip_zahteva>
-         <z:tip_zahteva_dostava>достављање копије документа који садржи тражену информацију:**
+         <z:tip_zahteva_dostava odabran="true">
+                        dostavljanje kopije dokumenta koji sadrži traženu informaciju:**
                         <z:vrste_dostave>
                <z:dostava>postom</z:dostava>
-               <z:dostava>elektronskom postom</z:dostava>
+               <z:dostava odabrana="true">elektronskom postom</z:dostava>
                <z:dostava>faksom</z:dostava>
                <z:dostava>na drugi nacim:***</z:dostava>
             </z:vrste_dostave>
@@ -30,11 +33,11 @@
                     <z:opis_zahteva>Stanje kvaliteta vode</z:opis_zahteva>
       </z:informacije_o_zahtevu>
    </z:sadrzaj>
-   <z:informacije_trazioca>
-      <z:ime>Bojan</z:ime>
-      <z:prezime>Cakic</z:prezime>
-      <z:adresa>Adresa 123</z:adresa>
-      <z:kontakt_podaci>064-123123123</z:kontakt_podaci>
+   <z:informacije_trazioca about="http://www.ftn.uns.ac.rs/rdf/resenje/trazilac">
+      <z:ime property="pred:ime" datatype="xsi:string">Bojan</z:ime>
+      <z:prezime property="pred:prezime" datatype="xsi:string">Cakic</z:prezime>
+      <z:adresa property="pred:adresa" datatype="xsi:string">Adresa 123</z:adresa>
+      <z:kontakt_podaci property="pred:kontakt" datatype="xsi:string">064-123123123</z:kontakt_podaci>
    </z:informacije_trazioca>
    <z:mesto_i_datum>
       <z:mesto>Pozarevac</z:mesto>
@@ -46,8 +49,8 @@
                 </z:datum>
    </z:mesto_i_datum>
    <z:fusnote>
-      <z:fusnota>* У кућици означити која законска права на приступ информацијама желите да остварите.</z:fusnota>
-      <z:fusnota>** У кућици означити начин достављања копије докумената.</z:fusnota>
-      <z:fusnota>*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.</z:fusnota>
+      <z:fusnota>* U kućici označiti koja zakonska prava na pristup želite da ostvarite.</z:fusnota>
+      <z:fusnota>** U kućici označiti način dostavljanja kopije dokumenta.</z:fusnota>
+      <z:fusnota>*** Kada zahtevate drugi način dostavljanja obavezno upisati koji način dostavljanja zahtevate.</z:fusnota>
    </z:fusnote>
 </z:zahtev_za_pristup_informacijama>

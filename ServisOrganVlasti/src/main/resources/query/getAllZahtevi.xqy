@@ -1,5 +1,6 @@
-declare namespace zahtev = "http://www.ftn.un.ac.rs/zahtev";
+xquery version "3.1";
 
-for $k in doc ("/db/zahtev/korisnici.xml")/korisnici:korisnici/korisnik:korisnik
-where $k/korisnik:tip_korisnika="korisnik" and $k/@id_korisnika="%s"
-return $k
+declare namespace zahtevi = "http://www.ftn.un.ac.rs/zahtevi";
+
+for $z in doc("/db/zahtev/zahtevi.xml")
+return $z

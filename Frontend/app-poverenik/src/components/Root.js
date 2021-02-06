@@ -6,6 +6,9 @@ import Home from "./Home/Home";
 import LogIn from "./LogIn/LogIn";
 import CreateZalbaOdluka from "./ZalbaNaOdluku/CreateZalbaOdluka";
 import CreateZalbaCutanje from "./ZalbaNaCutanje/CreateZalbaCutanje";
+import ProtectedRoute from "./LogIn/ProtectedRoute";
+import SafeComponent from "./SafeComponent";
+
 
 
 
@@ -17,11 +20,13 @@ const Root = () => {
         <div>
             <Navigation />
             <Switch>
-                <Route component={Home} exact path="/" /> 
-                <Route component={Home} exact path="/home" /> 
-                <Route component={LogIn} exact path="/logIn" />
-                <Route component={CreateZalbaOdluka} path="/createZalbaOdluka" />
-                <Route component={CreateZalbaCutanje} path="/createZalbaCutanje" />
+                <Route component={Home} exact path="/" />
+                <Route component={Home} exact path="/home" />
+                <Route component={LogIn} exact path="/login" />
+                <Route component={Register} exact path="/register"/>
+                <Route path="/safe/*">
+                    <ProtectedRoute component={SafeComponent}/>
+                </Route>
             </Switch>
         </div>
     );

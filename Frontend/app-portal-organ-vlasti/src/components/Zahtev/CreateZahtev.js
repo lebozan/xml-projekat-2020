@@ -1,6 +1,7 @@
 import React from "react"
 import ZahtevService from '../../service/zahtev-service';
 import RenderZahtev from "./RenderZahtev";
+import jwtDecode from "jwt-decode";
 
 const CreateZahtev = () => {
 
@@ -8,78 +9,89 @@ const CreateZahtev = () => {
         console.log(data);
         let xml = ''
         xml += '<?xml version="1.0" encoding="UTF-8"?>\n' +
-            '<zahtev_za_pristup_informacijama xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/"\n' +
+            '<zahtev xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zahtev/predicate/"\n' +
             ' xmlns="http://www.ftn.uns.ac.rs/zahtev"\n' +
             ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n'
 
         xml += "<zaglavlje>\n" +
-            "<organ>\n" +
             "<naziv_organa>" + data.nazivOrgana + "</naziv_organa>\n"
 
         xml += "<sediste_organa>" + data.sedisteOrgana + "</sediste_organa>" +
-            "</organ>\n" +
-            "</zaglavlje>\n"
+            "</zaglavlje>\n" +
+            '<sadrzaj>\n' +
+            '<tipovi_zahteva>\n';
 
-        xml += '    <naslov>\n' +
-            '        З А Х Т Е В\n' +
-            '        за приступ информацији од јавног значаја\n' +
-            '    </naslov>\n' +
-            '    <sadrzaj>\n' +
-            '        <tekst>На основу члана 15. ст. 1. Закона о слободном приступу информацијама од јавног значаја („Службени гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10), од горе наведеног органа захтевам:*</tekst>'
-
-        xml += '<tipovi_zahteva>\n' +
-            '            <tip_zahteva>обавештење да ли поседује тражену информацију</tip_zahteva>\n' +
-            '            <tip_zahteva>увид у документ који садржи тражену информацију</tip_zahteva>\n' +
-            '            <tip_zahteva>копију документа који садржи тражену информацију</tip_zahteva>\n' +
-            '            <tip_zahteva_dostava>\n' +
-            '                <tekst>достављање копије документа који садржи тражену информацију:**</tekst>\n' +
-            '                <vrste_dostave>\n' +
-            '                    <dostava>поштом</dostava>\n' +
-            '                    <dostava>електронском поштом</dostava>\n' +
-            '                    <dostava>факсом</dostava>\n' +
-            '                    <dostava>на други начин:***</dostava>\n' +
-            '                </vrste_dostave>\n' +
-            '            </tip_zahteva_dostava>\n' +
-            '        </tipovi_zahteva>' +
-            '        <informacije_o_zahtevu>\n' +
-            '            <tekst>Овај захтев се односи на следеће информације:</tekst>\n' +
-            '            <opis_zahteva>' + data.zahtevInfo + '</opis_zahteva>\n' +
-            '        </informacije_o_zahtevu>' +
+        if (data.tipZahteva[0]) {
+            xml += '            <tip_zahteva odabran="true">obavestenje da li poseduje trazenu informaciju</tip_zahteva>\n';
+        } else {
+            xml += '            <tip_zahteva>obavestenje da li poseduje trazenu informaciju</tip_zahteva>\n';
+        }
+        if (data.tipZahteva[1]) {
+            xml += '            <tip_zahteva odabran="true">uvid u dokument koji sadrzi trazenu informaciju</tip_zahteva>\n';
+        } else {
+            xml += '            <tip_zahteva>uvid u dokument koji sadrzi trazenu informaciju</tip_zahteva>\n';
+        }
+        if (data.tipZahteva[2]) {
+            xml += '            <tip_zahteva odabran="true">kopiju dokumenta koji sadrzi trazenu informaciju</tip_zahteva>\n';
+        } else {
+            xml += '            <tip_zahteva>kopiju dokumenta koji sadrzi trazenu informaciju</tip_zahteva>\n';
+        }
+        if (data.tipZahteva[3]) {
+            xml += '            <tip_zahteva_dostava odabran="true">dostavljanje kopije dokumenta koji sadrzi trazenu informaciju:**</tip_zahteva_dostava>\n';
+        } else {
+            xml += '            <tip_zahteva_dostava>dostavljanje kopije dokumenta koji sadrzi trazenu informaciju:**</tip_zahteva_dostava>\n';
+        }
+        if (data.tipDostave[0]) {
+            xml += '            <dostava odabrana="true">postom</dostava>\n';
+        } else {
+            xml += '            <dostava>postom</dostava>\n';
+        }
+        if (data.tipDostave[1]) {
+            xml += '            <dostava odabrana="true">elektronskom postom</dostava>\n';
+        } else {
+            xml += '            <dostava>elektronskom postom</dostava>\n';
+        }
+        if (data.tipDostave[2]) {
+            xml += '            <dostava odabrana="true">faksom</dostava>\n';
+        } else {
+            xml += '            <dostava>faksom</dostava>\n';
+        }
+        if (data.tipDostave[3]) {
+            xml += '            <dostava odabrana="true">na drugi nacim:*** ' + data.customDostava + '</dostava>\n';
+        } else {
+            xml += '            <dostava>na drugi nacim:*** ' + data.customDostava + '</dostava>\n';
+        }
+        let user = jwtDecode(localStorage.getItem('token'));
+        xml +=
+            '        </tip_zahteva_dostava>\n' +
+            '     </tipovi_zahteva>\n' +
+            '     <opis>' + data.zahtevInfo + '</opis>\n' +
             '    </sadrzaj>\n'
 
-        xml += '    <informacije_trazioca about="http://www.ftn.uns.ac.rs/rdf/resenje/trazilac">\n' +
-            '        <ime property="pred:ime" datatype="xsi:string">ime0</ime>\n' +
-            '        <prezime property="pred:prezime" datatype="xsi:string">prezime0</prezime>\n' +
-            '        <adresa property="pred:adresa" datatype="xsi:string">adresa0</adresa>\n' +
-            '        <kontakt_podaci property="pred:kontakt" datatype="xsi:string">kontakt_podaci0</kontakt_podaci>\n' +
-            '        <potpis>potpis0</potpis>\n' +
-            '    </informacije_trazioca>\n' +
+        let datum = new Date();
+        xml += '    <trazilac\n' +
+            '        <ime>' + user.ime + '</ime>\n' +
+            '        <prezime>'+ user.prezime + '</prezime>\n' +
+            '        <adresa>Adresa 123</adresa>\n' +
+            '        <kontakt_podaci>064-123123</kontakt_podaci>\n' +
+            '    </trzilac>\n' +
             '    <mesto_i_datum>\n' +
-            '        <tekst>tekst1</tekst>\n' +
             '        <mesto>Pozarevac</mesto>\n' +
             '        <datum>\n' +
-            '            <tekst_dan>дана</tekst_dan>\n' +
-            '            <dan>1.</dan>\n' +
-            '            <mesec>2.</mesec>\n' +
-            '            <godina>2021.</godina>\n' +
-            '            <tekst_godina>године</tekst_godina>\n' +
+            '            <dan>'+ datum.getDate() + '.</dan>\n' +
+            '            <mesec>'+ datum.getMonth() + 1 + '.</mesec>\n' +
+            '            <godina>'+ datum.getFullYear() + '.</godina>\n' +
             '        </datum>\n' +
             '    </mesto_i_datum>\n' +
-            '    <fusnote>\n' +
-            '        <fusnota>* У кућици означити која законска права на приступ информацијама желите да остварите.</fusnota>\n' +
-            '        <fusnota>** У кућици означити начин достављања копије докумената.</fusnota>\n' +
-            '        <fusnota>*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.</fusnota>\n' +
-            '    </fusnote>\n' +
-            '</zahtev_za_pristup_informacijama>'
+            '</zahtev>'
 
         console.log(xml);
         ZahtevService.postZahtev(xml)
             .then(res => {
                 console.log(res);
-            })
-            .catch(error => {
+            }, error => {
                 console.log(error);
-            })
+            });
     }
 
     return (

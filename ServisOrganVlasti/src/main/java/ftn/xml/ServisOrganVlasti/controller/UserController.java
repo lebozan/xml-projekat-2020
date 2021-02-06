@@ -8,6 +8,7 @@ import javax.xml.bind.Marshaller;
 
 import ftn.xml.ServisOrganVlasti.dto.LoginDTO;
 import ftn.xml.ServisOrganVlasti.dto.UserRoleDTO;
+import ftn.xml.ServisOrganVlasti.model.korisnici.Korisnici;
 import ftn.xml.ServisOrganVlasti.model.korisnik.Korisnik;
 import ftn.xml.ServisOrganVlasti.security.TokenUtills;
 import ftn.xml.ServisOrganVlasti.service.KorisnikService;
@@ -46,7 +47,7 @@ public class UserController {
     private UserDetailsService userDetailsService;
 
     @PostMapping(value = "/register", consumes = "application/xml", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> test(@RequestBody Korisnik korisnik) {
+    public ResponseEntity<String> register(@RequestBody Korisnik korisnik) {
         try {
             boolean dodat = this.service.saveUser(korisnik);
             if (!dodat) {
@@ -102,6 +103,13 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
+        public ResponseEntity<Korisnici> getAllUsers() {
+            Korisnici k = service.getAllUsers();
+
+            return new ResponseEntity<>(k, HttpStatus.OK);
+        }
 
 }
 

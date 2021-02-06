@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/zahtevi" xmlns="http://www.ftn.uns.ac.rs/zahtevi"
+    xmlns:z="http://www.ftn.uns.ac.rs/zahtev">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/zahtev" schemaLocation="zahtev.xsd"/>
+    <xs:element name="zahtevi">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0"
+                    ref="z:zahtev_za_pristup_informacijama"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
