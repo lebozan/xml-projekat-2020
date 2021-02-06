@@ -61,7 +61,7 @@ const CreateZahtev = () => {
         } else {
             xml += '            <dostava>na drugi nacim:*** ' + data.customDostava + '</dostava>\n';
         }
-        let user = jwtDecode(localStorage.getItem('token'));
+        let user = jwtDecode(localStorage.getItem('tokenOrganVlasti'));
         xml +=
             '        </tip_zahteva_dostava>\n' +
             '     </tipovi_zahteva>\n' +

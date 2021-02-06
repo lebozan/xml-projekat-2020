@@ -21,7 +21,7 @@ const LogIn = () => {
         AuthService.login(xml).then(
             (response) => {
                 console.log(jwtDecode(response.headers.token));
-                localStorage.setItem("token", response.headers.token);
+                localStorage.setItem("tokenOrganVlasti", response.headers.token);
 
             }, (error) => {
                 console.log(error);

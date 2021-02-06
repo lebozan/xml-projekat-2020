@@ -18,7 +18,7 @@ export default function ProtectedRoute(props) {
     if (location === '/' || location === '/login' || location === '/register') {
       return;
     }
-    let token = localStorage.getItem('token')
+    let token = localStorage.getItem('tokenOrganVlasti')
     if (token !== null) {
       return component;
     } else {
