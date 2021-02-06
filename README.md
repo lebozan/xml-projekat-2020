@@ -8,7 +8,7 @@
 
 ### 2. Pokrenuti Jena Fuseki aplikativni server 
 
-* Port:```8080```
+* Port:```3030```
 
 ### 3. Pokrenuti backend aplikacije: 
   * ```EmailMicroService```
