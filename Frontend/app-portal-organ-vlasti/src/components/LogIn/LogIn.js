@@ -38,7 +38,7 @@ const LogIn = (props) => {
         switch (role) {
             case "sluzbenik":
                 console.log(role);
-                props.history.push("/sluzbenik");
+                props.history.push("/safe/sluzbenik");
                 break;
             default:
                 break;

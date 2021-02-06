@@ -11,14 +11,21 @@ class Sluzbenik extends React.Component {
     static contextType = PortalContext;
     constructor(props) {
         super(props);
-        this.state = { zahtevi: {}};
+        this.state = { zahtevi: ""};
+    }
+
+    componentDidMount() {
+        this.getZahtevi()
     }
 
     getZahtevi = () => {
         SluzbenikService.getZahtevi().then(
             (_zahtevi) => {
-                console.log(_zahtevi);
-                this.setState({zahtevi: _zahtevi})
+                let XMLParser = require('react-xml-parser');
+
+                let xml = new XMLParser().parseFromString(_zahtevi);
+
+                this.setState({zahtevi: _zahtevi});
             }
         )
     }
@@ -29,11 +36,11 @@ class Sluzbenik extends React.Component {
                 { context => (
                     <div className="main-container container">
                         <h1>Sluzbenik</h1>
-                        <Link to="/addObavestenje" >
+                        <Link to="/safe/addObavestenje" >
                             <Button>Dodaj obavestenje</Button>
                         </Link>
-                        <Button className="mt-5" onClick={this.getZahtevi}>Daj sve, aaaa</Button>
-                        {this.state.zahtevi.toString()}
+                        <Button className="mt-5" onClick={this.getZahtevi}>Daj sve</Button>
+                        {this.state.zahtevi}
                     </div>
                 )}
             </PortalContext.Consumer>
